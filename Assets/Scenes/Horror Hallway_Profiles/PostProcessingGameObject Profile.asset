@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PostProcessingGameObject Profile
   m_EditorClassIdentifier: 
   settings:
-  - {fileID: 2517997285263148825}
---- !u!114 &2517997285263148825
+  - {fileID: 7755692559394451061}
+--- !u!114 &7755692559394451061
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -35,16 +35,16 @@ MonoBehaviour:
     value: 0
   color:
     overrideState: 1
-    value: {r: 0.7169812, g: 0.012978135, b: 0, a: 1}
+    value: {r: 0.764151, g: 0, b: 0, a: 1}
   center:
     overrideState: 0
     value: {x: 0.5, y: 0.5}
   intensity:
-    overrideState: 1
+    overrideState: 0
     value: 0
   smoothness:
-    overrideState: 1
-    value: 1
+    overrideState: 0
+    value: 0.2
   roundness:
     overrideState: 0
     value: 1

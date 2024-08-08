@@ -9,12 +9,9 @@ public class Player : MonoBehaviour
     public int maxHealth = 10;
     public Rigidbody fireballPrefab;
 
-
-
     private int currentHealth;
     private float fireBallSpeed = 10f;
     private int fireBallCooldown = 0;
-
 
     public TakeDamageScript takeDamageScript;
 
@@ -30,8 +27,6 @@ public class Player : MonoBehaviour
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
-
-
     }
 
     private void FixedUpdate()
@@ -53,8 +48,6 @@ public class Player : MonoBehaviour
 
         Debug.Log("Lost " + amount + " HP");
 
-
-
         Debug.Log("You Now have " + currentHealth + " HP");
 
         //if player health <= 0 then player die
@@ -75,8 +68,7 @@ public class Player : MonoBehaviour
         }
     }
 
-
-public void ShootFireball()
+    public void ShootFireball()
     {
         if (fireBallCooldown < 1)
         {
@@ -87,10 +79,7 @@ public void ShootFireball()
             projectile.velocity = transform.forward * fireBallSpeed;
 
             fireBallCooldown = 0;
-
         }
-        
-
     }
 
     private void Die()
@@ -99,14 +88,13 @@ public void ShootFireball()
         Debug.Log("Player has died.");
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Entered OnTriggerEnter method"); // Add this line for debugging
         if (other.CompareTag("Zombie"))
         {
+            Debug.Log("You touched the zombie");
             TakeDamage(2);
         }
     }
-
-
-
 }

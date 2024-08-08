@@ -1,40 +1,35 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class TakeDamageScript : MonoBehaviour
 {
     public float intensity = 0;
 
-    PostProcessVolume _volume;
-    Vignette _vignette;
-
+    private Volume _volume;
+    private Vignette _vignette;
 
     void Start()
     {
-        _volume = GetComponent<PostProcessVolume>();
+        _volume = GetComponent<Volume>();
 
-        _volume.profile.TryGetSettings<Vignette>(out _vignette);
-
-        if (!_vignette)
+        if (_volume.profile.TryGet<Vignette>(out _vignette))
         {
-            print("Error, vignette empty");
+            _vignette.active = false;
         }
-
         else
         {
-            _vignette.enabled.Override(false);
+            Debug.LogError("Error, vignette not found in volume profile");
         }
     }
-
 
     public IEnumerator TakeDamageEffect()
     {
         intensity = 0.4f;
 
-        _vignette.enabled.Override(true);
-        _vignette.intensity.Override(0.4f);
+        _vignette.active = true;
+        _vignette.intensity.value = 0.4f;
 
         yield return new WaitForSeconds(0.4f);
 
@@ -44,15 +39,11 @@ public class TakeDamageScript : MonoBehaviour
 
             if (intensity < 0) intensity = 0;
 
-            _vignette.intensity.Override(intensity);
+            _vignette.intensity.value = intensity;
 
             yield return new WaitForSeconds(0.1f);
         }
 
-        _vignette.enabled.Override(false);
-        yield break;
-
+        _vignette.active = false;
     }
-
-
 }

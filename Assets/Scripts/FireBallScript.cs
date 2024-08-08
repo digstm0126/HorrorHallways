@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordScript : MonoBehaviour
+public class FireballScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    public GameObject fireBallObject;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Zombie"))
+        {
+            Destroy(other.gameObject);
+            Destroy(fireBallObject);
+
+        }
     }
 }
