@@ -1,6 +1,4 @@
-using sl;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,7 +9,8 @@ public class Player : MonoBehaviour
 
     private int currentHealth;
     private float fireBallSpeed = 10f;
-    private int fireBallCooldown = 0;
+    private bool canShoot = true;
+    public float fireBallCooldownDuration = 0.4f;
 
     public TakeDamageScript takeDamageScript;
 
@@ -22,21 +21,16 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        //moves player forward when pressing W key
+        // Move player forward when pressing W key
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
-    }
 
-    private void FixedUpdate()
-    {
-        if (fireBallCooldown == 0)
+        // Shoot fireball when pressing Space and canShoot is true
+        if (Input.GetKey(KeyCode.Space) && canShoot)
         {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                ShootFireball();
-            }
+            ShootFireball();
         }
     }
 
@@ -47,10 +41,9 @@ public class Player : MonoBehaviour
         StartCoroutine(takeDamageScript.TakeDamageEffect());
 
         Debug.Log("Lost " + amount + " HP");
-
         Debug.Log("You Now have " + currentHealth + " HP");
 
-        //if player health <= 0 then player die
+        // If player health <= 0 then player dies
         if (currentHealth <= 0)
         {
             Die();
@@ -61,7 +54,7 @@ public class Player : MonoBehaviour
     {
         currentHealth += amount;
 
-        //checks if player health isnt already max
+        // Check if player health isn't already max
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
@@ -70,27 +63,35 @@ public class Player : MonoBehaviour
 
     public void ShootFireball()
     {
-        if (fireBallCooldown < 1)
-        {
-            //player shoots fireball
-            var projectile = Instantiate(fireballPrefab,
-                transform.position, transform.rotation);
+        // Instantiate the fireball
+        var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
+        projectile.velocity = transform.forward * fireBallSpeed;
 
-            projectile.velocity = transform.forward * fireBallSpeed;
+        // Start the cooldown coroutine
+        StartCoroutine(FireballCooldown());
+    }
 
-            fireBallCooldown = 0;
-        }
+    private IEnumerator FireballCooldown()
+    {
+        // Disable shooting
+        canShoot = false;
+
+        // Wait for the cooldown duration
+        yield return new WaitForSeconds(fireBallCooldownDuration);
+
+        // Re-enable shooting
+        canShoot = true;
     }
 
     private void Die()
     {
-        //print that the player dead
+        // Print that the player is dead
         Debug.Log("Player has died.");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Entered OnTriggerEnter method"); // Add this line for debugging
+        Debug.Log("Entered OnTriggerEnter method");
         if (other.CompareTag("Zombie"))
         {
             Debug.Log("You touched the zombie");
