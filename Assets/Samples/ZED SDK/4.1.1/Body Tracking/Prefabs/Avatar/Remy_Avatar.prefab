@@ -1267,6 +1267,7 @@ GameObject:
   - component: {fileID: 8645269711047459822}
   - component: {fileID: 2778931348753956472}
   - component: {fileID: 2778931348753956473}
+  - component: {fileID: 1549740982626539660}
   m_Layer: 16
   m_Name: Remy_Avatar
   m_TagString: Untagged
@@ -1358,6 +1359,18 @@ MonoBehaviour:
   ankleHeightOffset: 0.124
   resetAutomaticOffset: 114
   canSpawn: 0
+--- !u!114 &1549740982626539660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3049454300123104046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69f34dae0ad01a40bc1301709089ed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3333038023081613847
 GameObject:
   m_ObjectHideFlags: 0
