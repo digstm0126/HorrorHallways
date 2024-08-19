@@ -9,6 +9,7 @@ TagManager:
   - zomBunny
   - Zombie
   - ExplosiveBarrel
+  - Breakable
   layers:
   - Default
   - TransparentFX

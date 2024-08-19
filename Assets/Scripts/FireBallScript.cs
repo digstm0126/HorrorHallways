@@ -4,39 +4,40 @@ using UnityEngine;
 
 public class FireballScript : MonoBehaviour
 {
-    [SerializeField] public GameObject fireBallObject;
-    [SerializeField] public GameObject explosiveBarrelObject;
+    [SerializeField] public GameObject fireBallPrefab;
+    [SerializeField] public GameObject zombieEffectPrefab;
+    [SerializeField] private int pointsForZombie = 100;
 
-    private MeshRenderer barrelMesh;
-    private MeshRenderer zombieMesh;
-    private ParticleSystem explosionEffect;
-    private ParticleSystem zombieEffect;
+    private ScoreManager scoreManager;
+
+    private void Start()
+    {
+        scoreManager = FindObjectOfType<ScoreManager>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Zombie"))
         {
-            zombieMesh = other.GetComponent<MeshRenderer>();
-            zombieEffect = other.GetComponent<ParticleSystem>();
+            scoreManager.AddScore(pointsForZombie);
 
-            zombieMesh.enabled = false;
-            Destroy(fireBallObject);
 
-            zombieEffect.Play();
+            Vector3 zombiePosition = other.transform.position;
+            Quaternion zombieRotation = other.transform.rotation;
 
-            // Destroy(other.gameObject);
-            // Destroy(fireBallObject);
+            Instantiate(zombieEffectPrefab, zombiePosition, zombieRotation);
+
+            Destroy(other.gameObject);
+            Destroy(gameObject);
         }
 
         if (other.CompareTag("ExplosiveBarrel"))
         {
-            barrelMesh = other.GetComponent<MeshRenderer>();
-            explosionEffect = other.GetComponent<ParticleSystem>();
+            ExplosiveBarrelScript barrelScript = other.GetComponent<ExplosiveBarrelScript>();
 
-            barrelMesh.enabled = false;
-            Destroy(fireBallObject);
-
-            explosionEffect.Play();
+            barrelScript.Explode();
+            
+            Destroy(gameObject);
         }
     }
 }
