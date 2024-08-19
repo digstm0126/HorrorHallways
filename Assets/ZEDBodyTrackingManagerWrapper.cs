@@ -5,6 +5,9 @@ public class ZEDBodyTrackingManagerWrapper : MonoBehaviour
 {
     private ZEDBodyTrackingManager zedBodyTrackingManager;
 
+    // Public transform to assign the desired GameObject in the Inspector
+    public Transform targetTransform;
+
     void Start()
     {
         zedBodyTrackingManager = GetComponent<ZEDBodyTrackingManager>();
@@ -65,7 +68,16 @@ public class ZEDBodyTrackingManagerWrapper : MonoBehaviour
 
         for (int i = 0; i < worldJointsPos.Length; i++)
         {
-            worldJointsPos[i] = zedBodyTrackingManager.zedManager.GetZedRootTransform().TransformPoint(data.keypoint[i]);
+            // Adjust the position based on the targetTransform
+            if (targetTransform != null)
+            {
+                worldJointsPos[i] = targetTransform.TransformPoint(data.keypoint[i]);
+            }
+            else
+            {
+                worldJointsPos[i] = zedBodyTrackingManager.zedManager.GetZedRootTransform().TransformPoint(data.keypoint[i]);
+            }
+
             normalizedLocalJointsRot[i] = data.localOrientationPerJoint[i].normalized;
         }
 
