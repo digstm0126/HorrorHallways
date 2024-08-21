@@ -5,11 +5,15 @@ public class ZEDBodyTrackingManagerWrapper : MonoBehaviour
 {
     private ZEDBodyTrackingManager zedBodyTrackingManager;
 
-    // Public transform to assign the desired GameObject in the Inspector
     public Transform targetTransform;
+
+    void Update(){
+        SetManualOffsetToParentPosition();
+    }
 
     void Start()
     {
+        
         zedBodyTrackingManager = GetComponent<ZEDBodyTrackingManager>();
 
         if (zedBodyTrackingManager == null)
@@ -20,6 +24,8 @@ public class ZEDBodyTrackingManagerWrapper : MonoBehaviour
 
         // Subscribe to the event to intercept the data
         zedBodyTrackingManager.zedManager.OnBodyTracking += InterceptUpdateSkeletonData;
+        SetManualOffsetToParentPosition();
+
     }
 
     private void InterceptUpdateSkeletonData(BodyTrackingFrame dframe)
@@ -35,7 +41,6 @@ public class ZEDBodyTrackingManagerWrapper : MonoBehaviour
             {
                 SkeletonHandler handler = zedBodyTrackingManager.AvatarControlList[person_id];
                 
-                // Intercept the UpdateAvatarControl method
                 InterceptedUpdateAvatarControl(handler, dbody.rawBodyData);
 
                 remainingKeyList.Remove(person_id);
@@ -85,7 +90,7 @@ public class ZEDBodyTrackingManagerWrapper : MonoBehaviour
         Quaternion worldGlobalRotation = zedBodyTrackingManager.zedManager.GetZedRootTransform().rotation * data.globalRootOrientation;
 
         // Apply a 180-degree rotation around the Y-axis to flip the orientation
-        Quaternion flipRotation = Quaternion.Euler(0, 180, 0);
+        Quaternion flipRotation = Quaternion.Euler(0, 0, 0);
         worldGlobalRotation *= flipRotation;
 
         if (data.localOrientationPerJoint.Length > 0 && data.keypoint.Length > 0 && data.keypointConfidence.Length > 0)
@@ -106,14 +111,25 @@ public class ZEDBodyTrackingManagerWrapper : MonoBehaviour
             handler.rootVelocity = data.velocity;
         }
     }
+    public void SetManualOffsetToParentPosition()
+    {
+
+        if (targetTransform != null)
+        {
+            zedBodyTrackingManager.manualOffset = targetTransform.position;
+        }
+        else
+        {
+            Debug.LogWarning("Target Transform does not have a parent or is not assigned.");
+        }
+    }
 
     private Vector3[] InterceptWorldJointsPos(Vector3[] originalPositions)
     {
-        // Modify or log the originalPositions as needed
         Vector3[] modifiedPositions = new Vector3[originalPositions.Length];
         for (int i = 0; i < originalPositions.Length; i++)
         {
-            modifiedPositions[i] = originalPositions[i]; // Or apply some transformation
+            modifiedPositions[i] = originalPositions[i]; 
         }
         return modifiedPositions;
     }

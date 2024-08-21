@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 5210420427815617051}
   - component: {fileID: 8038840070172855552}
   - component: {fileID: 6920532435147924670}
+  - component: {fileID: 4965411686540321901}
   m_Layer: 16
   m_Name: YBot_Avatar
   m_TagString: Untagged
@@ -325,6 +326,18 @@ MonoBehaviour:
   ankleHeightOffset: 0.102
   resetAutomaticOffset: 114
   canSpawn: 0
+--- !u!114 &4965411686540321901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577629577426895579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b92394e1b4fba34a837d5deb2b2c14c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1594473213823279488
 GameObject:
   m_ObjectHideFlags: 0
