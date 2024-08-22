@@ -10,6 +10,7 @@ TagManager:
   - Zombie
   - ExplosiveBarrel
   - Breakable
+  - Spider
   layers:
   - Default
   - TransparentFX

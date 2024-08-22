@@ -6,7 +6,9 @@ public class FireballScript : MonoBehaviour
 {
     [SerializeField] public GameObject fireBallPrefab;
     [SerializeField] public GameObject zombieEffectPrefab;
+    [SerializeField] public GameObject spiderEffectPrefab;
     [SerializeField] private int pointsForZombie = 100;
+    [SerializeField] private int pointsForSpider = 100;
 
     private ScoreManager scoreManager;
 
@@ -26,6 +28,19 @@ public class FireballScript : MonoBehaviour
             Quaternion zombieRotation = other.transform.rotation;
 
             Instantiate(zombieEffectPrefab, zombiePosition, zombieRotation);
+
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+
+        if (other.CompareTag("Spider"))
+        {
+            scoreManager.AddScore(pointsForSpider);
+
+            Vector3 spiderPosition = other.transform.position;
+            Quaternion spiderRotation = other.transform.rotation;
+
+            Instantiate(spiderEffectPrefab, spiderPosition, spiderRotation);
 
             Destroy(other.gameObject);
             Destroy(gameObject);
