@@ -120,12 +120,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireBallPrefab: {fileID: 6306154309679536676}
-  explosiveBarrelPrefab: {fileID: 4323828006177138697, guid: 93abba6f3802ad74998b24539ba94f43,
-    type: 3}
-  explosionEffectPrefab: {fileID: 2023211014263349832, guid: 4e69f87c33f348743a3a652e41cb53b2,
-    type: 3}
   zombieEffectPrefab: {fileID: 5741625448733318166, guid: e738c45ac3f71994aa1a9fdbf6e5674e,
     type: 3}
+  spiderEffectPrefab: {fileID: 740242984504044679, guid: 9aa812c84eaab7246b573e634a04dbc2,
+    type: 3}
+  pointsForZombie: 100
 --- !u!54 &-7653230399802922276
 Rigidbody:
   m_ObjectHideFlags: 0

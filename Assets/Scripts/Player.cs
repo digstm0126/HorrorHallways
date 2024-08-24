@@ -21,13 +21,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        // Move player forward when pressing W key
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
 
-        // Shoot fireball when pressing Space and canShoot is true
         if (Input.GetKey(KeyCode.Space) && canShoot)
         {
             ShootFireball();
@@ -43,7 +41,6 @@ public class Player : MonoBehaviour
         Debug.Log("Lost " + amount + " HP");
         Debug.Log("You Now have " + currentHealth + " HP");
 
-        // If player health <= 0 then player dies
         if (currentHealth <= 0)
         {
             Die();
@@ -54,7 +51,6 @@ public class Player : MonoBehaviour
     {
         currentHealth += amount;
 
-        // Check if player health isn't already max
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
@@ -63,39 +59,39 @@ public class Player : MonoBehaviour
 
     public void ShootFireball()
     {
-        // Instantiate the fireball
         var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
         projectile.velocity = transform.forward * fireBallSpeed;
 
-        // Start the cooldown coroutine
         StartCoroutine(FireballCooldown());
     }
 
     private IEnumerator FireballCooldown()
     {
-        // Disable shooting
         canShoot = false;
 
-        // Wait for the cooldown duration
         yield return new WaitForSeconds(fireBallCooldownDuration);
 
-        // Re-enable shooting
         canShoot = true;
     }
 
     private void Die()
     {
-        // Print that the player is dead
         Debug.Log("Player has died.");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Entered OnTriggerEnter method");
         if (other.CompareTag("Zombie"))
         {
-            Debug.Log("You touched the zombie");
             TakeDamage(2);
+            Destroy(other.gameObject);
         }
+
+        if (other.CompareTag("Spider"))
+        {
+            TakeDamage(1);
+            Destroy(other.gameObject);
+        }
+
     }
 }
