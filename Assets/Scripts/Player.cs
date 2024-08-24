@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public float fireBallCooldownDuration = 0.4f;
 
     public TakeDamageScript takeDamageScript;
+    
+    public GetDirection getDirection;
 
     void Start()
     {
@@ -59,8 +61,19 @@ public class Player : MonoBehaviour
 
     public void ShootFireball()
     {
+        /* Non Zed
         var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
         projectile.velocity = transform.forward * fireBallSpeed;
+
+        StartCoroutine(FireballCooldown()); */
+        
+        // Zed
+        Vector3 fireballDirectionWorld = getDirection.GetRightArmForwardVector();
+        Vector3 fireballDirectionRelative = transform.TransformDirection(fireballDirectionWorld);
+        Vector3 fireballOrigin = getDirection.rightForearm.transform.position;
+
+        var projectile = Instantiate(fireballPrefab, fireballOrigin, Quaternion.LookRotation(fireballDirectionRelative));
+        projectile.velocity = fireballDirectionRelative * fireBallSpeed;
 
         StartCoroutine(FireballCooldown());
     }
@@ -95,3 +108,5 @@ public class Player : MonoBehaviour
 
     }
 }
+
+
