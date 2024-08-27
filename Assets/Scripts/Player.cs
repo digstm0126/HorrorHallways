@@ -2,12 +2,17 @@ using sl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
     public float speed = 5f;
     public int maxHealth = 10;
     public Rigidbody fireballPrefab;
+
+    public bool scrolControl;
+
+    public int mouseScoleScale = 1;
 
     private int currentHealth;
     private float fireBallSpeed = 10f;
@@ -22,11 +27,23 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        //moves player forward when pressing W key
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        if (scrolControl == true){
+            speed += Input.mouseScrollDelta.y * mouseScoleScale;
+            GetComponent<Rigidbody>().AddForce(transform.forward * speed);
         }
+        else{
+
+            //moves player forward when pressing W key
+            if (Input.GetKey(KeyCode.W))
+            {
+                //transform.Translate(Vector3.forward * speed * Time.deltaTime);
+                GetComponent<Rigidbody>().AddForce(transform.forward * speed);
+            }
+        }
+        
+
+        
+
     }
 
     private void FixedUpdate()
