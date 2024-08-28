@@ -66,30 +66,31 @@ public class Player : MonoBehaviour
 
     public void ShootFireball()
     {
-        /*
-        var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
-        projectile.velocity = transform.forward * fireBallSpeed;
+        if (!getDirection)
+        {
+            var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
+            projectile.velocity = transform.forward * fireBallSpeed;
 
-        StartCoroutine(FireballCooldown()); */
-        
-        var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
-        
-        Vector3 modelArmWorldRight = getDirection.GetRightArmForwardVector();
+            StartCoroutine(FireballCooldown()); 
+        }
+        else
+        {
 
-        modelArmWorldRight.y = 0;
-        modelArmWorldRight = modelArmWorldRight.normalized;
+            var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
 
-        Quaternion playerRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
-        Vector3 alignedDirection = playerRotation * modelArmWorldRight;
-        alignedDirection = -alignedDirection;
+            Vector3 modelArmWorldRight = getDirection.GetRightArmForwardVector();
 
-        
-        
-        
-        projectile.velocity = alignedDirection * fireBallSpeed;
-        
-        
-        
+            modelArmWorldRight.y = 0;
+            modelArmWorldRight = modelArmWorldRight.normalized;
+
+            Quaternion playerRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+            Vector3 alignedDirection = playerRotation * modelArmWorldRight;
+            alignedDirection = -alignedDirection;
+            projectile.velocity = alignedDirection * fireBallSpeed;
+        }
+
+
+
     }
 
     private IEnumerator FireballCooldown()
