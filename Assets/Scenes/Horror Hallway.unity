@@ -2910,7 +2910,7 @@ PrefabInstance:
         type: 3}
       propertyPath: avatar
       value: 
-      objectReference: {fileID: 1577629577426895579, guid: 33f647073f764014ea539028af802721,
+      objectReference: {fileID: 5426183247939467289, guid: f2ee99f7fb680614280786415631772d,
         type: 3}
     - target: {fileID: 6327103935139800441, guid: ca18a88838151284380d84fc86d327e5,
         type: 3}
@@ -6529,10 +6529,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 946605279}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16fb92ad70f7c8841a75f0927cb7a49d, type: 3}
+  m_Script: {fileID: 11500000, guid: 45993b813c4b464439e2623d2d1b43f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTransform: {fileID: 1841016602}
+  targetTransform: {fileID: 0}
 --- !u!4 &948720884 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1712581496669896419, guid: 8878c7e43c64f1d46be03bfa1adf350d,
