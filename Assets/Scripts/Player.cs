@@ -13,8 +13,7 @@ public class Player : MonoBehaviour
     public float fireBallCooldownDuration = 0.4f;
 
     public TakeDamageScript takeDamageScript;
-    
-    public GetDirection getDirection;
+    GetDirection getDirection;
 
     void Start()
     {
@@ -23,14 +22,20 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (!getDirection)
+        {
+            getDirection = FindObjectOfType<GetDirection>();
+        }
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            transform.Translate(Vector3.forward * (speed * Time.deltaTime));
+            
         }
 
-        if (Input.GetKey(KeyCode.Space) && canShoot)
+        if (Input.GetKey(KeyCode.Z) && canShoot)
         {
             ShootFireball();
+            StartCoroutine(FireballCooldown());
         }
     }
 
@@ -61,21 +66,30 @@ public class Player : MonoBehaviour
 
     public void ShootFireball()
     {
-        /* Non Zed
+        /*
         var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
         projectile.velocity = transform.forward * fireBallSpeed;
 
         StartCoroutine(FireballCooldown()); */
         
-        // Zed
-        Vector3 fireballDirectionWorld = getDirection.GetRightArmForwardVector();
-        Vector3 fireballDirectionRelative = transform.TransformDirection(fireballDirectionWorld);
-        Vector3 fireballOrigin = getDirection.rightForearm.transform.position;
+        var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
+        
+        Vector3 modelArmWorldRight = getDirection.GetRightArmForwardVector();
 
-        var projectile = Instantiate(fireballPrefab, fireballOrigin, Quaternion.LookRotation(fireballDirectionRelative));
-        projectile.velocity = fireballDirectionRelative * fireBallSpeed;
+        modelArmWorldRight.y = 0;
+        modelArmWorldRight = modelArmWorldRight.normalized;
 
-        StartCoroutine(FireballCooldown());
+        Quaternion playerRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+        Vector3 alignedDirection = playerRotation * modelArmWorldRight;
+        alignedDirection = -alignedDirection;
+
+        
+        
+        
+        projectile.velocity = alignedDirection * fireBallSpeed;
+        
+        
+        
     }
 
     private IEnumerator FireballCooldown()
@@ -108,5 +122,3 @@ public class Player : MonoBehaviour
 
     }
 }
-
-
