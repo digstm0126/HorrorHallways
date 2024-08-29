@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events; 
 
 public class Player : MonoBehaviour
 {
@@ -14,10 +15,14 @@ public class Player : MonoBehaviour
 
     public TakeDamageScript takeDamageScript;
     GetDirection getDirection;
+    
+    
 
     void Start()
     {
         currentHealth = maxHealth;
+        
+
     }
 
     void Update()
@@ -63,7 +68,7 @@ public class Player : MonoBehaviour
             currentHealth = maxHealth;
         }
     }
-
+    
     public void ShootFireball()
     {
         if (!getDirection)
@@ -75,7 +80,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-
+            // can be called in TriggerFireball.cs on the avatar prefab
             var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
 
             Vector3 modelArmWorldRight = getDirection.GetRightArmForwardVector();
