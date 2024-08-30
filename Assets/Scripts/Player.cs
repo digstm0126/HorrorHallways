@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events; 
 
 public class Player : MonoBehaviour
 {
@@ -21,8 +20,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        
-
     }
 
     void Update()
@@ -40,7 +37,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.Z) && canShoot)
         {
             ShootFireball();
-            StartCoroutine(FireballCooldown());
+            
         }
     }
 
@@ -91,7 +88,10 @@ public class Player : MonoBehaviour
             Quaternion playerRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
             Vector3 alignedDirection = playerRotation * modelArmWorldRight;
             alignedDirection = -alignedDirection;
+            
             projectile.velocity = alignedDirection * fireBallSpeed;
+            
+            StartCoroutine(FireballCooldown());
         }
 
 
