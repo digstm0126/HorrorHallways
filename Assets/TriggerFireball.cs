@@ -24,6 +24,7 @@ public class TriggerFireball : MonoBehaviour
 
         LeftHandShoot();
         RightHandShoot();
+        CheckRightHandMovement();
     }
 
     private void LeftHandShoot()
@@ -100,5 +101,40 @@ public class TriggerFireball : MonoBehaviour
             new Vector2(hand.transform.position.x, hand.transform.position.z),
             new Vector2(center.position.x, center.position.z)
         );
+    }
+    
+    
+    
+    private Vector3 previousRightHandPosition;
+    private int unchangedPositionCount = 0;
+    private const int maxUnchangedCount = 500; // Number of frames to check for unchanged position
+
+    private void CheckRightHandMovement()
+    {
+        if (rightHand == null) return;
+
+        Vector3 currentRightHandPosition = rightHand.transform.position;
+
+        // Check if the position has not changed
+        if (currentRightHandPosition == previousRightHandPosition)
+        {
+            unchangedPositionCount++;
+            Debug.Log($"Right hand position unchanged for {unchangedPositionCount} frames.");
+
+            // Trigger Debug.Break() if position hasn't changed for 5 frames
+            if (unchangedPositionCount >= maxUnchangedCount)
+            {
+                Debug.Log("Right hand has not moved for 5 frames - Pausing Editor.");
+                Debug.Break();
+            }
+        }
+        else
+        {
+            // Reset the counter if the position has changed
+            unchangedPositionCount = 0;
+        }
+
+        // Update the previous position
+        previousRightHandPosition = currentRightHandPosition;
     }
 }

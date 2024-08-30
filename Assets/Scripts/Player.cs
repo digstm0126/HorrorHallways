@@ -91,7 +91,6 @@ public class Player : MonoBehaviour
             
             projectile.velocity = alignedDirection * fireBallSpeed;
             
-            StartCoroutine(FireballCooldown());
         }
 
 
