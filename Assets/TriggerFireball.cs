@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class TriggerFireball : MonoBehaviour
@@ -15,6 +14,9 @@ public class TriggerFireball : MonoBehaviour
     private bool isLeftHandReady;
     private bool isRightHandReady;
 
+    // Boolean to control debug logs
+    public bool enableDebugLogs = true;
+
     void Update()
     {
         if (!player)
@@ -24,7 +26,6 @@ public class TriggerFireball : MonoBehaviour
 
         LeftHandShoot();
         RightHandShoot();
-        CheckRightHandMovement();
     }
 
     private void LeftHandShoot()
@@ -33,14 +34,14 @@ public class TriggerFireball : MonoBehaviour
         {
             if (!isLeftHandReady)
             {
-                Debug.Log("Left hand extended - Shooting Fireball!");
-                player.ShootFireball();
+                LogDebug("Left hand extended - Shooting Fireball!");
+                player.ShootFireball(true);
                 isLeftHandReady = true;
                 //Debug.Break();
             }
             else
             {
-                Debug.Log("Left hand is still extended - Waiting for reset.");
+                LogDebug("Left hand is still extended - Waiting for reset.");
             }
         }
 
@@ -48,27 +49,27 @@ public class TriggerFireball : MonoBehaviour
         {
             if (isLeftHandReady)
             {
-                Debug.Log("Left hand reset - Ready to shoot again.");
+                LogDebug("Left hand reset - Ready to shoot again.");
             }
             isLeftHandReady = false;
         }
     }
-    
+
     private void RightHandShoot()
     {
         if (IsHandBeyondDistance(rightHand))
         {
             if (!isRightHandReady)
             {
-                Debug.Log("Right hand extended - Shooting Fireball!");
-                player.ShootFireball();
+                LogDebug("Right hand extended - Shooting Fireball!");
+                player.ShootFireball(false);
                 isRightHandReady = true;
                 //Debug.Break();
                 
             }
             else
             {
-                Debug.Log("Right hand is still extended - Waiting for reset.");
+                LogDebug("Right hand is still extended - Waiting for reset.");
             }
         }
 
@@ -76,7 +77,7 @@ public class TriggerFireball : MonoBehaviour
         {
             if (isRightHandReady)
             {
-                Debug.Log("Right hand reset - Ready to shoot again.");
+                LogDebug("Right hand reset - Ready to shoot again.");
             }
             isRightHandReady = false;
         }
@@ -85,7 +86,7 @@ public class TriggerFireball : MonoBehaviour
     private bool IsHandBeyondDistance(GameObject hand)
     {
         float distance = CalculateTriggerDistance(hand);
-        Debug.Log($"{hand.name} distance from {center.name}: {distance}");
+        LogDebug($"{hand.name} distance from {center.name}: {distance}");
         return distance > triggerDistance;
     }
 
@@ -103,38 +104,14 @@ public class TriggerFireball : MonoBehaviour
         );
     }
     
-    
-    
-    private Vector3 previousRightHandPosition;
-    private int unchangedPositionCount = 0;
-    private const int maxUnchangedCount = 500; // Number of frames to check for unchanged position
 
-    private void CheckRightHandMovement()
+    
+
+    private void LogDebug(string message)
     {
-        if (rightHand == null) return;
-
-        Vector3 currentRightHandPosition = rightHand.transform.position;
-
-        // Check if the position has not changed
-        if (currentRightHandPosition == previousRightHandPosition)
+        if (enableDebugLogs)
         {
-            unchangedPositionCount++;
-            Debug.Log($"Right hand position unchanged for {unchangedPositionCount} frames.");
-
-            // Trigger Debug.Break() if position hasn't changed for 5 frames
-            if (unchangedPositionCount >= maxUnchangedCount)
-            {
-                Debug.Log("Right hand has not moved for 5 frames - Pausing Editor.");
-                Debug.Break();
-            }
+            Debug.Log(message);
         }
-        else
-        {
-            // Reset the counter if the position has changed
-            unchangedPositionCount = 0;
-        }
-
-        // Update the previous position
-        previousRightHandPosition = currentRightHandPosition;
     }
 }

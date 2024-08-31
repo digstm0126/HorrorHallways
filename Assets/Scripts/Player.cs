@@ -36,12 +36,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Z) && canShoot)
         {
-            ShootFireball();
+            ShootFireball(true);
             
         }
     }
 
-    public void TakeDamage(int amount)
+    private void TakeDamage(int amount)
     {
         currentHealth -= amount;
 
@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
         }
     }
     
-    public void ShootFireball()
+    public void ShootFireball(bool isLeft)
     {
         if (!getDirection)
         {
@@ -80,13 +80,13 @@ public class Player : MonoBehaviour
             // can be called in TriggerFireball.cs on the avatar prefab
             var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
 
-            Vector3 modelArmWorldRight = getDirection.GetRightArmForwardVector();
+            Vector3 armForwardVector = !isLeft ? getDirection.GetRightArmForwardVector() : getDirection.GetLeftArmForwardVector();
 
-            modelArmWorldRight.y = 0;
-            modelArmWorldRight = modelArmWorldRight.normalized;
+            armForwardVector.y = 0;
+            armForwardVector = armForwardVector.normalized;
 
             Quaternion playerRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
-            Vector3 alignedDirection = playerRotation * modelArmWorldRight;
+            Vector3 alignedDirection = playerRotation * armForwardVector;
             alignedDirection = -alignedDirection;
             
             projectile.velocity = alignedDirection * fireBallSpeed;
