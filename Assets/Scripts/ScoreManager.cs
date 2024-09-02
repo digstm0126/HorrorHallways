@@ -25,4 +25,9 @@ public class ScoreManager : MonoBehaviour
     {
         scoreText.text = "Score: " + score.ToString();
     }
+
+    public int GetScore()
+    {
+        return score;
+    }
 }

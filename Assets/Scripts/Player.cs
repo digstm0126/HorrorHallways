@@ -1,22 +1,30 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 5f;
-    public int maxHealth = 10;
+    public float speed = 3f;
     public Rigidbody fireballPrefab;
+    public GameObject youLoseTextTMP;
 
-    private int currentHealth;
     private float fireBallSpeed = 10f;
     private bool canShoot = true;
     public float fireBallCooldownDuration = 0.4f;
+    private bool isGameOver = false;
 
+    public HealthManager healthManager; // Reference to HealthManager
     public TakeDamageScript takeDamageScript;
+    private ScoreManager scoreManager;
 
     void Start()
     {
-        currentHealth = maxHealth;
+        scoreManager = FindObjectOfType<ScoreManager>();
+        // Initialize HealthManager if not set in the Inspector
+        if (healthManager == null)
+        {
+            healthManager = FindObjectOfType<HealthManager>();
+        }
     }
 
     void Update()
@@ -34,27 +42,27 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        currentHealth -= amount;
+        if (isGameOver) return;
+
+        healthManager.TakeDamage(amount);
 
         StartCoroutine(takeDamageScript.TakeDamageEffect());
 
         Debug.Log("Lost " + amount + " HP");
-        Debug.Log("You Now have " + currentHealth + " HP");
+        Debug.Log("You Now have " + healthManager.CurrentHealth + " HP");
 
-        if (currentHealth <= 0)
+        if (healthManager.CurrentHealth <= 0)
         {
-            Die();
+            GameOver();
         }
     }
 
     public void Heal(int amount)
     {
-        currentHealth += amount;
+        if (isGameOver) return;
 
-        if (currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
+        healthManager.Heal(amount); // Call HealthManager to handle healing
+        Debug.Log("Healed " + amount + " HP. Current HP: " + healthManager.CurrentHealth);
     }
 
     public void ShootFireball()
@@ -74,9 +82,18 @@ public class Player : MonoBehaviour
         canShoot = true;
     }
 
-    private void Die()
+    private void GameOver()
     {
-        Debug.Log("Player has died.");
+        isGameOver = true;
+        speed = 0.0f;
+
+        scoreManager.scoreText.gameObject.SetActive(false);
+
+        youLoseTextTMP.SetActive(true);
+        int finalScore = scoreManager.GetScore();
+        youLoseTextTMP.GetComponent<TextMeshProUGUI>().text = $"You Lose! You scored: {finalScore}";
+
+        Debug.Log("Player has died. Displaying score");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -92,6 +109,5 @@ public class Player : MonoBehaviour
             TakeDamage(1);
             Destroy(other.gameObject);
         }
-
     }
 }
