@@ -9,6 +9,28 @@ public class ZEDBodyTrackingManagerWrapper : MonoBehaviour
 
     void Update(){
         SetManualOffsetToParentPosition();
+
+    }
+
+    void LateUpdate()
+    {
+        InterceptInputs();
+    }
+    
+    private void InterceptInputs()
+    {
+        // Clear out any key or mouse input states
+        if (Input.anyKey)
+        {
+            foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
+            {
+                if (Input.GetKey(key))
+                {
+                    // Block the input
+                    Input.ResetInputAxes();
+                }
+            }
+        }
     }
 
     void Start()
@@ -159,3 +181,4 @@ public class ZEDBodyTrackingManagerWrapper : MonoBehaviour
         }
     }
 }
+

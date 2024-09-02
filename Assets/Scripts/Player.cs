@@ -15,7 +15,13 @@ public class Player : MonoBehaviour
 
     public HealthManager healthManager; // Reference to HealthManager
     public TakeDamageScript takeDamageScript;
+<<<<<<< HEAD
     private ScoreManager scoreManager;
+=======
+    GetDirection getDirection;
+    
+    
+>>>>>>> 4027f42cb1bb80acc46920d92321255e243a25bc
 
     void Start()
     {
@@ -29,18 +35,24 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (!getDirection)
+        {
+            getDirection = FindObjectOfType<GetDirection>();
+        }
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            transform.Translate(Vector3.forward * (speed * Time.deltaTime));
+            
         }
 
-        if (Input.GetKey(KeyCode.Space) && canShoot)
+        if (Input.GetKey(KeyCode.Z) && canShoot)
         {
-            ShootFireball();
+            ShootFireball(true);
+            
         }
     }
 
-    public void TakeDamage(int amount)
+    private void TakeDamage(int amount)
     {
         if (isGameOver) return;
 
@@ -64,13 +76,36 @@ public class Player : MonoBehaviour
         healthManager.Heal(amount); // Call HealthManager to handle healing
         Debug.Log("Healed " + amount + " HP. Current HP: " + healthManager.CurrentHealth);
     }
-
-    public void ShootFireball()
+    
+    public void ShootFireball(bool isLeft)
     {
-        var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
-        projectile.velocity = transform.forward * fireBallSpeed;
+        if (!getDirection)
+        {
+            var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
+            projectile.velocity = transform.forward * fireBallSpeed;
 
-        StartCoroutine(FireballCooldown());
+            StartCoroutine(FireballCooldown()); 
+        }
+        else
+        {
+            // can be called in TriggerFireball.cs on the avatar prefab
+            var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
+
+            Vector3 armForwardVector = !isLeft ? getDirection.GetRightArmForwardVector() : getDirection.GetLeftArmForwardVector();
+
+            armForwardVector.y = 0;
+            armForwardVector = armForwardVector.normalized;
+
+            Quaternion playerRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+            Vector3 alignedDirection = playerRotation * armForwardVector;
+            alignedDirection = -alignedDirection;
+            
+            projectile.velocity = alignedDirection * fireBallSpeed;
+            
+        }
+
+
+
     }
 
     private IEnumerator FireballCooldown()
