@@ -15,13 +15,13 @@ public class Player : MonoBehaviour
 
     public HealthManager healthManager; // Reference to HealthManager
     public TakeDamageScript takeDamageScript;
-<<<<<<< HEAD
+
     private ScoreManager scoreManager;
-=======
+
     GetDirection getDirection;
     
     
->>>>>>> 4027f42cb1bb80acc46920d92321255e243a25bc
+
 
     void Start()
     {

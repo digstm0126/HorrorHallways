@@ -129,9 +129,9 @@ MonoBehaviour:
   leftHand: {fileID: 5426183247939467661}
   rightHand: {fileID: 5426183247939467721}
   center: {fileID: 5426183247939560891}
-  triggerDistance: 0.55
+  triggerDistance: 0.5
   resetDistance: 0.35
-  enableDebugLogs: 1
+  enableDebugLogs: 0
 --- !u!1 &5426183247939467297
 GameObject:
   m_ObjectHideFlags: 0
