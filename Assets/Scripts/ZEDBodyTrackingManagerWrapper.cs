@@ -136,7 +136,7 @@ public class ZEDBodyTrackingManagerWrapper : MonoBehaviour
     public void SetManualOffsetToParentPosition()
     {
 
-        if (targetTransform != null)
+        if (targetTransform)
         {
             zedBodyTrackingManager.manualOffset = targetTransform.position;
         }
@@ -144,6 +144,10 @@ public class ZEDBodyTrackingManagerWrapper : MonoBehaviour
         {
             Debug.LogWarning("Target Transform does not have a parent or is not assigned.");
         }
+        
+        
+
+        
     }
 
     private Vector3[] InterceptWorldJointsPos(Vector3[] originalPositions)
