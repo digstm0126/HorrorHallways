@@ -6733,12 +6733,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1106023450}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &954665605 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5505336437074420642, guid: e42dce10de392fb46b7cf553d7658cf4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1834661486}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &967663026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7198,8 +7192,8 @@ Transform:
   - {fileID: 1743908564}
   - {fileID: 1875452891}
   - {fileID: 536770115}
-  - {fileID: 954665605}
   - {fileID: 298664858}
+  - {fileID: 1609134273}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1080860885 stripped
@@ -11552,16 +11546,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1073865678}
     m_Modifications:
-    - target: {fileID: 4323828006177138697, guid: 93abba6f3802ad74998b24539ba94f43,
-        type: 3}
-      propertyPath: m_Name
-      value: ExplosiveBarrel (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4686128418150645282, guid: 93abba6f3802ad74998b24539ba94f43,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.29999998
-      objectReference: {fileID: 0}
     - target: {fileID: 5505336437074420642, guid: e42dce10de392fb46b7cf553d7658cf4,
         type: 3}
       propertyPath: m_LocalScale.z
@@ -11571,6 +11555,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.708842
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323828006177138697, guid: 93abba6f3802ad74998b24539ba94f43,
+        type: 3}
+      propertyPath: m_Name
+      value: ExplosiveBarrel (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4686128418150645282, guid: 93abba6f3802ad74998b24539ba94f43,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.29999998
       objectReference: {fileID: 0}
     - target: {fileID: 4686128418150645282, guid: 93abba6f3802ad74998b24539ba94f43,
         type: 3}
@@ -12849,3 +12843,4 @@ SceneRoots:
   - {fileID: 1424524743}
   - {fileID: 1793364576}
   - {fileID: 1073865678}
+  - {fileID: 1595579969}
