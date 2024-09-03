@@ -12,12 +12,13 @@ public class web : MonoBehaviour
     public bool inside = false;
 
     public float speed = 1;
-    float timer = Time.time;
+    float timer;
 
     // Start is called before the first frame update
     void Start()
     {
         wavey = gameObject.GetComponent<Renderer>().material;
+        timer =  Time.time;
     }
 
     // Update is called once per frame
