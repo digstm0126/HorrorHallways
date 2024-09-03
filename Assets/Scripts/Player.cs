@@ -9,9 +9,9 @@ public class Player : MonoBehaviour
     public Rigidbody fireballPrefab;
     public GameObject youLoseTextTMP;
 
-    public bool scrolControl;
+    public bool scrollControl;
 
-    public int mouseScoleScale = 1;
+    public int mouseScrollScale = 1;
 
     private float fireBallSpeed = 10f;
     private bool canShoot = true;
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     {
         scoreManager = FindObjectOfType<ScoreManager>();
         // Initialize HealthManager if not set in the Inspector
-        if (healthManager == null)
+        if (!healthManager)
         {
             healthManager = FindObjectOfType<HealthManager>();
         }
@@ -53,7 +53,8 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.Z) && canShoot)
         {
             ShootFireball(true);
-            
+        }
+        /*
         if (scrolControl == true){
             speed += Input.mouseScrollDelta.y * mouseScoleScale;
             GetComponent<Rigidbody>().AddForce(transform.forward * speed);
@@ -66,23 +67,13 @@ public class Player : MonoBehaviour
                 //transform.Translate(Vector3.forward * speed * Time.deltaTime);
                 GetComponent<Rigidbody>().AddForce(transform.forward * speed);
             }
-        }
+        }*/
         
 
         
 
     }
 
-    private void FixedUpdate()
-    {
-        if (fireBallCooldown == 0)
-        {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                ShootFireball();
-            }
-        }
-    }
 
     private void TakeDamage(int amount)
     {
