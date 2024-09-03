@@ -45,15 +45,15 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _frequncy: 1
-    - _len: 1
+    - _len: 0.5
     - _smoting: 0.1
-    - _speed: 10
+    - _speed: 6.8
     - _start_time: 0
     m_Colors:
-    - _startPoint1: {r: 4.81, g: 1.53, b: 9.42, a: 62.859997}
-    - _startPoint2: {r: 4.81, g: 1.53, b: 9.42, a: 62.859997}
-    - _startPoint3: {r: 0.04, g: 1.53, b: 6.59, a: 63.78}
-    - _startPoint4: {r: 0.04, g: 1.53, b: 6.59, a: 63.78}
+    - _startPoint1: {r: -0.47, g: 1.35, b: 6.47, a: 61.28}
+    - _startPoint2: {r: 0.08, g: 1.35, b: 6.9, a: 60.219997}
+    - _startPoint3: {r: 0.08, g: 1.35, b: 6.9, a: 60.219997}
+    - _startPoint4: {r: -0.47, g: 1.35, b: 6.47, a: 61.28}
     - _start_point: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1120106824556942708
