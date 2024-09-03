@@ -44,30 +44,27 @@ public class Player : MonoBehaviour
         {
             getDirection = FindObjectOfType<GetDirection>();
         }
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(Vector3.forward * (speed * Time.deltaTime));
-            
-        }
+        
 
         if (Input.GetKey(KeyCode.Z) && canShoot)
         {
             ShootFireball(true);
         }
-        /*
-        if (scrolControl == true){
-            speed += Input.mouseScrollDelta.y * mouseScoleScale;
+        
+        if (scrollControl == true){
+            speed += Input.mouseScrollDelta.y * mouseScrollScale;
             GetComponent<Rigidbody>().AddForce(transform.forward * speed);
+            
         }
-        else{
-
-            //moves player forward when pressing W key
+        else
+        {
             if (Input.GetKey(KeyCode.W))
             {
-                //transform.Translate(Vector3.forward * speed * Time.deltaTime);
-                GetComponent<Rigidbody>().AddForce(transform.forward * speed);
+                transform.Translate(Vector3.forward * (speed * Time.deltaTime));
+
+                //GetComponent<Rigidbody>().AddForce(transform.forward * speed);
             }
-        }*/
+        }
         
 
         

@@ -39,6 +39,7 @@ public class wakeDial : MonoBehaviour
 
         if (wakeMetter > maxWake){
            // Player.GetComponent<Player>().TakeDamage(((int)(Time.deltaTime * 1)));
+           monster.GetComponent<ZombieScript>().awake = true;
         }
         
 

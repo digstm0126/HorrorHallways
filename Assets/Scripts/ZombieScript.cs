@@ -6,7 +6,7 @@ public class ZombieScript : MonoBehaviour
 {
     public float moveSpeed = 2f;
     public float detectionRange = 10f;
-
+    public bool awake = true;
     private Transform player;
 
     void Start()
@@ -18,7 +18,7 @@ public class ZombieScript : MonoBehaviour
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distanceToPlayer <= detectionRange)
+        if (distanceToPlayer <= detectionRange && awake)
         {
             MoveTowardsPlayer();
         }

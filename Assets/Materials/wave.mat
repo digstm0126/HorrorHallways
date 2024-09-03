@@ -47,13 +47,13 @@ Material:
     - _frequncy: 1
     - _len: 0.5
     - _smoting: 0.1
-    - _speed: 6.8
+    - _speed: 5
     - _start_time: 0
     m_Colors:
-    - _startPoint1: {r: -0.172, g: 1.346, b: 7.25, a: 34.28}
-    - _startPoint2: {r: -0.172, g: 1.346, b: 7.25, a: 35.28}
-    - _startPoint3: {r: -0.172, g: 1.346, b: 7.25, a: 32.28}
-    - _startPoint4: {r: -0.172, g: 1.346, b: 7.25, a: 33.28}
+    - _startPoint1: {r: 0, g: 0, b: 0, a: 10}
+    - _startPoint2: {r: 0, g: 0, b: 0, a: 10}
+    - _startPoint3: {r: 0, g: 0, b: 0, a: 10}
+    - _startPoint4: {r: 0, g: 0, b: 0, a: 10}
     - _start_point: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1120106824556942708
