@@ -150,3 +150,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   detectionRange: 13
+  awake: 1

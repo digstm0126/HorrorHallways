@@ -12,6 +12,7 @@ TagManager:
   - Breakable
   - Spider
   - HealingCrate
+  - BigZombie
   layers:
   - Default
   - TransparentFX

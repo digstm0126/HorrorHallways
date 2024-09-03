@@ -125,6 +125,8 @@ MonoBehaviour:
     type: 3}
   zombieEffectPrefab: {fileID: 5741625448733318166, guid: e738c45ac3f71994aa1a9fdbf6e5674e,
     type: 3}
+  spiderEffectPrefab: {fileID: 740242984504044679, guid: 9aa812c84eaab7246b573e634a04dbc2,
+    type: 3}
   explosionRadius: 5
 --- !u!54 &2346008341954359241
 Rigidbody:

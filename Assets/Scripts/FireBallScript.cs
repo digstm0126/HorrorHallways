@@ -7,10 +7,14 @@ public class FireballScript : MonoBehaviour
     [SerializeField] public GameObject fireBallPrefab;
     [SerializeField] public GameObject zombieEffectPrefab;
     [SerializeField] public GameObject spiderEffectPrefab;
+    [SerializeField] private GameObject healingEffectPrefab;
+    [SerializeField] private GameObject bigZombieEffectPrefab;
+
     [SerializeField] private int pointsForZombie = 100;
     [SerializeField] private int pointsForSpider = 100;
+
     [SerializeField] private LayerMask fireBallProofLayer;
-    [SerializeField] private GameObject healingEffectPrefab;
+
 
     private ScoreManager scoreManager;
     private Player player;
@@ -42,6 +46,21 @@ public class FireballScript : MonoBehaviour
 
             Destroy(other.gameObject);
             Destroy(gameObject);
+        }
+
+        if (other.CompareTag("BigZombie"))
+        {
+            var bigZombie = other.GetComponent<BigZombieScript>();
+            if (bigZombie != null)
+            {
+                Vector3 bigZombiePosition = other.transform.position;
+                Quaternion bigZombieRotation = other.transform.rotation;
+
+                Instantiate(bigZombieEffectPrefab, bigZombiePosition, bigZombieRotation);
+
+                bigZombie.TakeDamage(1);
+                Destroy(gameObject);
+            }
         }
 
         if (other.CompareTag("Spider"))
