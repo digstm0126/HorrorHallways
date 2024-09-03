@@ -17,7 +17,7 @@ public class web : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        wavey = gameObject.GetComponent<Renderer>().material;
+        //wavey = gameObject.GetComponent<Renderer>().material;
         timer =  Time.time;
     }
 
