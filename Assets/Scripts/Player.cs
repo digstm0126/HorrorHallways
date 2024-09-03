@@ -1,32 +1,59 @@
-using sl;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 5f;
-    public int maxHealth = 10;
+    public float speed = 3f;
     public Rigidbody fireballPrefab;
+    public GameObject youLoseTextTMP;
 
     public bool scrolControl;
 
     public int mouseScoleScale = 1;
 
-    private int currentHealth;
     private float fireBallSpeed = 10f;
-    private int fireBallCooldown = 0;
+    private bool canShoot = true;
+    public float fireBallCooldownDuration = 0.4f;
+    private bool isGameOver = false;
 
+    public HealthManager healthManager; // Reference to HealthManager
     public TakeDamageScript takeDamageScript;
+
+    private ScoreManager scoreManager;
+
+    GetDirection getDirection;
+    
+    
+
 
     void Start()
     {
-        currentHealth = maxHealth;
+        scoreManager = FindObjectOfType<ScoreManager>();
+        // Initialize HealthManager if not set in the Inspector
+        if (healthManager == null)
+        {
+            healthManager = FindObjectOfType<HealthManager>();
+        }
     }
 
     void Update()
     {
+        if (!getDirection)
+        {
+            getDirection = FindObjectOfType<GetDirection>();
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.Translate(Vector3.forward * (speed * Time.deltaTime));
+            
+        }
+
+        if (Input.GetKey(KeyCode.Z) && canShoot)
+        {
+            ShootFireball(true);
+            
         if (scrolControl == true){
             speed += Input.mouseScrollDelta.y * mouseScoleScale;
             GetComponent<Rigidbody>().AddForce(transform.forward * speed);
@@ -57,61 +84,97 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int amount)
+    private void TakeDamage(int amount)
     {
-        currentHealth -= amount;
+        if (isGameOver) return;
+
+        healthManager.TakeDamage(amount);
 
         StartCoroutine(takeDamageScript.TakeDamageEffect());
 
         Debug.Log("Lost " + amount + " HP");
+        Debug.Log("You Now have " + healthManager.CurrentHealth + " HP");
 
-        Debug.Log("You Now have " + currentHealth + " HP");
-
-        //if player health <= 0 then player die
-        if (currentHealth <= 0)
+        if (healthManager.CurrentHealth <= 0)
         {
-            Die();
+            GameOver();
         }
     }
 
     public void Heal(int amount)
     {
-        currentHealth += amount;
+        if (isGameOver) return;
 
-        //checks if player health isnt already max
-        if (currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
+        healthManager.Heal(amount); // Call HealthManager to handle healing
+        Debug.Log("Healed " + amount + " HP. Current HP: " + healthManager.CurrentHealth);
     }
-
-    public void ShootFireball()
+    
+    public void ShootFireball(bool isLeft)
     {
-        if (fireBallCooldown < 1)
+        if (!getDirection)
         {
-            //player shoots fireball
-            var projectile = Instantiate(fireballPrefab,
-                transform.position, transform.rotation);
-
+            var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
             projectile.velocity = transform.forward * fireBallSpeed;
 
-            fireBallCooldown = 0;
+            StartCoroutine(FireballCooldown()); 
         }
+        else
+        {
+            // can be called in TriggerFireball.cs on the avatar prefab
+            var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
+
+            Vector3 armForwardVector = !isLeft ? getDirection.GetRightArmForwardVector() : getDirection.GetLeftArmForwardVector();
+
+            armForwardVector.y = 0;
+            armForwardVector = armForwardVector.normalized;
+
+            Quaternion playerRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+            Vector3 alignedDirection = playerRotation * armForwardVector;
+            alignedDirection = -alignedDirection;
+            
+            projectile.velocity = alignedDirection * fireBallSpeed;
+            
+        }
+
+
+
     }
 
-    private void Die()
+    private IEnumerator FireballCooldown()
     {
-        //print that the player dead
-        Debug.Log("Player has died.");
+        canShoot = false;
+
+        yield return new WaitForSeconds(fireBallCooldownDuration);
+
+        canShoot = true;
+    }
+
+    private void GameOver()
+    {
+        isGameOver = true;
+        speed = 0.0f;
+
+        scoreManager.scoreText.gameObject.SetActive(false);
+
+        youLoseTextTMP.SetActive(true);
+        int finalScore = scoreManager.GetScore();
+        youLoseTextTMP.GetComponent<TextMeshProUGUI>().text = $"You Lose! You scored: {finalScore}";
+
+        Debug.Log("Player has died. Displaying score");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Entered OnTriggerEnter method"); // Add this line for debugging
         if (other.CompareTag("Zombie"))
         {
-            Debug.Log("You touched the zombie");
             TakeDamage(2);
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("Spider"))
+        {
+            TakeDamage(1);
+            Destroy(other.gameObject);
         }
     }
 }
