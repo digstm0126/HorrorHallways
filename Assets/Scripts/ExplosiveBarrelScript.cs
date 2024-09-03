@@ -6,6 +6,7 @@ public class ExplosiveBarrelScript : MonoBehaviour
 {
     [SerializeField] public GameObject explosionEffectPrefab;
     [SerializeField] public GameObject zombieEffectPrefab;
+    [SerializeField] public GameObject spiderEffectPrefab;
 
     public float explosionRadius = 5f;
 

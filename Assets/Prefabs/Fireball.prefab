@@ -125,6 +125,12 @@ MonoBehaviour:
   spiderEffectPrefab: {fileID: 740242984504044679, guid: 9aa812c84eaab7246b573e634a04dbc2,
     type: 3}
   pointsForZombie: 100
+  pointsForSpider: 100
+  fireBallProofLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  healingEffectPrefab: {fileID: 4993234001639570915, guid: 28b8069682982ee46a3796fdad99aaa1,
+    type: 3}
 --- !u!54 &-7653230399802922276
 Rigidbody:
   m_ObjectHideFlags: 0

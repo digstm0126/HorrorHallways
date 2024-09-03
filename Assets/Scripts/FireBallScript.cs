@@ -9,16 +9,27 @@ public class FireballScript : MonoBehaviour
     [SerializeField] public GameObject spiderEffectPrefab;
     [SerializeField] private int pointsForZombie = 100;
     [SerializeField] private int pointsForSpider = 100;
+    [SerializeField] private LayerMask fireBallProofLayer;
+    [SerializeField] private GameObject healingEffectPrefab;
 
     private ScoreManager scoreManager;
+    private Player player;
 
     private void Start()
     {
         scoreManager = FindObjectOfType<ScoreManager>();
+        player = FindObjectOfType<Player>();
     }
 
     void OnTriggerEnter(Collider other)
     {
+        if (((1 << other.gameObject.layer) & fireBallProofLayer) != 0)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+
         if (other.CompareTag("Zombie"))
         {
             scoreManager.AddScore(pointsForZombie);
@@ -53,6 +64,26 @@ public class FireballScript : MonoBehaviour
             barrelScript.Explode();
             
             Destroy(gameObject);
+        }
+
+        if (other.CompareTag("HealingCrate"))
+        {
+            player.healthManager.Heal(player.healthManager.maxHealth - player.healthManager.CurrentHealth);
+
+            if (healingEffectPrefab != null)
+            {
+                Vector3 playerPosition = player.transform.position;
+                Vector3 forwardDirection = player.transform.forward;
+                float offsetDistance = 1.5f;
+
+                Vector3 spawnPosition = playerPosition + forwardDirection * offsetDistance;
+
+                Instantiate(healingEffectPrefab, spawnPosition, Quaternion.identity);
+            }
+
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+            
         }
     }
 }

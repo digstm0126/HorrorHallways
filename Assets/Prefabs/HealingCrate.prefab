@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 2249534505127128132}
   m_Layer: 0
   m_Name: HealingCrate
-  m_TagString: Untagged
+  m_TagString: HealingCrate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
