@@ -10,17 +10,16 @@ using Unity.VisualScripting;
 
 public class wakeDial : MonoBehaviour
 {
-    public RectTransform needle; // Assign the needle image
-    public TextMeshProUGUI waketext; // Assign the speed text UI element
-    public float maxWake = 60f; // Max speed value for scaling
+    // public RectTransform needle; // Assign the needle image
+    // public TextMeshProUGUI waketext; // Assign the speed text UI element
+    public float maxWake = 10f; 
     private float currentSpeed;
 
     public float wakeMetter;
-
-    private float activeHear = 20;
     public GameObject Player;
  
-    public GameObject monster;
+    public GameObject[] monsters;
+
 
     void Update()
     {
@@ -31,42 +30,47 @@ public class wakeDial : MonoBehaviour
 
     private void OnTriggerStay(Collider other) 
     {
-
-        if (wakeMetter > 0)
+        foreach (GameObject curntmonster in monsters)
         {
-            wakeMetter -= Time.deltaTime * 5;
+            
+
+            if (wakeMetter > 0)
+            {
+                wakeMetter -= Time.deltaTime * 5;
+            }
+
+            if (wakeMetter > maxWake)
+            {
+            curntmonster.GetComponent<ZombieScript>().awake = true;
+
+            }
+            
+
+            currentSpeed = Player.GetComponent<Player>().speed;
+
+            
+            wakeMetter += Time.deltaTime * math.abs(currentSpeed);
+
+            if (curntmonster.GetComponent<ZombieScript>().awake == false)
+            {
+                //shacks acroding to speed and such
+                var temp = curntmonster.GetComponent<Transform>().rotation;
+            
+                temp.x = Mathf.Sin(Time.time * (wakeMetter * 1.0f)) * 0.01f;
+                temp.z = Mathf.Sin(Time.time * (wakeMetter * 1.0f)) * 0.01f;
+
+                curntmonster.transform.rotation = temp;
+            
+            }
+
         }
 
-        if (wakeMetter > maxWake)
-        {
-           monster.GetComponent<ZombieScript>().awake = true;
-
-        }
+        // //update text
+        // waketext.text = wakeMetter.ToString("F0") + "waking up";
         
-
-        currentSpeed = Player.GetComponent<Player>().speed;
-
-        
-        wakeMetter += Time.deltaTime * math.abs(currentSpeed);
-
-        if (monster.GetComponent<ZombieScript>().awake == false)
-        {
-            //shacks acroding to speed and such.
-            var temp = monster.GetComponent<Transform>().rotation;
-        
-            temp.x = Mathf.Sin(Time.time * (wakeMetter * 1.0f)) * 0.01f;
-            temp.z = Mathf.Sin(Time.time * (wakeMetter * 1.0f)) * 0.01f;
-
-            monster.transform.rotation = temp;
-        
-        }
-
-        //update text
-        waketext.text = wakeMetter.ToString("F0") + "waking up";
-        
-        // Calculate the rotation angle of the needle
-        float angle = Mathf.Lerp(-90, 90, wakeMetter / maxWake);
-        needle.localEulerAngles = new Vector3(0, 0, -angle); 
+        // // Calculate the rotation angle of the needle
+        // float angle = Mathf.Lerp(-90, 90, wakeMetter / maxWake);
+        // needle.localEulerAngles = new Vector3(0, 0, -angle); 
           
     }
 
