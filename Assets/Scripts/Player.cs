@@ -164,5 +164,11 @@ public class Player : MonoBehaviour
             TakeDamage(1);
             Destroy(other.gameObject);
         }
+
+        if (other.CompareTag("BigZombie"))
+        {
+            TakeDamage(9);
+            Destroy(other.gameObject);
+        }
     }
 }

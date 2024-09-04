@@ -1,59 +1,50 @@
-
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DetectStep : MonoBehaviour
 {
-    public GameObject leftFoot;
-    public GameObject rightFoot;
-    public GameObject baseHeight;
-
-    
-    [SerializeField] private float stepHeightThreshold = 0.1f;
-    [SerializeField] private float groundCloseThreshold = 0.02f;
-
-    private float defaultFootHeight;
-
-    private bool leftFootInAir;
-    private bool rightFootInAir;
-
-    private void Start()
-    {
-        defaultFootHeight = leftFoot.transform.position.y;
-        stepHeightThreshold += defaultFootHeight;
-        groundCloseThreshold += defaultFootHeight;
-    }
+    public Transform leftFoot;
+    public Transform rightFoot;
+    public float stepThreshold = 0.4f;  
+    private bool leftFootOnGround = false;
+    private bool rightFootOnGround = false;
 
     void Update()
     {
-        CheckStep(leftFoot, ref leftFootInAir, defaultFootHeight);
-        CheckStep(rightFoot, ref rightFootInAir, defaultFootHeight);
-        
+        float leftFootDistance = GetVerticalDistanceFromRoot(leftFoot);
+        float rightFootDistance = GetVerticalDistanceFromRoot(rightFoot);
+
+        CheckStep(leftFootDistance, ref leftFootOnGround, "Left Foot");
+
+        CheckStep(rightFootDistance, ref rightFootOnGround, "Right Foot");
     }
 
-    private void CheckStep(GameObject foot, ref bool footInAir, float groundHeight)
+    float GetVerticalDistanceFromRoot(Transform foot)
     {
-        float footHeight = foot.transform.position.y;
-        float heightAboveGround = footHeight - groundHeight;
-        
-        Debug.Log($"{foot.name} height: {footHeight:F3}, Ground height: {groundHeight:F3}, Height above ground: {heightAboveGround:F3}");
+        Vector3 footPosition = foot.position;
 
-        if (heightAboveGround > stepHeightThreshold)
-        {
-            footInAir = true;
-        }
+        Vector3 rootPosition = transform.position;
 
-        if (footInAir && Mathf.Abs(heightAboveGround) <= groundCloseThreshold)
-        {
-            footInAir = false;
-            OnStepDetected(foot);
-        }
+        return rootPosition.y - footPosition.y;
     }
 
-    private void OnStepDetected(GameObject foot)
+    void CheckStep(float footDistance, ref bool footOnGround, string footName)
     {
-        Debug.Log($"{foot.name} has taken a step!");
+        if (footDistance > stepThreshold && !footOnGround)
+        {
+            footOnGround = true;
+            Debug.Log($"{footName} has touched the ground.");
+        }
+        else if (footDistance <= stepThreshold && footOnGround)
+        {
+            footOnGround = false;
+            Debug.Log($"{footName} has taken a step.");
+        }
     }
-
-
+    
+    
+    
+    
 }
