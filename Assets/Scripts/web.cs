@@ -59,33 +59,52 @@ public class web : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other) {
-        inside = true;
-        float Xval = other.transform.position.x;
-        float zval = other.transform.position.z;
-        float Yval = other.transform.position.y;
-        float timeLog = Time.time;
-        postion = new Vector4(Xval, Yval, zval, timeLog); 
-        sendinfo();
-    }
-
-    private void OnTriggerExit(Collider other) {
-        inside = false;
-    }
-
-    private void OnTriggerStay(Collider other) {
-        float Xval = other.transform.position.x;
-        float zval = other.transform.position.z;
-        float Yval = other.transform.position.y;
-        float timeLog = Time.time;
-        postion = new Vector4(Xval, Yval, zval, timeLog);
-
+    private void OnTriggerEnter(Collider other) 
+    {
         
-        if (Time.time >= timer + speed)
+        if (other.tag == "Player")
         {
-            timer = Time.time;
-            sendinfo();
-        }  
 
+            inside = true;
+            float Xval = other.transform.position.x;
+            float zval = other.transform.position.z;
+            float Yval = other.transform.position.y;
+            float timeLog = Time.time;
+            postion = new Vector4(Xval, Yval, zval, timeLog); 
+            sendinfo();
+
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider other) 
+    {
+        
+        if (other.tag == "Player")
+        {
+            inside = false;
+        }
+
+    }
+
+    private void OnTriggerStay(Collider other) 
+    {
+        if (other.tag == "Player")
+        {
+            
+            float Xval = other.transform.position.x;
+            float zval = other.transform.position.z;
+            float Yval = other.transform.position.y;
+            float timeLog = Time.time;
+            postion = new Vector4(Xval, Yval, zval, timeLog);
+
+            
+            if (Time.time >= timer + speed)
+            {
+                timer = Time.time;
+                sendinfo();
+            }  
+
+        }
     }
 }

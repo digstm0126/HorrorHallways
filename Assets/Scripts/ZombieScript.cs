@@ -7,6 +7,8 @@ public class ZombieScript : MonoBehaviour
     public float moveSpeed = 2f;
     public float detectionRange = 10f;
     public bool awake = true;
+
+    public GameObject webs;
     private Transform player;
 
     void Start()
@@ -20,7 +22,9 @@ public class ZombieScript : MonoBehaviour
 
         if (distanceToPlayer <= detectionRange && awake)
         {
+            webs.SetActive(false);
             MoveTowardsPlayer();
+
         }
     }
 
