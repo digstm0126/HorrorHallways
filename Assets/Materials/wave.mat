@@ -50,9 +50,9 @@ Material:
     - _speed: 5
     - _start_time: 0
     m_Colors:
-    - _startPoint1: {r: -0.172, g: 1.346, b: 6.72, a: 19.82}
-    - _startPoint2: {r: -0.172, g: 1.346, b: 6.72, a: 19.82}
-    - _startPoint3: {r: -0.172, g: 1.346, b: 16.719994, a: 20.82}
+    - _startPoint1: {r: 1.29, g: 1.346, b: 6.5306196, a: 3.34}
+    - _startPoint2: {r: 1.29, g: 1.346, b: 6.5306196, a: 3.34}
+    - _startPoint3: {r: 1.29, g: 1.346, b: 7.8988476, a: 4.36}
     - _startPoint4: {r: -0.172, g: 1.346, b: 12.719995, a: 17.5}
     - _start_point: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
