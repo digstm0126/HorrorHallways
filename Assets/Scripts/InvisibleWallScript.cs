@@ -6,6 +6,7 @@ public class InvisibleWallScript : MonoBehaviour
     public float detectionRadius = 5f; // Radius to detect explosive barrels
     private Player playerScript;
     private bool playerTouchingWall = false;
+    public bool zed;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,6 +24,16 @@ public class InvisibleWallScript : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player") && playerTouchingWall)
+        {
+            if (playerScript)
+            {
+                playerScript.speed = 0f;
+            }
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -51,9 +62,13 @@ public class InvisibleWallScript : MonoBehaviour
             {
                 Destroy(gameObject); // Remove the invisible wall
 
-                if (playerTouchingWall)
+                if (playerTouchingWall && !zed)
                 {
                     playerScript.speed = 3f; // Resume the player's speed
+                }
+                else
+                {
+                    Debug.Log("Untick zed option on invisible wall");
                 }
 
                 yield break; // Exit coroutine

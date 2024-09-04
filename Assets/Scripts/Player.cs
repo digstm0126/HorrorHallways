@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 3f;
+    public float speed;
     public Rigidbody fireballPrefab;
     public GameObject youLoseTextTMP;
 
@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private bool canShoot = true;
     public float fireBallCooldownDuration = 0.4f;
     private bool isGameOver = false;
+    private float speeddecrease = 1f;
 
     public HealthManager healthManager; // Reference to HealthManager
     public TakeDamageScript takeDamageScript;
@@ -65,10 +66,22 @@ public class Player : MonoBehaviour
                 //GetComponent<Rigidbody>().AddForce(transform.forward * speed);
             }
         }
-        
+    }
 
+    public IEnumerator SpeedIncrease()
+    {
+        speed += 1.0f;
         
-
+        yield return new WaitForSeconds(2f);
+        
+        if (speed - speeddecrease <= 0.0f)
+        {
+            speed = 0;
+        }
+        else
+        {
+            speed -= speeddecrease;
+        }
     }
 
 

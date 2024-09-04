@@ -622,6 +622,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1424524743}
     m_Modifications:
+    - target: {fileID: 3544285015577718587, guid: 16d103a15564c00428c1323255d8bcfa,
+        type: 3}
+      propertyPath: zed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5901735658862226587, guid: 16d103a15564c00428c1323255d8bcfa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11052,7 +11057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d5cb098797a5e478676838a19d14c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 0
   fireballPrefab: {fileID: -7653230399802922276, guid: f9bb3a17f772f8545bb6a07bc6798b5e,
     type: 3}
   youLoseTextTMP: {fileID: 1337254698}
@@ -27133,7 +27138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1841016602
 Transform:
   m_ObjectHideFlags: 0
@@ -31426,6 +31431,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1424524743}
     m_Modifications:
+    - target: {fileID: 3544285015577718587, guid: 16d103a15564c00428c1323255d8bcfa,
+        type: 3}
+      propertyPath: zed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5901735658862226587, guid: 16d103a15564c00428c1323255d8bcfa,
         type: 3}
       propertyPath: m_LocalPosition.x
