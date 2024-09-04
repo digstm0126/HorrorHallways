@@ -20,11 +20,16 @@ public class ZombieScript : MonoBehaviour
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distanceToPlayer <= detectionRange && awake)
+        if (distanceToPlayer <= detectionRange && awake && webs != null)
         {
             webs.SetActive(false);
             MoveTowardsPlayer();
 
+        }
+
+        else if (distanceToPlayer <= detectionRange && awake)
+        {
+            MoveTowardsPlayer();
         }
     }
 
