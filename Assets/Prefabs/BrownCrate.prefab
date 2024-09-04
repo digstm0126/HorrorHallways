@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3817893988700557120}
   - component: {fileID: 1098735540839475208}
   - component: {fileID: -4943072597511469150}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BrownCrate
   m_TagString: Breakable
   m_Icon: {fileID: 0}
