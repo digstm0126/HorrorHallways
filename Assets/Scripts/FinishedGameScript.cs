@@ -10,7 +10,6 @@ public class FinishedGameScript : MonoBehaviour
     public TextMeshProUGUI scoreText;
 
 
-    private bool playerFinished = false;
     private Player playerScript;
 
     [SerializeField] private GameObject player;
@@ -43,7 +42,6 @@ public class FinishedGameScript : MonoBehaviour
                 playerScript = other.GetComponent<Player>();
                 if (playerScript != null)
                 {
-                    playerFinished = true;
                     playerScript.speed = 0f;
                 }
         }
