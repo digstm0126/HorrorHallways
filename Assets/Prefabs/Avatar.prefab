@@ -255,7 +255,7 @@ MonoBehaviour:
   leftFoot: {fileID: 5426183247939560895}
   rightFoot: {fileID: 5426183247939560955}
   stepThreshold: 0.5
-  enableDebugLogs: 1
+  enableDebugLogs: 0
 --- !u!1 &5426183247939467297
 GameObject:
   m_ObjectHideFlags: 0
