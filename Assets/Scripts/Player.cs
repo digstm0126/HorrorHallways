@@ -25,6 +25,12 @@ public class Player : MonoBehaviour
     private ScoreManager scoreManager;
 
     GetDirection getDirection;
+
+    private Vector3 alignedDirectionRight;
+    private Vector3 alignedDirectionLeft;
+
+    public GameObject leftShoulder;
+    public GameObject rightShoulder;
     
     
 
@@ -66,6 +72,53 @@ public class Player : MonoBehaviour
                 //GetComponent<Rigidbody>().AddForce(transform.forward * speed);
             }
         }
+
+        if (getDirection)
+        {
+            Vector3 armForwardVector;
+            
+            armForwardVector = getDirection.GetRightArmForwardVector(); 
+            armForwardVector.y = 0;
+            armForwardVector = armForwardVector.normalized;
+
+            Quaternion playerRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+            alignedDirectionRight = playerRotation * armForwardVector;
+            alignedDirectionRight = -alignedDirectionRight;
+
+            //Vector3 positionOffset = transform.position - getDirection.rightShoulder.transform.position ;
+            //Vector3 rotatedOffset = playerRotation * positionOffset;
+            //rotatedOffset += new Vector3(0, 0.2f, 0.5f);
+
+            Vector3 startPoint = rightShoulder.transform.position;
+
+            Vector3 endPoint = startPoint + alignedDirectionRight * 10;
+
+            Debug.DrawLine(startPoint, endPoint, Color.red, 0f, false);
+
+            Vector3 armForwardVectorLeft;
+            
+            armForwardVectorLeft = getDirection.GetLeftArmForwardVector(); 
+            armForwardVectorLeft.y = 0;
+            armForwardVectorLeft = armForwardVectorLeft.normalized;
+
+            Quaternion playerRotationLeft = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+            alignedDirectionLeft = playerRotationLeft * armForwardVectorLeft;
+            alignedDirectionLeft = -alignedDirectionLeft;
+
+            Vector3 positionOffsetLeft = transform.position - getDirection.leftShoulder.transform.position;
+            Vector3 rotatedOffsetLeft = playerRotation * positionOffsetLeft;
+            rotatedOffsetLeft += new Vector3(0, 0.2f, 0.5f);
+
+            Vector3 startPointLeft = leftShoulder.transform.position;
+            Vector3 endPointLeft = startPoint + alignedDirectionLeft * 10;
+
+            Debug.DrawLine(startPointLeft, endPointLeft, Color.green, 0f, false);
+
+            
+
+        }
+
+
     }
 
     public IEnumerator SpeedIncrease()
@@ -122,16 +175,30 @@ public class Player : MonoBehaviour
         else
         {
             // can be called in TriggerFireball.cs on the avatar prefab
-            var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
+            Quaternion playerRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+            
+            //rotatedOffset += new Vector3(0, 0.2f, 0.5f);
+            Rigidbody projectile;
+            if (!isLeft){
+                projectile = Instantiate(fireballPrefab, rightShoulder.transform.position, transform.rotation);
+            } else {
+                projectile = Instantiate(fireballPrefab, leftShoulder.transform.position, transform.rotation);
+            }
 
-            Vector3 armForwardVector = !isLeft ? getDirection.GetRightArmForwardVector() : getDirection.GetLeftArmForwardVector();
+            Vector3 armForwardVector;
+
+            if (!isLeft) {
+                armForwardVector = getDirection.GetRightArmForwardVector();
+            } else {
+                armForwardVector = getDirection.GetLeftArmForwardVector();
+            }
 
             armForwardVector.y = 0;
             armForwardVector = armForwardVector.normalized;
 
-            Quaternion playerRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
             Vector3 alignedDirection = playerRotation * armForwardVector;
             alignedDirection = -alignedDirection;
+
             
             projectile.velocity = alignedDirection * fireBallSpeed;
             

@@ -17,6 +17,8 @@ public class TriggerFireball : MonoBehaviour
     // Boolean to control debug logs
     public bool enableDebugLogs = true;
 
+    public GetDirection getDirection;
+
     void Update()
     {
         if (!player)
