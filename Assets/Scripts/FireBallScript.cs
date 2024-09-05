@@ -29,8 +29,12 @@ public class FireballScript : MonoBehaviour
     {
         if (((1 << other.gameObject.layer) & fireBallProofLayer) != 0)
         {
-            Destroy(gameObject);
-            return;
+            if (other.GetComponent<ZombieScript>().awake == true)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            
         }
 
 
