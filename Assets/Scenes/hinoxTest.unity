@@ -260,6 +260,8 @@ MonoBehaviour:
   fireBallCooldownDuration: 0.4
   healthManager: {fileID: 0}
   takeDamageScript: {fileID: 296516487}
+  leftShoulder: {fileID: 0}
+  rightShoulder: {fileID: 0}
 --- !u!136 &293546301
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -832,7 +834,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: a2f5e4f6bf004478fa5ea30783205e87, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -885,6 +887,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2198975154078801626, guid: 43c4c8cc85b684e6190125823017c081,
+        type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3249387024708706808, guid: 43c4c8cc85b684e6190125823017c081,
         type: 3}
       propertyPath: Player

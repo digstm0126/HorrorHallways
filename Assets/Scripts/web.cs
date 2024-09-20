@@ -7,6 +7,8 @@ public class web : MonoBehaviour
     
     public Material wavey;
     public Vector4 postion;
+
+    public float intesaty;
     public int count = 1;
 
     public bool inside = false;
@@ -34,7 +36,8 @@ public class web : MonoBehaviour
             if (count == 1)
             {
                 wavey.SetVector("_startPoint1", postion);
-                count += 1;
+                wavey.SetFloat("_intesaty", intesaty);
+                count = 1;
             }
 
             else if (count == 2)
@@ -71,6 +74,7 @@ public class web : MonoBehaviour
             float Yval = other.transform.position.y;
             float timeLog = Time.time;
             postion = new Vector4(Xval, Yval, zval, timeLog); 
+            intesaty = 5f;
             sendinfo();
 
         }
@@ -97,7 +101,7 @@ public class web : MonoBehaviour
             float Yval = other.transform.position.y;
             float timeLog = Time.time;
             postion = new Vector4(Xval, Yval, zval, timeLog);
-
+            intesaty = 5f;
             
             if (Time.time >= timer + speed)
             {
