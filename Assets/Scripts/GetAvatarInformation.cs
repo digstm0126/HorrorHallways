@@ -21,7 +21,7 @@ public class GetAvatarInformation : MonoBehaviour
 
     public Transform GetBodyPartTransform(string avatarBoneName)
     {
-        Transform avatarBone = transform.Find(avatarBoneName);
+        var avatarBone = transform.Find(avatarBoneName);
         if (avatarBone)
         {
             return avatarBone;

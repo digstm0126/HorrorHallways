@@ -27,9 +27,9 @@ public class FireballScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (((1 << other.gameObject.layer) & fireBallProofLayer) != 0)
+        if ((fireBallProofLayer & (1 << other.gameObject.layer)) != 0)
         {
-            if (other.GetComponent<ZombieScript>().awake == true)
+            if (other.GetComponent<ZombieScript>().awake)
             {
                 Destroy(gameObject);
                 return;

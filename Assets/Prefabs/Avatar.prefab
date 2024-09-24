@@ -241,8 +241,8 @@ MonoBehaviour:
   center: {fileID: 5426183247939560891}
   triggerDistance: 0.5
   resetDistance: 0.35
-  enableDebugLogs: 1
-  getDirection: {fileID: 6606738636542574115}
+  enableDebugLogs: 0
+  getAvatarInformation: {fileID: 6606738636542574115}
 --- !u!114 &5428113850654607518
 MonoBehaviour:
   m_ObjectHideFlags: 0

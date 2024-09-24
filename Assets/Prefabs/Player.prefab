@@ -194,6 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHandObject: {fileID: 4598702890568184628}
   rightHandObject: {fileID: 6064469590603007780}
+  enableLogging: 1
 --- !u!1 &3202166920876159076
 GameObject:
   m_ObjectHideFlags: 0
