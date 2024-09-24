@@ -51,7 +51,7 @@ Material:
     - _speed: 5
     - _start_time: 0
     m_Colors:
-    - _startPoint1: {r: 1.43, g: 1.346, b: 6.568426, a: 10}
+    - _startPoint1: {r: 81.59438, g: 5.410638, b: 111.492455, a: 135.66}
     - _startPoint2: {r: 2.26, g: 1.346, b: 10.444841, a: 81.1}
     - _startPoint3: {r: 1, g: 1.346, b: 8.644973, a: 82.1}
     - _startPoint4: {r: 1, g: 1.346, b: 8.76452, a: 83.1}

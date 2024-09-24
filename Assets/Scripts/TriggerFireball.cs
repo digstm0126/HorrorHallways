@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TriggerFireball : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class TriggerFireball : MonoBehaviour
     // Boolean to control debug logs
     public bool enableDebugLogs = true;
 
-    public GetDirection getDirection;
+    [FormerlySerializedAs("getDirection")] public GetAvatarInformation getAvatarInformation;
 
     void Update()
     {

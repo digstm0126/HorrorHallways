@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 
     private ScoreManager scoreManager;
 
-    GetDirection getDirection;
+    GetAvatarInformation getAvatarInformation;
 
     private Vector3 alignedDirectionRight;
     private Vector3 alignedDirectionLeft;
@@ -47,9 +47,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (!getDirection)
+        if (!getAvatarInformation)
         {
-            getDirection = FindObjectOfType<GetDirection>();
+            getAvatarInformation = FindObjectOfType<GetAvatarInformation>();
         }
         
 
@@ -73,11 +73,11 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (getDirection)
+        if (getAvatarInformation)
         {
             Vector3 armForwardVector;
             
-            armForwardVector = getDirection.GetRightArmForwardVector(); 
+            armForwardVector = getAvatarInformation.GetRightArmForwardVector(); 
             armForwardVector.y = 0;
             armForwardVector = armForwardVector.normalized;
 
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
 
             Vector3 armForwardVectorLeft;
             
-            armForwardVectorLeft = getDirection.GetLeftArmForwardVector(); 
+            armForwardVectorLeft = getAvatarInformation.GetLeftArmForwardVector(); 
             armForwardVectorLeft.y = 0;
             armForwardVectorLeft = armForwardVectorLeft.normalized;
 
@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
             alignedDirectionLeft = playerRotationLeft * armForwardVectorLeft;
             alignedDirectionLeft = -alignedDirectionLeft;
 
-            Vector3 positionOffsetLeft = transform.position - getDirection.leftShoulder.transform.position;
+            Vector3 positionOffsetLeft = transform.position - getAvatarInformation.leftShoulder.transform.position;
             Vector3 rotatedOffsetLeft = playerRotation * positionOffsetLeft;
             rotatedOffsetLeft += new Vector3(0, 0.2f, 0.5f);
 
@@ -165,7 +165,7 @@ public class Player : MonoBehaviour
     
     public void ShootFireball(bool isLeft)
     {
-        if (!getDirection)
+        if (!getAvatarInformation)
         {
             var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
             projectile.velocity = transform.forward * fireBallSpeed;
@@ -188,9 +188,9 @@ public class Player : MonoBehaviour
             Vector3 armForwardVector;
 
             if (!isLeft) {
-                armForwardVector = getDirection.GetRightArmForwardVector();
+                armForwardVector = getAvatarInformation.GetRightArmForwardVector();
             } else {
-                armForwardVector = getDirection.GetLeftArmForwardVector();
+                armForwardVector = getAvatarInformation.GetLeftArmForwardVector();
             }
 
             armForwardVector.y = 0;
@@ -251,4 +251,8 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+    
+    
+    
+    
 }
