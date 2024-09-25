@@ -30,11 +30,11 @@ public static class TransformUtilities
         bool flattenToXZPlane = false, 
         bool invertDirection = false)
     {
+        
         if (flattenToXZPlane)
         {
             avatarDirection.y = 0;
         }
-        
         avatarDirection = avatarDirection.normalized;
         
         Quaternion rotationToApply = playerTransform.rotation;
@@ -53,4 +53,20 @@ public static class TransformUtilities
         return alignedDirection;
         
     }
+
+
+    public static Vector3 TransformPositionFromAvatarToPlayer(
+        Vector3 avatarPosition,
+        Transform avatarRootTransform,
+        Transform playerTransform)
+    {
+        
+        Vector3 localAvatarPosition = avatarRootTransform.InverseTransformPoint(avatarPosition);
+
+        // Transform the local position to the player's coordinate space
+        Vector3 transformedPosition = playerTransform.TransformPoint(localAvatarPosition);
+
+        return transformedPosition;
+    }
+    
 }

@@ -26,6 +26,16 @@ public class GetAvatarInformation : MonoBehaviour
     {
         return -leftForearm.transform.right;
     }
+
+    public Vector3 GetAvatarLocation()
+    {
+        return transform.position;
+    }
+
+    public Transform GetAvatarRootTransform()
+    {
+        return transform;
+    }
     
     
     //Finding the transform of a particular body part in the avatar
