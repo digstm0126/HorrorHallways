@@ -41,7 +41,7 @@ public class BodyPartMirrorController : MonoBehaviour
         {
             Vector3 newPosition = TransformUtilities.TransformPositionFromAvatarToPlayer(
                 bodyTransform.position,
-                getAvatarInformation.GetAvatarRootTransform(),
+                getAvatarInformation.GetBodyPartTransform("Character1_Hips"),
                 transform);
             
             bodyPartObject.transform.position = newPosition;

@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
 
                 Vector3 startPointRight = TransformUtilities.TransformPositionFromAvatarToPlayer(
                     avatarRightShoulderPosition,
-                    getAvatarInformation.GetAvatarRootTransform(),
+                    getAvatarInformation.GetBodyPartTransform("Character1_Hips"),
                     transform
                 );
 
@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
 
                 Vector3 startPointLeft = TransformUtilities.TransformPositionFromAvatarToPlayer(
                     avatarLeftShoulderPosition,
-                    getAvatarInformation.GetAvatarRootTransform(),
+                    getAvatarInformation.GetBodyPartTransform("Character1_Hips"),
                     transform
                 );
 
@@ -188,7 +188,7 @@ public class Player : MonoBehaviour
             {
                 spawnPosition = TransformUtilities.TransformPositionFromAvatarToPlayer(
                     getAvatarInformation.rightShoulder.transform.position,
-                    getAvatarInformation.GetAvatarRootTransform(),
+                    getAvatarInformation.GetBodyPartTransform("Character1_Hips"),
                     transform);
                 armForwardVector = getAvatarInformation.GetRightArmForwardVector();
             }   
@@ -196,7 +196,7 @@ public class Player : MonoBehaviour
             {
                 spawnPosition = TransformUtilities.TransformPositionFromAvatarToPlayer(
                     getAvatarInformation.leftShoulder.transform.position,
-                    getAvatarInformation.GetAvatarRootTransform(),
+                    getAvatarInformation.GetBodyPartTransform("Character1_Hips"),
                     transform);
 
                 armForwardVector = getAvatarInformation.GetLeftArmForwardVector();

@@ -55,14 +55,18 @@ public static class TransformUtilities
         
     }
 
-
     public static Vector3 TransformPositionFromAvatarToPlayer(
-        Vector3 avatarPosition,
+        Vector3 avatarBonePosition,
         Transform avatarRootTransform,
         Transform playerTransform)
     {
         
-        Vector3 localAvatarPosition = avatarRootTransform.InverseTransformPoint(avatarPosition);
+        Vector3 localAvatarPosition = avatarRootTransform.InverseTransformPoint(avatarBonePosition);
+
+        //Quaternion offsetRotation = Quaternion.Euler(0, 180, 0);
+
+        //Vector3 OffsetAvatarPosition = offsetRotation * localAvatarPosition;
+
 
         // Transform the local position to the player's coordinate space
         Vector3 transformedPosition = playerTransform.TransformPoint(localAvatarPosition);
