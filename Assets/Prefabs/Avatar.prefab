@@ -223,6 +223,7 @@ MonoBehaviour:
   rightForearm: {fileID: 5426183247939467743}
   leftShoulder: {fileID: 5426183247939467677}
   rightShoulder: {fileID: 5426183247939467737}
+  enableLogging: 1
 --- !u!114 &7728008837169925803
 MonoBehaviour:
   m_ObjectHideFlags: 0
