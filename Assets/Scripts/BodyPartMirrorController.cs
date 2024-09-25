@@ -9,6 +9,8 @@ public class BodyPartMirrorController : MonoBehaviour
 
     public GameObject leftHandObject;
     public GameObject rightHandObject;
+    public GameObject leftKneeObject;
+    public GameObject rightKneeObject;
     
     // Add a public variable to control logging
     public bool enableLogging;
@@ -22,14 +24,12 @@ public class BodyPartMirrorController : MonoBehaviour
             getAvatarInformation = FindObjectOfType<GetAvatarInformation>();
             if (getAvatarInformation)
             {
-                SetBodyPartObjectLocation(leftHandObject, "Character1_LeftHandMiddle1");
-                SetBodyPartObjectLocation(rightHandObject, "Character1_RightHandMiddle1");
+                callAllBodyPartLocations();
             }
         }
         else
         {
-            SetBodyPartObjectLocation(leftHandObject,   "Character1_LeftHandMiddle1");
-            SetBodyPartObjectLocation(rightHandObject, "Character1_RightHandMiddle1");
+            callAllBodyPartLocations();
         }
     }
 
@@ -51,6 +51,13 @@ public class BodyPartMirrorController : MonoBehaviour
         {
             Debug.LogWarning("Body part not found: " + bodyPartName);
         }
+    }
+
+    private void callAllBodyPartLocations(){
+        SetBodyPartObjectLocation(leftHandObject, "Character1_LeftHandMiddle1");
+        SetBodyPartObjectLocation(rightHandObject, "Character1_RightHandMiddle1");
+        SetBodyPartObjectLocation(leftKneeObject, "Character1_LeftLeg");
+        SetBodyPartObjectLocation(rightKneeObject, "Character1_RightLeg");
     }
     
 }
