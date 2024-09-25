@@ -221,8 +221,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftForearm: {fileID: 5426183247939467667}
   rightForearm: {fileID: 5426183247939467743}
-  leftShoulder: {fileID: 5426183247939467677}
-  rightShoulder: {fileID: 5426183247939467737}
+  leftShoulder: {fileID: 5426183247939467665}
+  rightShoulder: {fileID: 5426183247939467741}
   enableLogging: 1
 --- !u!114 &7728008837169925803
 MonoBehaviour:

@@ -16,6 +16,7 @@ public static class TransformUtilities
         return new Vector3(-vector.x, vector.y, -vector.z);
     }
     
+
     /// <summary>
     /// 
     /// </summary>

@@ -29,11 +29,7 @@ public class Player : MonoBehaviour
     private Vector3 alignedDirectionRight;
     private Vector3 alignedDirectionLeft;
 
-    public GameObject leftShoulder;
-    public GameObject rightShoulder;
     
-    
-
 
     void Start()
     {
@@ -79,7 +75,7 @@ public class Player : MonoBehaviour
             {
                 Vector3 armForwardVectorRight = getAvatarInformation.GetRightArmForwardVector();
 
-                Vector3 alignedDirectionRight = TransformUtilities.TransformDirectionFromAvatarToPlayer(
+                Vector3 transformDirectionFromAvatarToPlayer = TransformUtilities.TransformDirectionFromAvatarToPlayer(
                     armForwardVectorRight,
                     transform,
                     flattenToXZPlane: true,
@@ -94,15 +90,16 @@ public class Player : MonoBehaviour
                     transform
                 );
 
-                Vector3 endPointRight = startPointRight + alignedDirectionRight * 10;
+                Vector3 endPointRight = startPointRight + transformDirectionFromAvatarToPlayer * 10;
 
                 Debug.DrawLine(startPointRight, endPointRight, Color.red, 0f, false);
             }
-            //left arm debugs
+
+            // Left Arm Debug Line
             {
                 Vector3 armForwardVectorLeft = getAvatarInformation.GetLeftArmForwardVector();
 
-                Vector3 alignedDirectionLeft = TransformUtilities.TransformDirectionFromAvatarToPlayer(
+                Vector3 transformDirectionFromAvatarToPlayer = TransformUtilities.TransformDirectionFromAvatarToPlayer(
                     armForwardVectorLeft,
                     transform,
                     flattenToXZPlane: true,
@@ -117,7 +114,7 @@ public class Player : MonoBehaviour
                     transform
                 );
 
-                Vector3 endPointLeft = startPointLeft + alignedDirectionLeft * 10;
+                Vector3 endPointLeft = startPointLeft + transformDirectionFromAvatarToPlayer * 10;
 
                 Debug.DrawLine(startPointLeft, endPointLeft, Color.green, 0f, false);
             }
@@ -182,47 +179,26 @@ public class Player : MonoBehaviour
         }
         else
         {
-            /*
-            // can be called in TriggerFireball.cs on the avatar prefab
-            Quaternion playerRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
             
-            //rotatedOffset += new Vector3(0, 0.2f, 0.5f);
-            Rigidbody projectile;
-            if (!isLeft){
-                projectile = Instantiate(fireballPrefab, rightShoulder.transform.position, transform.rotation);
-            } else {
-                projectile = Instantiate(fireballPrefab, leftShoulder.transform.position, transform.rotation);
-            }
-
-            Vector3 armForwardVector;
-
-            if (!isLeft) {
-                armForwardVector = getAvatarInformation.GetRightArmForwardVector();
-            } else {
-                armForwardVector = getAvatarInformation.GetLeftArmForwardVector();
-            }
-
-            armForwardVector.y = 0;
-            armForwardVector = armForwardVector.normalized;
-
-            Vector3 alignedDirection = playerRotation * armForwardVector;
-            alignedDirection = -alignedDirection;
-
-            
-            projectile.velocity = alignedDirection * fireBallSpeed;
-            */
             Rigidbody projectile;
             Vector3 spawnPosition;
             Vector3 armForwardVector;
 
             if (!isLeft)
             {
-                spawnPosition = rightShoulder.transform.position;
+                spawnPosition = TransformUtilities.TransformPositionFromAvatarToPlayer(
+                    getAvatarInformation.rightShoulder.transform.position,
+                    getAvatarInformation.GetAvatarRootTransform(),
+                    transform);
                 armForwardVector = getAvatarInformation.GetRightArmForwardVector();
             }   
             else
             {
-                spawnPosition = leftShoulder.transform.position;
+                spawnPosition = TransformUtilities.TransformPositionFromAvatarToPlayer(
+                    getAvatarInformation.leftShoulder.transform.position,
+                    getAvatarInformation.GetAvatarRootTransform(),
+                    transform);
+
                 armForwardVector = getAvatarInformation.GetLeftArmForwardVector();
             }
 
