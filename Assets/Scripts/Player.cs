@@ -174,6 +174,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            /*
             // can be called in TriggerFireball.cs on the avatar prefab
             Quaternion playerRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
             
@@ -201,7 +202,31 @@ public class Player : MonoBehaviour
 
             
             projectile.velocity = alignedDirection * fireBallSpeed;
-            
+            */
+            Rigidbody projectile;
+            Vector3 spawnPosition;
+            Vector3 armForwardVector;
+
+            if (!isLeft)
+            {
+                spawnPosition = rightShoulder.transform.position;
+                armForwardVector = getAvatarInformation.GetRightArmForwardVector();
+            }
+            else
+            {
+                spawnPosition = leftShoulder.transform.position;
+                armForwardVector = getAvatarInformation.GetLeftArmForwardVector();
+            }
+
+            Vector3 alignedDirection = TransformUtilities.TransformDirectionFromAvatarToPlayer(
+                armForwardVector, 
+                transform, 
+                flattenToXZPlane: true, 
+                invertDirection: true
+            );
+
+            projectile = Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
+            projectile.velocity = alignedDirection * fireBallSpeed;
         }
 
 
