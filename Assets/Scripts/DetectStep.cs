@@ -40,6 +40,17 @@ public class DetectStep : MonoBehaviour
         CheckStep(rightFootDistance, ref rightFootOnGround, "Right Foot", LastFootStepped.Right);
     }
 
+    public bool LeftFootStatus
+    {
+        get { return leftFootOnGround; }
+    }
+
+    public bool RightFootStatus
+    {
+        get { return rightFootOnGround; }
+    }
+
+
     float GetVerticalDistanceFromRoot(Transform foot)
     {
         Vector3 footPosition = foot.position;
