@@ -61,9 +61,9 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.W))
             {
-                transform.Translate(Vector3.forward * (speed * Time.deltaTime));
+                StartCoroutine(SpeedIncrease());
 
                 //GetComponent<Rigidbody>().AddForce(transform.forward * speed);
             }
@@ -125,21 +125,42 @@ public class Player : MonoBehaviour
 
 
     }
+    public float speedIncreaseAmount = 1f;
+    public AnimationCurve accelerationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
     public IEnumerator SpeedIncrease()
     {
-        speed += 1.0f;
-        
-        yield return new WaitForSeconds(2f);
-        
-        if (speed - speeddecrease <= 0.0f)
+        float initialSpeed = speed;
+        float targetSpeed = speed + speedIncreaseAmount;
+        float accelerationTime = 0.25f;
+        float decelerationTime = 1f;
+        float timeElapsed = 0f;
+
+        // Acceleration phase with AnimationCurve
+        while (timeElapsed < accelerationTime)
         {
-            speed = 0;
+            float t = timeElapsed / accelerationTime;
+            speed = Mathf.Lerp(initialSpeed, targetSpeed, accelerationCurve.Evaluate(t));
+            timeElapsed += Time.deltaTime;
+            yield return null;
         }
-        else
+        speed = targetSpeed;
+
+        // Optional: Wait at top speed
+        yield return new WaitForSeconds(0.5f);
+
+        // Deceleration phase with AnimationCurve
+        timeElapsed = 0f;
+        initialSpeed = speed;
+
+        while (timeElapsed < decelerationTime)
         {
-            speed -= speeddecrease;
+            float t = timeElapsed / decelerationTime;
+            speed = Mathf.Lerp(targetSpeed, 0f, accelerationCurve.Evaluate(t));
+            timeElapsed += Time.deltaTime;
+            yield return null;
         }
+        speed = 0f;
     }
 
 
