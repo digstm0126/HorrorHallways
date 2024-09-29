@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 587590992844522596}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38268435, y: -0, z: -0, w: 0.9238792}
-  m_LocalPosition: {x: -13.028725, y: 3.709, z: -9.069}
+  m_LocalPosition: {x: 0, y: -0.016, z: -1.064}
   m_LocalScale: {x: 0.38047972, y: 1.0726842, z: 0.38047972}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -101,7 +101,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -168,7 +168,7 @@ Transform:
   m_GameObject: {fileID: 5374042545054732861}
   serializedVersion: 2
   m_LocalRotation: {x: -0.25881848, y: -0, z: -0, w: 0.96592605}
-  m_LocalPosition: {x: -13.028725, y: 4.4590416, z: -8.98592}
+  m_LocalPosition: {x: 0, y: 0.8, z: -0.944}
   m_LocalScale: {x: 0.44315, y: 1.4755692, z: 0.44315}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -241,7 +241,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -273,7 +273,7 @@ Transform:
   m_GameObject: {fileID: 6239067992666306670}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000012218951, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.028725, y: 3.131, z: -9.332}
+  m_LocalPosition: {x: 0, y: -0.348, z: -1.358}
   m_LocalScale: {x: 0.31780946, y: 0.8690258, z: 0.31780946}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -346,7 +346,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -378,7 +378,7 @@ Transform:
   m_GameObject: {fileID: 7318493928173563346}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071065, y: -0, z: -0, w: 0.70710707}
-  m_LocalPosition: {x: -13.028725, y: 2.82, z: -9.106}
+  m_LocalPosition: {x: 0, y: -0.798, z: -0.906}
   m_LocalScale: {x: 0.44315, y: 1.1189094, z: 0.21743599}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -451,7 +451,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

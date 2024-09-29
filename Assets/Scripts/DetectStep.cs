@@ -40,12 +40,12 @@ public class DetectStep : MonoBehaviour
         CheckStep(rightFootDistance, ref rightFootOnGround, "Right Foot", LastFootStepped.Right);
     }
 
-    public bool LeftFootStatus
+    public bool LeftFootOnGround
     {
         get { return leftFootOnGround; }
     }
 
-    public bool RightFootStatus
+    public bool RightFootOnGround
     {
         get { return rightFootOnGround; }
     }
