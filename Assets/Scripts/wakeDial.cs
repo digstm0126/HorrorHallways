@@ -46,7 +46,7 @@ public class wakeDial : MonoBehaviour
             }
             
 
-            currentSpeed = Player.GetComponent<Player>().speed;
+            currentSpeed = Player.GetComponent<Player>().GetSpeed();
 
             
             wakeMetter += Time.deltaTime * math.abs(currentSpeed);

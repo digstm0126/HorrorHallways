@@ -20,7 +20,7 @@ public class SplineFollower : MonoBehaviour
 
     void MoveAlongSpline()
     {
-        float currentSpeed = playerScript.speed;
+        float currentSpeed = playerScript.GetSpeed();
         splineProgress += (currentSpeed * Time.deltaTime) / splineContainer.Spline.GetLength();
         splineProgress %= 1f;
 
@@ -38,6 +38,6 @@ public class SplineFollower : MonoBehaviour
 
     public void StopMoving()
     {
-        playerScript.speed = 0f;
+        playerScript.SetSpeed(0f);
     }
 }

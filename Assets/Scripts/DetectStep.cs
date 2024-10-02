@@ -8,18 +8,33 @@ public class DetectStep : MonoBehaviour
     private bool leftFootOnGround = true;
     private bool rightFootOnGround = true;
 
-    private Player player;
+    private PlayerMovement playerMovement;
 
     private enum LastFootStepped { None, Left, Right }
+
     private LastFootStepped lastFootStepped = LastFootStepped.None;
 
-    // Toggle for debug logs
+    
     public bool enableDebugLogs = true;
+
+
+
+    public bool LeftFootOnGround
+    {
+        get { return leftFootOnGround; }
+    }
+
+    public bool RightFootOnGround
+    {
+        get { return rightFootOnGround; }
+    }
+    
+    
 
     void Start()
     {
-        player = FindObjectOfType<Player>();
-        if (player)
+        playerMovement = FindObjectOfType<PlayerMovement>();
+        if (playerMovement)
         {
             Log("Player script found and assigned.");
         }
@@ -40,6 +55,8 @@ public class DetectStep : MonoBehaviour
         CheckStep(rightFootDistance, ref rightFootOnGround, "Right Foot", LastFootStepped.Right);
     }
 
+
+
     float GetVerticalDistanceFromRoot(Transform foot)
     {
         Vector3 footPosition = foot.position;
@@ -56,8 +73,9 @@ public class DetectStep : MonoBehaviour
         if (footDistance > stepThreshold && !footOnGround)
         {
             
-            
+            //Foot detected to be on the ground
             footOnGround = true;
+            playerMovement.LandingSpeed();
             
             
             Log($"{footName} has touched the ground. Foot Distance: {footDistance}, Step Threshold: {stepThreshold}");
@@ -65,7 +83,7 @@ public class DetectStep : MonoBehaviour
         else if (footDistance <= stepThreshold && footOnGround)
         {
             
-            
+            //Foot detected to be in the air
             footOnGround = false;
             
             
@@ -78,13 +96,12 @@ public class DetectStep : MonoBehaviour
                 
                 lastFootStepped = currentFoot;
 
-                if (player)
+                if (playerMovement)
                 {
                     Log($"Calling SpeedIncrease Coroutine for {footName}");
                     
                     
-                    player.StartCoroutine(player.SpeedIncrease());
-                    
+                    playerMovement.LiftingSpeed() ;                  
                 }
             }
             else
@@ -111,7 +128,7 @@ public class DetectStep : MonoBehaviour
         bool isValid = (currentFoot == LastFootStepped.Left && lastFootStepped == LastFootStepped.Right) ||
                        (currentFoot == LastFootStepped.Right && lastFootStepped == LastFootStepped.Left);
         Log($"IsValidStep Check: Current Foot: {currentFoot}, Last Foot: {lastFootStepped}, IsValid: {isValid}");
-        Log($"Player speed is {player.speed}");
+        Log($"Player speed is {playerMovement.Speed}");
         return isValid;
     }
 
