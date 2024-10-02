@@ -5,13 +5,10 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    public float speed;
     public Rigidbody fireballPrefab;
     public GameObject youLoseTextTMP;
 
-    public bool scrollControl;
 
-    public int mouseScrollScale = 1;
 
     private float fireBallSpeed = 10f;
     private bool canShoot = true;
@@ -25,6 +22,8 @@ public class Player : MonoBehaviour
     private ScoreManager scoreManager;
 
     GetAvatarInformation getAvatarInformation;
+    DetectStep detectStep;
+    PlayerMovement playerMovement;
 
     private Vector3 alignedDirectionRight;
     private Vector3 alignedDirectionLeft;
@@ -39,6 +38,9 @@ public class Player : MonoBehaviour
         {
             healthManager = FindObjectOfType<HealthManager>();
         }
+        if (!playerMovement){
+            playerMovement = FindAnyObjectByType<PlayerMovement>();
+        }
     }
 
     void Update()
@@ -47,6 +49,9 @@ public class Player : MonoBehaviour
         {
             getAvatarInformation = FindObjectOfType<GetAvatarInformation>();
         }
+        if(!detectStep){
+            detectStep = FindObjectOfType<DetectStep>();
+        }
         
 
         if (Input.GetKey(KeyCode.Z) && canShoot)
@@ -54,20 +59,8 @@ public class Player : MonoBehaviour
             ShootFireball(true);
         }
         
-        if (scrollControl == true){
-            speed += Input.mouseScrollDelta.y * mouseScrollScale;
-            GetComponent<Rigidbody>().AddForce(transform.forward * speed);
-            
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                StartCoroutine(SpeedIncrease());
 
-                //GetComponent<Rigidbody>().AddForce(transform.forward * speed);
-            }
-        }
+        
 
         if (getAvatarInformation)
         {
@@ -123,46 +116,16 @@ public class Player : MonoBehaviour
 
         }
 
-
-    }
-    public float speedIncreaseAmount = 1f;
-    public AnimationCurve accelerationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-
-    public IEnumerator SpeedIncrease()
-    {
-        float initialSpeed = speed;
-        float targetSpeed = speed + speedIncreaseAmount;
-        float accelerationTime = 0.25f;
-        float decelerationTime = 1f;
-        float timeElapsed = 0f;
-
-        // Acceleration phase with AnimationCurve
-        while (timeElapsed < accelerationTime)
-        {
-            float t = timeElapsed / accelerationTime;
-            speed = Mathf.Lerp(initialSpeed, targetSpeed, accelerationCurve.Evaluate(t));
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-        speed = targetSpeed;
-
-        // Optional: Wait at top speed
-        yield return new WaitForSeconds(0.5f);
-
-        // Deceleration phase with AnimationCurve
-        timeElapsed = 0f;
-        initialSpeed = speed;
-
-        while (timeElapsed < decelerationTime)
-        {
-            float t = timeElapsed / decelerationTime;
-            speed = Mathf.Lerp(targetSpeed, 0f, accelerationCurve.Evaluate(t));
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-        speed = 0f;
     }
 
+    public void SetSpeed(float speed){
+        playerMovement.Speed = speed;
+    }
+    public float GetSpeed(){
+        return playerMovement.Speed;
+    }
+    
+    
 
     private void TakeDamage(int amount)
     {
@@ -251,7 +214,6 @@ public class Player : MonoBehaviour
     private void GameOver()
     {
         isGameOver = true;
-        speed = 0.0f;
 
         scoreManager.scoreText.gameObject.SetActive(false);
 
@@ -284,6 +246,38 @@ public class Player : MonoBehaviour
     }
     
     
-    
+         /*   float initialSpeed = speed;
+        float targetSpeed = speed + speedIncreaseAmount;
+        float accelerationTime = 0.25f;
+        float decelerationTime = 1f;
+        float timeElapsed = 0f;
+
+        // Acceleration phase with AnimationCurve
+        while (timeElapsed < accelerationTime)
+        {
+            float t = timeElapsed / accelerationTime;
+            speed = Mathf.Lerp(initialSpeed, targetSpeed, accelerationCurve.Evaluate(t));
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        speed = targetSpeed;
+
+        // Optional: Wait at top speed
+        yield return new WaitForSeconds(0.5f);
+
+        // Deceleration phase with AnimationCurve
+        timeElapsed = 0f;
+        initialSpeed = speed;
+
+        while (timeElapsed < decelerationTime)
+        {
+            float t = timeElapsed / decelerationTime;
+            speed = Mathf.Lerp(targetSpeed, 0f, accelerationCurve.Evaluate(t));
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        speed = 0f;
+
+        detectStep.*/
     
 }
