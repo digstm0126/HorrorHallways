@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5349084048421034451}
   - component: {fileID: 8820455388182905728}
   - component: {fileID: 1624142223469840088}
+  - component: {fileID: 8992389923513689251}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -241,6 +242,18 @@ MonoBehaviour:
   mechLegDownHeight: 2
   detectStep: {fileID: 0}
   legSpeed: 0.5
+--- !u!114 &8992389923513689251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941930147661017458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac4b9b72afe9c584f98021c23467d300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2383868583090159651
 GameObject:
   m_ObjectHideFlags: 0
