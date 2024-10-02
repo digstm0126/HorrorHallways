@@ -7,14 +7,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: wave
+  m_Name: red new
   m_Shader: {fileID: -6465566751694194690, guid: 8b89461c022254cc1a0165d5b58fb349,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -24,10 +24,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _thingy_tex:
-        m_Texture: {fileID: 8400000, guid: ef60a76a44d8847f982fe2d802c4a4fb, type: 2}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -44,20 +40,20 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _frequncy: 1
-    - _intesaty: 5
-    - _len: 0.5
-    - _smoting: 0.1
+    - _intesaty0: 0
+    - _intesaty1: 0
+    - _intesaty2: 0
+    - _intesaty3: 0
+    - _len: 1
     - _speed: 5
-    - _start_time: 0
     m_Colors:
-    - _startPoint1: {r: 1.29, g: 1.346, b: 7.438282, a: 10}
-    - _startPoint2: {r: 2.26, g: 1.346, b: 10.444841, a: 81.1}
-    - _startPoint3: {r: 1, g: 1.346, b: 8.644973, a: 82.1}
-    - _startPoint4: {r: 1, g: 1.346, b: 8.76452, a: 83.1}
-    - _start_point: {r: 0, g: 0, b: 0, a: 0}
+    - _base: {r: 1, g: 0, b: 0, a: 0}
+    - _startPoint0: {r: 0, g: 0, b: 0, a: 10}
+    - _startPoint1: {r: 0, g: 0, b: 0, a: 10}
+    - _startPoint2: {r: 0, g: 0, b: 0, a: 10}
+    - _startPoint3: {r: 0, g: 0, b: 0, a: 10}
   m_BuildTextureStacks: []
---- !u!114 &1120106824556942708
+--- !u!114 &8655201806844491735
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
