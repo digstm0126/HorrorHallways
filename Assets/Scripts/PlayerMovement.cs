@@ -29,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             CycleFootState();
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 2, ForceMode.Impulse);
+
         }
     }
     // testing helper method
@@ -58,7 +61,8 @@ public class PlayerMovement : MonoBehaviour
         
     
 
-    public void LandingSpeed(){
+    public IEnumerator LandingSpeed(){
+        
 
 
     }
