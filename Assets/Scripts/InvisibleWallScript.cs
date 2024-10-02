@@ -18,7 +18,7 @@ public class InvisibleWallScript : MonoBehaviour
             if (playerScript != null)
             {
                 playerTouchingWall = true;
-                playerScript.speed = 0f; // Stop the player's movement
+                playerScript.SetSpeed(0f); // Stop the player's movement
                 StartCoroutine(CheckForExplosiveBarrels());
             }
         }
@@ -30,7 +30,7 @@ public class InvisibleWallScript : MonoBehaviour
         {
             if (playerScript)
             {
-                playerScript.speed = 0f;
+                playerScript.SetSpeed(0f);
             }
         }
     }
@@ -64,7 +64,7 @@ public class InvisibleWallScript : MonoBehaviour
 
                 if (playerTouchingWall && !zed)
                 {
-                    playerScript.speed = 3f; // Resume the player's speed
+                    playerScript.SetSpeed(3f); // Resume the player's speed
                 }
                 else
                 {

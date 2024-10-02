@@ -11,6 +11,7 @@ public class FinishedGameScript : MonoBehaviour
 
 
     private Player playerScript;
+    private PlayerMovement playerMovement;
 
     [SerializeField] private GameObject player;
     [SerializeField] private ScoreManager scoreManager;
@@ -42,7 +43,7 @@ public class FinishedGameScript : MonoBehaviour
                 playerScript = other.GetComponent<Player>();
                 if (playerScript != null)
                 {
-                    playerScript.speed = 0f;
+                    playerScript.SetSpeed(0f);
                 }
         }
         }
