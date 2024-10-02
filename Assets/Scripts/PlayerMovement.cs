@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
         set { speed = value; }
     }
 
-    private enum FootState
+    /*private enum FootState
     {
         LeftFootLanding,
         LeftFootLifting,
@@ -22,19 +22,19 @@ public class PlayerMovement : MonoBehaviour
         RightFootLifting
     }
 
-    private FootState currentFootState = FootState.LeftFootLanding;
+    private FootState currentFootState = FootState.LeftFootLanding;*/
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            CycleFootState();
+            //CycleFootState();
             Rigidbody rb = GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 2, ForceMode.Impulse);
 
         }
     }
-    // testing helper method
+    /* testing helper method
     private void CycleFootState()
     {
         switch (currentFootState)
@@ -68,5 +68,5 @@ public class PlayerMovement : MonoBehaviour
     }
     public void LiftingSpeed(){
 
-    }
+    }*/
 }
