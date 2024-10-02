@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     private bool canShoot = true;
     public float fireBallCooldownDuration = 0.4f;
     private bool isGameOver = false;
-    private float speeddecrease = 1f;
 
     public HealthManager healthManager; // Reference to HealthManager
     public TakeDamageScript takeDamageScript;
@@ -25,8 +24,6 @@ public class Player : MonoBehaviour
     DetectStep detectStep;
     PlayerMovement playerMovement;
 
-    private Vector3 alignedDirectionRight;
-    private Vector3 alignedDirectionLeft;
 
     
 
@@ -246,38 +243,6 @@ public class Player : MonoBehaviour
     }
     
     
-         /*   float initialSpeed = speed;
-        float targetSpeed = speed + speedIncreaseAmount;
-        float accelerationTime = 0.25f;
-        float decelerationTime = 1f;
-        float timeElapsed = 0f;
 
-        // Acceleration phase with AnimationCurve
-        while (timeElapsed < accelerationTime)
-        {
-            float t = timeElapsed / accelerationTime;
-            speed = Mathf.Lerp(initialSpeed, targetSpeed, accelerationCurve.Evaluate(t));
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-        speed = targetSpeed;
-
-        // Optional: Wait at top speed
-        yield return new WaitForSeconds(0.5f);
-
-        // Deceleration phase with AnimationCurve
-        timeElapsed = 0f;
-        initialSpeed = speed;
-
-        while (timeElapsed < decelerationTime)
-        {
-            float t = timeElapsed / decelerationTime;
-            speed = Mathf.Lerp(targetSpeed, 0f, accelerationCurve.Evaluate(t));
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-        speed = 0f;
-
-        detectStep.*/
     
 }
