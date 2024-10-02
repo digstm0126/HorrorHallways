@@ -16,14 +16,16 @@ public class wakeDial : MonoBehaviour
     private float currentSpeed;
 
     public float wakeMetter;
-    public GameObject Player;
+    public Player player;
  
     public GameObject[] monsters;
 
 
-    void Update()
+    void Start()
     {
-
+        if (!player){
+            player = FindAnyObjectByType<Player>();
+        }
 
     }
 
@@ -46,7 +48,7 @@ public class wakeDial : MonoBehaviour
             }
             
 
-            currentSpeed = Player.GetComponent<Player>().GetSpeed();
+            currentSpeed = player.GetSpeed();
 
             
             wakeMetter += Time.deltaTime * math.abs(currentSpeed);

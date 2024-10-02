@@ -75,7 +75,7 @@ public class DetectStep : MonoBehaviour
             
             //Foot detected to be on the ground
             footOnGround = true;
-            playerMovement.LandingSpeed();
+            // playerMovement.LandingSpeed();
             
             
             Log($"{footName} has touched the ground. Foot Distance: {footDistance}, Step Threshold: {stepThreshold}");

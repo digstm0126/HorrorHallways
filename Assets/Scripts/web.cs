@@ -56,13 +56,13 @@ public class web : MonoBehaviour
             
             //count[index] += Time.time - count[index];
             intesaty[index] = Mathf.Lerp(0.0f, 1f, Mathf.InverseLerp(Maxtime, MinTime, Time.time - count[index]));
-            wavey.SetFloat("_intesaty" + index.ToString(), intesaty[index]);
+            Shader.SetGlobalFloat("_intesaty" + index.ToString(), intesaty[index]);
 
         }
         else
         {
             intesaty[index] = 0.0f;
-            wavey.SetFloat("_intesaty" + index.ToString(), intesaty[index]);
+            Shader.SetGlobalFloat("_intesaty" + index.ToString(), intesaty[index]);
         }
 
         index += 1;
@@ -91,7 +91,7 @@ public class web : MonoBehaviour
             float Yval = sourse.transform.position.y;
             float timeLog = Time.time;
             CurtPostion = new Vector4(Xval, Yval, zval, timeLog); 
-            wavey.SetVector("_startPoint" + positionIndex.ToString(), CurtPostion);
+            Shader.SetGlobalVector("_startPoint" + positionIndex.ToString(), CurtPostion);
             count[positionIndex] = Time.time;
 
             positionIndex += 1;
