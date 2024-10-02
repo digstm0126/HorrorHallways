@@ -101,7 +101,7 @@ public class DetectStep : MonoBehaviour
                     Log($"Calling SpeedIncrease Coroutine for {footName}");
                     
                     
-                    playerMovement.LiftingSpeed() ;                  
+                    //playerMovement.LiftingSpeed() ;                  
                 }
             }
             else
