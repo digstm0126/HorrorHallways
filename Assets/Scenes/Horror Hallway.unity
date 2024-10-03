@@ -2100,7 +2100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxWake: 2
   wakeMetter: 0.03
-  Player: {fileID: 755659684}
+  player: {fileID: 0}
   monsters:
   - {fileID: 79979608}
   - {fileID: 1222534711}
@@ -11011,7 +11011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxWake: 2
   wakeMetter: 0.03
-  Player: {fileID: 755659684}
+  player: {fileID: 0}
   monsters:
   - {fileID: 821100385}
   - {fileID: 821100384}
@@ -22883,7 +22883,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1493960156
 Transform:
   m_ObjectHideFlags: 0
@@ -30710,7 +30710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1841016602
 Transform:
   m_ObjectHideFlags: 0
