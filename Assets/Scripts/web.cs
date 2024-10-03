@@ -12,6 +12,8 @@ public class web : MonoBehaviour
 
     public Material wavey;
     //the gameobject the wave comes from (player)
+
+    public Light hanger;
     public GameObject sourse;
     //postion of curnt wave being trigured
     public Vector4 CurtPostion;
@@ -71,6 +73,7 @@ public class web : MonoBehaviour
             index = 0;
         }
 
+        hanger.intensity = Mathf.Lerp(0.2f, 0.8f, intesaty[positionIndex - 1]);
         //wavey.SetVector("_startPoint" + positionIndex.ToString(), CurtPostion);
 
     }
