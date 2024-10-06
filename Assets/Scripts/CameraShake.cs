@@ -1,51 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 
 /// <summary>
 /// https://gist.github.com/ftvs/5822103
 /// </summary>
 public class CameraShake : MonoBehaviour
 {
-	// Transform of the camera to shake. Grabs the gameObject's transform
-	// if null.
-	public Transform camTransform;
-	
-	// How long the object should shake for.
-	public float shakeDuration = 0f;
-	
-	// Amplitude of the shake. A larger value shakes the camera harder.
-	public float shakeAmount = 0.7f;
-	public float decreaseFactor = 1.0f;
-	
-	Vector3 originalPos;
-	
+	private CinemachineVirtualCamera CinemachineVirtualCamera;
+	private float ShakeIntensity = 1f;
+	private float ShakeTime = 0.2f;
+
+	private float timer;
+	private CinemachineBasicMultiChannelPerlin _cbmcp;
+
 	void Awake()
 	{
-		if (camTransform == null)
-		{
-			camTransform = GetComponent(typeof(Transform)) as Transform;
-		}
-	}
-	
-	void OnEnable()
-	{
-		originalPos = camTransform.localPosition;
+		CinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
 	}
 
-	void Update()
+    private void Start()
+    {
+		StopShake();
+    }
+
+    public void ShakeCamera()
 	{
-		if (shakeDuration > 0)
-		{
-			camTransform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
-			
-			shakeDuration -= Time.deltaTime * decreaseFactor;
-		}
-		else
-		{
-			shakeDuration = 0f;
-			camTransform.localPosition = originalPos;
-		}
+        CinemachineBasicMultiChannelPerlin _cbmcp = CinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+		_cbmcp.m_AmplitudeGain = ShakeIntensity;
+
+		timer = ShakeTime;
 	}
+
+	void StopShake()
+	{
+		CinemachineBasicMultiChannelPerlin _cbmcp = CinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+		_cbmcp.m_AmplitudeGain = 0f;
+		timer = 0;
+	}
+
+    private void Update()
+    {
+		if (Input.GetKey(KeyCode.Space))
+		{
+			ShakeCamera();
+		}
+		if (timer > 0)
+		{
+            timer -= Time.deltaTime;
+
+			if (timer < 0)
+			{
+				StopShake();
+			}
+        }
+
+
+    }
 }
