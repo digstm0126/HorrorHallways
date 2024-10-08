@@ -50,9 +50,9 @@ public class web : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        if (inside)
+        if (Time.time > Maxtime)
         {
-            
+
             float bigcount = Mathf.InverseLerp(MinTime, Maxtime, Time.time - count[index]);
 
             if (bigcount != 1)
