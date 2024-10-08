@@ -57,10 +57,11 @@ Material:
     - _intesaty1: 0
     - _intesaty2: 0
     - _intesaty3: 0
-    - _len: 0.1
-    - _speed: 13.85
+    - _len: 1
+    - _speed: 4
     m_Colors:
     - _base: {r: 0, g: 0, b: 0, a: 0}
+    - _emersomev_coleor: {r: 0.23529412, g: 0, b: 0, a: 0.5176471}
     - _startPoint0: {r: 1.29, g: 1.346, b: 14.073799, a: 34}
     - _startPoint1: {r: 1.29, g: 1.346, b: 14.367881, a: 26}
     - _startPoint2: {r: 1.29, g: 1.346, b: 14.282236, a: 28}

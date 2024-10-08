@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.31523672, g: 0.39413655, b: 0.41509432, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.09
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
@@ -618,7 +618,7 @@ PrefabInstance:
     - target: {fileID: 4594682262935275018, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.39
+      value: 8.539
       objectReference: {fileID: 0}
     - target: {fileID: 4594682262935275018, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
@@ -731,7 +731,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.6084906, b: 0.6084906, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1124,7 +1124,7 @@ PrefabInstance:
     - target: {fileID: 2198975154078801626, guid: 43c4c8cc85b684e6190125823017c081,
         type: 3}
       propertyPath: speed
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2198975154078801626, guid: 43c4c8cc85b684e6190125823017c081,
         type: 3}
@@ -1141,6 +1141,11 @@ PrefabInstance:
       propertyPath: sourse
       value: 
       objectReference: {fileID: 113325127}
+    - target: {fileID: 2198975154078801626, guid: 43c4c8cc85b684e6190125823017c081,
+        type: 3}
+      propertyPath: Maxtime
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2198975154078801626, guid: 43c4c8cc85b684e6190125823017c081,
         type: 3}
       propertyPath: intesaty
