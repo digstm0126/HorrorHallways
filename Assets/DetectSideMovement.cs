@@ -5,17 +5,25 @@ using UnityEngine;
 public class DetectSideMovement : MonoBehaviour
 {
     private float startXPosition = 0f;
+    
+    HideMechanicController hideMechanicController;
+    private bool playerHasMovedToSide;
     void Update()
     {
+        if (!hideMechanicController)
+        {
+            hideMechanicController = FindObjectOfType<HideMechanicController>();
+        }
+        
         float distanceMovedX = transform.position.x - startXPosition;
 
-        if (distanceMovedX >= 0.5f)
+        if (distanceMovedX >= 0.5f && !playerHasMovedToSide)
         {
-            //do something to the left - call function
+            hideMechanicController.TriggerPlayerHide();
         }
-        else if (distanceMovedX <= -0.5f)
+        else if (distanceMovedX <= -0.5f && !playerHasMovedToSide)
         {
-            // do something to the right - call function
+            hideMechanicController.TriggerPlayerHide();
         }
     }
 
