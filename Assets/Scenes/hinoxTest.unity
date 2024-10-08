@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.31523672, g: 0.39413655, b: 0.41509432, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.09
@@ -290,7 +290,7 @@ Transform:
   m_GameObject: {fileID: 185028923}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.32, y: 2.58, z: 10}
+  m_LocalPosition: {x: 9.93, y: 2.58, z: 10}
   m_LocalScale: {x: 1, y: 10, z: 113.652}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -668,8 +668,8 @@ Transform:
   m_GameObject: {fileID: 1076671511}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 2.6, z: 7.69}
-  m_LocalScale: {x: 9.728726, y: 9.728726, z: 2.0827258}
+  m_LocalPosition: {x: 0.02, y: 2.6, z: 26.07}
+  m_LocalScale: {x: 29.85065, y: 29.85065, z: 3.5599792}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -736,6 +736,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105671992509249766, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.6553383
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105671992509249766, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.1593723
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -946,7 +956,7 @@ Transform:
   m_GameObject: {fileID: 1645282243}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.47, z: 10}
+  m_LocalPosition: {x: 0, y: 19.22, z: 10}
   m_LocalScale: {x: 7.8455, y: 0.2, z: 113.652}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1089,6 +1099,11 @@ PrefabInstance:
         type: 3}
       propertyPath: hanger
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2198975154078801626, guid: 43c4c8cc85b684e6190125823017c081,
+        type: 3}
+      propertyPath: inside
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2198975154078801626, guid: 43c4c8cc85b684e6190125823017c081,
         type: 3}

@@ -32,12 +32,18 @@ public class FireballScript : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         //sends info to wave script and then trigers a wave 
-        Debug.Log("hit");
-        Vector3 Vec = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-        Debug.Log(Vec);
-        WaveContolor.sourse = Vec;
+        if (other.gameObject.name != "Player" & other.gameObject.name != "Eyes" & other.gameObject.name != "InvisibleWall" )
+        {
 
-        WaveContolor.sendinfo(); 
+            Debug.Log(other.name);
+            Vector3 Vec = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+            Debug.Log(Vec);
+            WaveContolor.sourse = Vec;
+
+            WaveContolor.sendinfo(); 
+
+        }
+        
 
         if ((fireBallProofLayer & (1 << other.gameObject.layer)) != 0)
         {

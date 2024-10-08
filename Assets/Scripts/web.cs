@@ -10,7 +10,7 @@ using Vector4 = UnityEngine.Vector4;
 public class web : MonoBehaviour
 {
 
-    public Material wavey;
+
     //the gameobject the wave comes from (player)
 
     public Light hanger;
@@ -43,38 +43,42 @@ public class web : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //wavey = gameObject.GetComponent<Renderer>().material;
+
         timer =  Time.time;
         index = 0;
     }
 
     private void FixedUpdate() 
     {
-        
-        float bigcount = Mathf.InverseLerp(MinTime, Maxtime, Time.time - count[index]);
-
-        if (bigcount != 1)
+        if (inside)
         {
             
-            //count[index] += Time.time - count[index];
-            intesaty[index] = Mathf.Lerp(0.0f, 1f, Mathf.InverseLerp(Maxtime, MinTime, Time.time - count[index]));
-            Shader.SetGlobalFloat("_intesaty" + index.ToString(), intesaty[index]);
+            float bigcount = Mathf.InverseLerp(MinTime, Maxtime, Time.time - count[index]);
+
+            if (bigcount != 1)
+            {
+                
+                //count[index] += Time.time - count[index];
+                intesaty[index] = Mathf.Lerp(0.0f, 1f, Mathf.InverseLerp(Maxtime, MinTime, Time.time - count[index]));
+                Shader.SetGlobalFloat("_intesaty" + index.ToString(), intesaty[index]);
+
+            }
+            else
+            {
+                intesaty[index] = 0.0f;
+                Shader.SetGlobalFloat("_intesaty" + index.ToString(), intesaty[index]);
+            }
+
+            index += 1;
+            if (index > intesaty.Length - 1)
+            {
+                index = 0;
+            }
+
+            hanger.intensity = Mathf.Lerp(0.2f, 0.8f, intesaty[positionIndex - 1]);
 
         }
-        else
-        {
-            intesaty[index] = 0.0f;
-            Shader.SetGlobalFloat("_intesaty" + index.ToString(), intesaty[index]);
-        }
 
-        index += 1;
-        if (index > intesaty.Length - 1)
-        {
-            index = 0;
-        }
-
-        hanger.intensity = Mathf.Lerp(0.2f, 0.8f, intesaty[positionIndex - 1]);
-        //wavey.SetVector("_startPoint" + positionIndex.ToString(), CurtPostion);
 
     }
 
@@ -111,40 +115,40 @@ public class web : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other) 
-    {
+    // private void OnTriggerEnter(Collider other) 
+    // {
         
-        if (other.tag == "Player")
-        {
+    //     if (other.tag == "Player")
+    //     {
 
-            inside = true;
-            sendinfo();
+    //         inside = true;
+    //         sendinfo();
 
-        }
+    //     }
         
-    }
+    // }
 
-    private void OnTriggerExit(Collider other) 
-    {
+    // private void OnTriggerExit(Collider other) 
+    // {
         
-        if (other.tag == "Player")
-        {
-            inside = false;
-        }
+    //     if (other.tag == "Player")
+    //     {
+    //         inside = false;
+    //     }
 
-    }
+    // }
 
-    private void OnTriggerStay(Collider other) 
-    {
-        if (other.tag == "Player")
-        {
+    // private void OnTriggerStay(Collider other) 
+    // {
+    //     if (other.tag == "Player")
+    //     {
 
-            if (Time.time >= timer + speed)
-            {
-                timer = Time.time;
-                sendinfo();
-            }  
+    //         if (Time.time >= timer + speed)
+    //         {
+    //             timer = Time.time;
+    //             sendinfo();
+    //         }  
 
-        }
-    }
+    //     }
+    // }
 }
