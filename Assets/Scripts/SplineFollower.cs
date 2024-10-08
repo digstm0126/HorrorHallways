@@ -8,14 +8,32 @@ public class SplineFollower : MonoBehaviour
     private Player playerScript;
     private float splineProgress = 0f;
 
+    private Vector3 targetPosition;
+    private bool movingPerpendicular = false;
+    public float perpendicularMoveSpeed = 2f;
+
     void Start()
     {
         playerScript = GetComponent<Player>();
+        targetPosition = transform.position;
     }
 
     void Update()
     {
         MoveAlongSpline();
+    }
+
+    void LateUpdate()
+    {
+        if (movingPerpendicular)
+        {
+            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * perpendicularMoveSpeed);
+
+            if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
+            {
+                movingPerpendicular = false;
+            }
+        }
     }
 
     void MoveAlongSpline()
@@ -34,6 +52,18 @@ public class SplineFollower : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(new Vector3(tangent.x, tangent.y, tangent.z));
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
         }
+    }
+
+    public void MovePerpendicular(float distance)
+    {
+        float3 tangent = splineContainer.EvaluateTangent(splineProgress);
+        Vector3 up = Vector3.up;
+        
+        Vector3 perpendicular = Vector3.Cross(new Vector3(tangent.x, tangent.y, tangent.z), up).normalized;
+
+        targetPosition = transform.position + (perpendicular * distance);
+        
+        movingPerpendicular = true;
     }
 
     public void StopMoving()
