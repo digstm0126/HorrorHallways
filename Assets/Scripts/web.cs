@@ -14,7 +14,7 @@ public class web : MonoBehaviour
     //the gameobject the wave comes from (player)
 
     public Light hanger;
-    public GameObject sourse;
+    public UnityEngine.Vector3 sourse;
     //postion of curnt wave being trigured
     public Vector4 CurtPostion;
     //the list of intestirys for waves
@@ -52,7 +52,7 @@ public class web : MonoBehaviour
     {
         
         float bigcount = Mathf.InverseLerp(MinTime, Maxtime, Time.time - count[index]);
-        Debug.Log(bigcount);
+
         if (bigcount != 1)
         {
             
@@ -85,27 +85,27 @@ public class web : MonoBehaviour
         
     }
 
-    private void sendinfo() {
+    public void sendinfo() {
 
-        if (inside)
+
+        float Xval = sourse.x;
+        float zval = sourse.z;
+        float Yval = sourse.y;
+        float timeLog = Time.time;
+        CurtPostion = new Vector4(Xval, Yval, zval, timeLog); 
+        Shader.SetGlobalVector("_startPoint" + positionIndex.ToString(), CurtPostion);
+        count[positionIndex] = Time.time;
+
+        Debug.Log("send");
+        positionIndex += 1;
+
+        if (positionIndex > intesaty.Length - 1)
         {
-            float Xval = sourse.transform.position.x;
-            float zval = sourse.transform.position.z;
-            float Yval = sourse.transform.position.y;
-            float timeLog = Time.time;
-            CurtPostion = new Vector4(Xval, Yval, zval, timeLog); 
-            Shader.SetGlobalVector("_startPoint" + positionIndex.ToString(), CurtPostion);
-            count[positionIndex] = Time.time;
-
-            positionIndex += 1;
-
-            if (positionIndex > intesaty.Length - 1)
-            {
-                positionIndex = 0;
-
-            }
+            positionIndex = 0;
 
         }
+
+        
         
     
 

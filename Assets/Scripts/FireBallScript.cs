@@ -10,6 +10,9 @@ public class FireballScript : MonoBehaviour
     [SerializeField] private GameObject healingEffectPrefab;
     [SerializeField] private GameObject bigZombieEffectPrefab;
 
+    //the gameobject with the wave script to send waves on fireball colision
+    public web WaveContolor;
+
     [SerializeField] private int pointsForZombie = 100;
     [SerializeField] private int pointsForSpider = 100;
 
@@ -23,10 +26,19 @@ public class FireballScript : MonoBehaviour
     {
         scoreManager = FindObjectOfType<ScoreManager>();
         player = FindObjectOfType<Player>();
+        WaveContolor = FindObjectOfType<web>();
     }
 
     void OnTriggerEnter(Collider other)
     {
+        //sends info to wave script and then trigers a wave 
+        Debug.Log("hit");
+        Vector3 Vec = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+        Debug.Log(Vec);
+        WaveContolor.sourse = Vec;
+
+        WaveContolor.sendinfo(); 
+
         if ((fireBallProofLayer & (1 << other.gameObject.layer)) != 0)
         {
             if (other.GetComponent<ZombieScript>().awake)
