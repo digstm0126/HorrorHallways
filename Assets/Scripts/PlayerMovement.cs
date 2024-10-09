@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
         set { speed = Mathf.Clamp(value, 0, maxSpeed); }
     }
 
-    private enum FootState
+    public enum FootState
     {
         LeftFootLifting,
         LeftFootLanding,
@@ -29,6 +29,12 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private FootState currentFootState = FootState.LeftFootLifting;
+    public FootState CurrentFootState
+    {
+        get { return currentFootState; }
+        set { currentFootState = value; }
+    }
+    
     private Coroutine currentCoroutine;
 
     void Update()
@@ -46,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
             StopCoroutine(currentCoroutine);
             currentCoroutine = null;
         }
-        switch (currentFootState)
+        switch (CurrentFootState)
         {
             case FootState.LeftFootLifting:
                 if (debugLog)
@@ -54,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
                     Debug.Log("Left foot lifting");
                 }
                 currentCoroutine = StartCoroutine(LiftingSpeed());
-                currentFootState = FootState.LeftFootLanding;
+                CurrentFootState = FootState.LeftFootLanding;
                 break;
             case FootState.LeftFootLanding:
                 if (debugLog)
@@ -62,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
                     Debug.Log("Left foot landing");
                 }
                 currentCoroutine = StartCoroutine(LandingSpeed());
-                currentFootState = FootState.RightFootLifting;
+                CurrentFootState = FootState.RightFootLifting;
                 break;
             case FootState.RightFootLifting:
                 if (debugLog)
@@ -70,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
                     Debug.Log("Right foot lifting");
                 }
                 currentCoroutine = StartCoroutine(LiftingSpeed());
-                currentFootState = FootState.RightFootLanding;
+                CurrentFootState = FootState.RightFootLanding;
                 break;
             case FootState.RightFootLanding:
                 if (debugLog)
@@ -78,9 +84,14 @@ public class PlayerMovement : MonoBehaviour
                     Debug.Log("Right foot landing");
                 }
                 currentCoroutine = StartCoroutine(LandingSpeed());
-                currentFootState = FootState.LeftFootLifting;
+                CurrentFootState = FootState.LeftFootLifting;
                 break;
         }
+    }
+
+    public void SetInitialFootState(FootState initialState)
+    {
+        CurrentFootState = initialState;
     }
 
         
@@ -101,14 +112,14 @@ public class PlayerMovement : MonoBehaviour
             Speed = Mathf.Lerp(initialSpeed, targetSpeed, elapsedTime / landingDuration);
             elapsedTime += Time.deltaTime;
             if (Math.Abs(elapsedTime % 1) < 0.01f && debugLog){
-                Debug.Log("Speed from landing currently happening");
+                //Debug.Log("Speed from landing currently happening");
             }
             yield return null;
         }
 
         Speed = targetSpeed; 
         if (debugLog) {
-            Debug.Log($"The current time is {elapsedTime:F2}");
+            //Debug.Log($"The current time is {elapsedTime:F2}");
         }
         elapsedTime = 0f;
         
