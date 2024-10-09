@@ -48,6 +48,7 @@ public class FireballScript : MonoBehaviour
             if (other.gameObject.name == "light")
             {
                 other.GetComponent<LightControler>().Index = PositionIndex;
+                Destroy(gameObject);
             }
 
 
