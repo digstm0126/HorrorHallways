@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,13 +35,21 @@ public class FireballScript : MonoBehaviour
         //sends info to wave script and then trigers a wave 
         if (other.gameObject.name != "Player" & other.gameObject.name != "Eyes" & other.gameObject.name != "InvisibleWall" )
         {
+            
 
             Debug.Log(other.name);
             Vector3 Vec = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
             Debug.Log(Vec);
             WaveContolor.sourse = Vec;
+            int PositionIndex = WaveContolor.positionIndex;
 
-            WaveContolor.sendinfo(); 
+            WaveContolor.sendinfo();
+
+            if (other.gameObject.name == "light")
+            {
+                other.GetComponent<LightControler>().Index = PositionIndex;
+            }
+
 
         }
         

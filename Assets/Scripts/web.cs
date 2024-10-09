@@ -89,7 +89,8 @@ public class web : MonoBehaviour
         
     }
 
-    public void sendinfo() {
+    public void sendinfo() 
+    {
 
 
         float Xval = sourse.x;
@@ -100,7 +101,7 @@ public class web : MonoBehaviour
         Shader.SetGlobalVector("_startPoint" + positionIndex.ToString(), CurtPostion);
         count[positionIndex] = Time.time;
 
-        Debug.Log("send");
+
         positionIndex += 1;
 
         if (positionIndex > intesaty.Length - 1)
