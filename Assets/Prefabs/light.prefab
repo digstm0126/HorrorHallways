@@ -1244,6 +1244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5786024225781601874}
   - component: {fileID: 8540950544528112614}
+  - component: {fileID: 1674072912433156408}
   m_Layer: 1
   m_Name: light
   m_TagString: Untagged
@@ -1287,14 +1288,30 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
+  m_Radius: 1
+  m_Height: 3
+  m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1674072912433156408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993185637325209623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 206714bf9df634eb1b7e44de43a58bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Index: 0
+  Intensity: 0
+  LightSource: {fileID: 8354929656015179458}
+  WaveConroler: {fileID: 299629369909838535}
 --- !u!1 &7071045106116221086
 GameObject:
   m_ObjectHideFlags: 0
