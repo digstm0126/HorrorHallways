@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // testing helper method
-    private void CycleFootState()
+    public void CycleFootState()
     {
         if (currentCoroutine != null){
             StopCoroutine(currentCoroutine);
