@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,12 +7,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float liftingSpeedIncreaseRate = 2f;  // Rate of speed increase for lifting
-    public float landingSpeedBurstRate = 50f;       // Rate of speed burst for landing
-    public float maxSpeed = 100f;                   // Cap the maximum speed
-    public float liftingDuration = 10f;           // Duration for lifting
+    public float landingSpeedBurstRate = 30;       // Rate of speed burst for landing
+    public float maxSpeed = 3;                   // Cap the maximum speed
+    public float liftingDuration = .1f;           // Duration for lifting
     public float landingDuration = 0.2f;               // How long the speed adjustment lasts
 
     private float speed = 0f;
+    public bool debugLog;
 
     public float Speed {
         get { return speed; }
@@ -27,36 +29,56 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private FootState currentFootState = FootState.LeftFootLifting;
+    private Coroutine currentCoroutine;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
             CycleFootState();
-            
-
         }
     }
+
     // testing helper method
     private void CycleFootState()
     {
+        if (currentCoroutine != null){
+            StopCoroutine(currentCoroutine);
+            currentCoroutine = null;
+        }
         switch (currentFootState)
         {
-            case FootState.LeftFootLanding:
-                StartCoroutine(LandingSpeed());
-                currentFootState = FootState.LeftFootLifting;
-                break;
             case FootState.LeftFootLifting:
-                StartCoroutine(LiftingSpeed());
-                currentFootState = FootState.RightFootLanding;
+                if (debugLog)
+                {
+                    Debug.Log("Left foot lifting");
+                }
+                currentCoroutine = StartCoroutine(LiftingSpeed());
+                currentFootState = FootState.LeftFootLanding;
                 break;
-            case FootState.RightFootLanding:
-                StartCoroutine(LandingSpeed());
+            case FootState.LeftFootLanding:
+                if (debugLog)
+                {
+                    Debug.Log("Left foot landing");
+                }
+                currentCoroutine = StartCoroutine(LandingSpeed());
                 currentFootState = FootState.RightFootLifting;
                 break;
             case FootState.RightFootLifting:
-                StartCoroutine(LiftingSpeed());
-                currentFootState = FootState.LeftFootLanding;
+                if (debugLog)
+                {
+                    Debug.Log("Right foot lifting");
+                }
+                currentCoroutine = StartCoroutine(LiftingSpeed());
+                currentFootState = FootState.RightFootLanding;
+                break;
+            case FootState.RightFootLanding:
+                if (debugLog)
+                {
+                    Debug.Log("Right foot landing");
+                }
+                currentCoroutine = StartCoroutine(LandingSpeed());
+                currentFootState = FootState.LeftFootLifting;
                 break;
         }
     }
@@ -66,37 +88,49 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator LandingSpeed()
     {
+        if (debugLog) {
+            Debug.Log("Landing");
+        }
         float elapsedTime = 0f;
         float initialSpeed = speed;  
-        float targetSpeed = initialSpeed + liftingSpeedIncreaseRate; 
+        float targetSpeed = initialSpeed + landingSpeedBurstRate; 
 
         while (elapsedTime < landingDuration)
         {
       
             Speed = Mathf.Lerp(initialSpeed, targetSpeed, elapsedTime / landingDuration);
             elapsedTime += Time.deltaTime;
+            if (Math.Abs(elapsedTime % 1) < 0.01f && debugLog){
+                Debug.Log("Speed from landing currently happening");
+            }
             yield return null;
         }
 
         Speed = targetSpeed; 
+        if (debugLog) {
+            Debug.Log($"The current time is {elapsedTime:F2}");
+        }
         elapsedTime = 0f;
         
-
-        while (elapsedTime < 1)
+        while (elapsedTime < landingDuration)
         {
             
-            Speed = Mathf.Lerp(initialSpeed, 0, elapsedTime / liftingDuration);
+            Speed = Mathf.Lerp(initialSpeed, 0, elapsedTime / landingDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
         Speed = 0f;
+        elapsedTime = 0f;
     }
 
     private IEnumerator LiftingSpeed()
     {
+        if (debugLog) {
+            Debug.Log("Lifting");
+        }
         float elapsedTime = 0f;
         float initialSpeed = speed;  
-        float targetSpeed = initialSpeed + landingSpeedBurstRate; 
+        float targetSpeed = initialSpeed + liftingSpeedIncreaseRate; 
 
         while (elapsedTime < liftingDuration)
         {
@@ -111,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
         elapsedTime = 0f;
         
 
-        while (elapsedTime < 1)
+        while (elapsedTime < liftingDuration)
         {
             
             Speed = Mathf.Lerp(initialSpeed, 0, elapsedTime / liftingDuration);

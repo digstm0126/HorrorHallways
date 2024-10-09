@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18379751, g: 0.22911659, b: 0.30416283, a: 1}
+  m_IndirectSpecularColor: {r: 0.1837981, g: 0.22911763, b: 0.3041642, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -645,7 +645,7 @@ PrefabInstance:
     - target: {fileID: 3544285015577718587, guid: 16d103a15564c00428c1323255d8bcfa,
         type: 3}
       propertyPath: zed
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5901735658862226587, guid: 16d103a15564c00428c1323255d8bcfa,
         type: 3}
@@ -3023,6 +3023,12 @@ MonoBehaviour:
   zedManager: {fileID: 2107475555}
   zedBodyTrackingManager: {fileID: 477988558}
   target: {x: 0, y: 0, z: 0}
+--- !u!108 &228994298 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 8956661263300462753, guid: 813842e3e55759b4583a3218c2b1a697,
+    type: 3}
+  m_PrefabInstance: {fileID: 1152595603}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &230137212 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4135516184197813250, guid: c31c694230b6f324bbc6b3ff6125a2dd,
@@ -8250,7 +8256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07b135f0c36e47b2935dcebb8289aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hanger: {fileID: 0}
+  hanger: {fileID: 228994298}
   sourse: {x: 0, y: 0, z: 0}
   CurtPostion: {x: 0, y: 0, z: 0, w: 0}
   CurtIntesaty: 1
@@ -30788,7 +30794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1841016602
 Transform:
   m_ObjectHideFlags: 0
@@ -36341,6 +36347,31 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 1.415
       objectReference: {fileID: 0}
+    - target: {fileID: 8992389923513689251, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
+        type: 3}
+      propertyPath: debugLog
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992389923513689251, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992389923513689251, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
+        type: 3}
+      propertyPath: liftingDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992389923513689251, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
+        type: 3}
+      propertyPath: landingSpeedBurstRate
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992389923513689251, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
+        type: 3}
+      propertyPath: liftingSpeedIncreaseRate
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7544489751304454358, guid: 6f13c91ec87364d40b54c9d359ad0ac2, type: 3}
@@ -36362,7 +36393,7 @@ PrefabInstance:
     - target: {fileID: 3544285015577718587, guid: 16d103a15564c00428c1323255d8bcfa,
         type: 3}
       propertyPath: zed
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5901735658862226587, guid: 16d103a15564c00428c1323255d8bcfa,
         type: 3}
