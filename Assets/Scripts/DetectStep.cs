@@ -5,6 +5,7 @@ public class DetectStep : MonoBehaviour
     public Transform leftFoot;
     public Transform rightFoot;
     public float stepThreshold = 0.4f;
+    public float landThreshold = 0.4f;
     private bool leftFootOnGround = true;
     private bool rightFootOnGround = true;
 
@@ -70,15 +71,22 @@ public class DetectStep : MonoBehaviour
 
     void CheckStep(float footDistance, ref bool footOnGround, string footName, LastFootStepped currentFoot)
     {
-        if (footDistance > stepThreshold && !footOnGround)
+        if (footDistance > landThreshold && !footOnGround)
         {
             
             //Foot detected to be on the ground
             footOnGround = true;
+            if (lastFootStepped == LastFootStepped.None){
+                InitializeFirstStep(currentFoot);
+            }
             // playerMovement.LandingSpeed();
+
+            if (playerMovement && IsValidStep(currentFoot)){
+                playerMovement.CycleFootState();
+            }
             
             
-            Log($"{footName} has touched the ground. Foot Distance: {footDistance}, Step Threshold: {stepThreshold}");
+            Log($"{footName} has touched the ground. Foot Distance: {footDistance}, Step Threshold: {landThreshold}");
         }
         else if (footDistance <= stepThreshold && footOnGround)
         {
@@ -101,7 +109,7 @@ public class DetectStep : MonoBehaviour
                     Log($"Calling SpeedIncrease Coroutine for {footName}");
                     
                     
-                    //playerMovement.LiftingSpeed() ;                  
+                    playerMovement.CycleFootState();               
                 }
             }
             else
@@ -131,6 +139,16 @@ public class DetectStep : MonoBehaviour
         Log($"Player speed is {playerMovement.Speed}");
         return isValid;
     }
+
+    void InitializeFirstStep(LastFootStepped firstFoot){
+        if (firstFoot == LastFootStepped.Left){
+            playerMovement.SetInitialFootState(PlayerMovement.FootState.LeftFootLifting);
+
+        } else if(firstFoot == LastFootStepped.Right){
+            playerMovement.SetInitialFootState(PlayerMovement.FootState.RightFootLifting);
+        }
+    }
+
 
     // Helper methods for logging
     private void Log(string message)

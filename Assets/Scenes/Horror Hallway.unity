@@ -645,7 +645,7 @@ PrefabInstance:
     - target: {fileID: 3544285015577718587, guid: 16d103a15564c00428c1323255d8bcfa,
         type: 3}
       propertyPath: zed
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5901735658862226587, guid: 16d103a15564c00428c1323255d8bcfa,
         type: 3}
@@ -8453,7 +8453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &514426657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31114,7 +31114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1841016602
 Transform:
   m_ObjectHideFlags: 0
@@ -36790,6 +36790,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 965382132937736714, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1624142223469840088, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
       propertyPath: mechLegUpHeight
@@ -36910,6 +36915,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6076350422741995327, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8105671992509249766, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -36924,6 +36934,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -2.2600002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820455388182905728, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
+        type: 3}
+      propertyPath: enableLogging
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8905114935118473018, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
@@ -36963,7 +36978,12 @@ PrefabInstance:
     - target: {fileID: 8992389923513689251, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
       propertyPath: maxSpeed
-      value: 30
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992389923513689251, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
+        type: 3}
+      propertyPath: landingDuration
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8992389923513689251, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
@@ -36973,7 +36993,7 @@ PrefabInstance:
     - target: {fileID: 8992389923513689251, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
       propertyPath: landingSpeedBurstRate
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8992389923513689251, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
@@ -37001,7 +37021,7 @@ PrefabInstance:
     - target: {fileID: 3544285015577718587, guid: 16d103a15564c00428c1323255d8bcfa,
         type: 3}
       propertyPath: zed
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5901735658862226587, guid: 16d103a15564c00428c1323255d8bcfa,
         type: 3}

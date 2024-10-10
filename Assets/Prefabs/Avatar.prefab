@@ -259,8 +259,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftFoot: {fileID: 5426183247939560895}
   rightFoot: {fileID: 5426183247939560955}
-  stepThreshold: 0.8
-  enableDebugLogs: 1
+  stepThreshold: 0.5
+  landThreshold: 0.7
+  enableDebugLogs: 0
 --- !u!114 &228602647108705569
 MonoBehaviour:
   m_ObjectHideFlags: 0
