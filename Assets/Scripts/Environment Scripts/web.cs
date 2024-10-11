@@ -14,6 +14,9 @@ public class web : MonoBehaviour
     //the gameobject the wave comes from (player)
 
     public Light hanger;
+
+    public GameObject defurltlight; 
+
     public UnityEngine.Vector3 sourse;
     //postion of curnt wave being trigured
     public Vector4 CurtPostion;
