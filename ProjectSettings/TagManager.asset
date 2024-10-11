@@ -15,6 +15,7 @@ TagManager:
   - BigZombie
   - light
   - wavecontroler
+  - MonsterVision
   layers:
   - Default
   - TransparentFX
@@ -32,6 +33,7 @@ TagManager:
   - 
   - 
   - 
+  - tagInvisibleToZED
   - 
   - 
   - 
@@ -45,8 +47,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - arlayer
   - 
   m_SortingLayers:
   - name: Default
