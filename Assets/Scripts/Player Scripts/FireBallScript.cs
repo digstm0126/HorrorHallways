@@ -36,13 +36,16 @@ public class FireballScript : MonoBehaviour
         if (other.gameObject.name != "Player" & other.gameObject.name != "Eyes" & other.gameObject.name != "InvisibleWall" & other.gameObject.tag != "Breakable")
         {
             
-
+            if (other.gameObject.tag == "Breakable")
+            {
+                Destroy(gameObject);
+            }
             Vector3 Vec = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
             WaveContolor.sourse = Vec;
             int PositionIndex = WaveContolor.positionIndex;
             WaveContolor.sendinfo();
 
-            if (other.gameObject.name == "light")
+            if (other.gameObject.tag == "light")
             {
                 LightControler controler = other.GetComponent<LightControler>();
                 controler.Index = PositionIndex;
@@ -52,6 +55,10 @@ public class FireballScript : MonoBehaviour
 
         }
         
+        if (other.gameObject.tag == "Breakable")
+        {
+            Destroy(gameObject);
+        }
 
         if ((fireBallProofLayer & (1 << other.gameObject.layer)) != 0)
         {
