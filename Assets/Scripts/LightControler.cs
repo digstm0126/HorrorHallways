@@ -6,7 +6,7 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class LightControler : MonoBehaviour
 {
-    public int Index;
+    public int Index = -1;
     public float Intensity;
     public Light LightSource;
 
@@ -20,9 +20,23 @@ public class LightControler : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        Intensity = WaveConroler.intesaty[Index];
+    {   
+        if (Index != -1)
+        {
+
+            Intensity = WaveConroler.intesaty[Index];
+
+            if (Intensity != 0)
+            {
+                LightSource.intensity = Mathf.Lerp(20.0f, 150.0f, Intensity);
+            }
+            else 
+            {
+                Index = -1;
+            }
+
+        }
         
-        LightSource.intensity = Mathf.Lerp(20.0f, 150.0f, Intensity);
+            
     }
 }

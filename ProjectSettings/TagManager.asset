@@ -13,6 +13,7 @@ TagManager:
   - Spider
   - HealingCrate
   - BigZombie
+  - light
   layers:
   - Default
   - TransparentFX

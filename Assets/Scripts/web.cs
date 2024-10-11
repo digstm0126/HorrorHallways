@@ -75,7 +75,7 @@ public class web : MonoBehaviour
                 index = 0;
             }
 
-            hanger.intensity = Mathf.Lerp(0.2f, 0.8f, intesaty[positionIndex - 1]);
+            //hanger.intensity = Mathf.Lerp(0.2f, 0.8f, intesaty[positionIndex - 1]);
 
         }
 
@@ -100,7 +100,7 @@ public class web : MonoBehaviour
         CurtPostion = new Vector4(Xval, Yval, zval, timeLog); 
         Shader.SetGlobalVector("_startPoint" + positionIndex.ToString(), CurtPostion);
         count[positionIndex] = Time.time;
-
+        intesaty[positionIndex] = CurtIntesaty;
 
         positionIndex += 1;
 
