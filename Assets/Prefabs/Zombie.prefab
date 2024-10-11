@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 1282313159543979749}
   - component: {fileID: -206177055457266945}
   - component: {fileID: 5471886987205841147}
-  m_Layer: 0
+  - component: {fileID: 8215676247591105592}
+  m_Layer: 7
   m_Name: Zombie
   m_TagString: Zombie
   m_Icon: {fileID: 0}
@@ -150,4 +151,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   detectionRange: 13
+  lightMax: 50
   awake: 1
+  range: {fileID: 0}
+  curntlight: {fileID: 0}
+  webs: {fileID: 0}
+--- !u!135 &8215676247591105592
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4464590950262316908}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 2
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1073807613
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}

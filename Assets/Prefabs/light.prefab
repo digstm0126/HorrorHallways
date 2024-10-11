@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 7811896451218127053}
   m_Layer: 0
   m_Name: Spot Light
-  m_TagString: Untagged
+  m_TagString: light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,7 +414,6 @@ GameObject:
   - component: {fileID: 2910541431892390005}
   - component: {fileID: 106384482424671945}
   - component: {fileID: 1042557030466413243}
-  - component: {fileID: 4404161760486971301}
   m_Layer: 1
   m_Name: Cylinder (4)
   m_TagString: Untagged
@@ -487,29 +486,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4404161760486971301
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1377349084587523894}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &1860377430121274085
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,7 +1114,6 @@ GameObject:
   - component: {fileID: 7427598328133851454}
   - component: {fileID: 8988586863389322374}
   - component: {fileID: 3983598035285251952}
-  - component: {fileID: 1022413956158075215}
   m_Layer: 0
   m_Name: Cylinder (4)
   m_TagString: Untagged
@@ -1211,29 +1186,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1022413956158075215
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6450825234705445842}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &6993185637325209623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,7 +1199,7 @@ GameObject:
   - component: {fileID: 1674072912433156408}
   m_Layer: 1
   m_Name: light
-  m_TagString: Untagged
+  m_TagString: light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1283,12 +1235,12 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1308,8 +1260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206714bf9df634eb1b7e44de43a58bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Index: 0
-  Intensity: 0
+  Index: -1
+  Intensity: 1
   LightSource: {fileID: 8354929656015179458}
   WaveConroler: {fileID: 299629369909838535}
 --- !u!1 &7071045106116221086
@@ -1525,7 +1477,6 @@ GameObject:
   - component: {fileID: 5267800294440756272}
   - component: {fileID: 1899726376567658189}
   - component: {fileID: 1992556223854508916}
-  - component: {fileID: 7926874563919068761}
   m_Layer: 0
   m_Name: Cylinder (4)
   m_TagString: Untagged
@@ -1598,29 +1549,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7926874563919068761
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8488103822341216620}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &9137825243289591129
 GameObject:
   m_ObjectHideFlags: 0

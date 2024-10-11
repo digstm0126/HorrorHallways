@@ -13,25 +13,14 @@ TagManager:
   - Spider
   - HealingCrate
   - BigZombie
-  - MonsterVision
+  - light
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - PostProcessing
+  - 
   - Water
   - UI
-  - FireBallProofLayer
-  - HideFromZed
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - tagInvisibleToZED
   - 
   - 
   - 
@@ -45,7 +34,18 @@ TagManager:
   - 
   - 
   - 
-  - arlayer
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   m_SortingLayers:
   - name: Default

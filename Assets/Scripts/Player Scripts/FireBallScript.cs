@@ -37,17 +37,15 @@ public class FireballScript : MonoBehaviour
         {
             
 
-            Debug.Log(other.name);
             Vector3 Vec = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-            Debug.Log(Vec);
             WaveContolor.sourse = Vec;
             int PositionIndex = WaveContolor.positionIndex;
-
             WaveContolor.sendinfo();
 
             if (other.gameObject.name == "light")
             {
-                other.GetComponent<LightControler>().Index = PositionIndex;
+                LightControler controler = other.GetComponent<LightControler>();
+                controler.Index = PositionIndex;
                 Destroy(gameObject);
             }
 
