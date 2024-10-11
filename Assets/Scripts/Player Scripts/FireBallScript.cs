@@ -33,7 +33,7 @@ public class FireballScript : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         //sends info to wave script and then trigers a wave 
-        if (other.gameObject.name != "Player" & other.gameObject.name != "Eyes" & other.gameObject.name != "InvisibleWall" )
+        if (other.gameObject.name != "Player" & other.gameObject.name != "Eyes" & other.gameObject.name != "InvisibleWall" & other.gameObject.tag != "breakable")
         {
             
 

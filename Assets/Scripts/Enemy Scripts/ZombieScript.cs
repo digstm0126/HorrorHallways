@@ -22,6 +22,8 @@ public class ZombieScript : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").transform;
         range.radius = detectionRange;
+        curntlight = GameObject.FindWithTag("wavecontroler");
+        curntlight = curntlight.GetComponent<web>().defurltlight;
         
     }
 
@@ -29,7 +31,7 @@ public class ZombieScript : MonoBehaviour
     {
 
 
-
+        
         float distanceToTarget = Vector3.Distance(transform.position, curntlight.transform.position);
 
         if (curntlight.GetComponentInChildren<Light>().intensity > lightMax)
