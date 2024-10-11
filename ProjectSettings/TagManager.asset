@@ -15,15 +15,16 @@ TagManager:
   - BigZombie
   - light
   - wavecontroler
+  - MonsterVision
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - PostProcessing
+  - 
   - Water
   - UI
-  - FireBallProofLayer
-  - HideFromZed
+  - 
+  - 
   - 
   - 
   - 
