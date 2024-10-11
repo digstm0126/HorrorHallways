@@ -64,7 +64,7 @@ public class InvisibleWallScript : MonoBehaviour
 
                 if (playerTouchingWall && !zed)
                 {
-                    playerScript.SetSpeed(3f); // Resume the player's speed
+                    playerScript.SetSpeed(0); // Resume the player's speed
                 }
                 else
                 {
