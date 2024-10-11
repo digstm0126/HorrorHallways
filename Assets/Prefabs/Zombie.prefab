@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
-  detectionRange: 13
+  detectionRange: 10
   lightMax: 50
   awake: 1
   range: {fileID: 0}

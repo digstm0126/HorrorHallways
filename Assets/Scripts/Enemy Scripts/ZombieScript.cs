@@ -15,15 +15,14 @@ public class ZombieScript : MonoBehaviour
 
     public GameObject curntlight;
 
-    public GameObject webs;
+    public GameObject webcontroler;
     private Transform player;
 
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
-        range.radius = detectionRange;
-        curntlight = GameObject.FindWithTag("wavecontroler");
-        curntlight = curntlight.GetComponent<web>().defurltlight;
+        //range.radius = detectionRange;
+        curntlight = GameObject.FindObjectOfType<web>().defurltlight;
         
     }
 
