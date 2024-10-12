@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class FireBallChargeUp : MonoBehaviour
     public float maxScale;
 
     public bool isScalingUp;
+
+    public event Action OnFullyCharged;
     
     private Coroutine chargeUpCoroutine;
 
@@ -60,6 +63,11 @@ public class FireBallChargeUp : MonoBehaviour
         }
         
         transform.localScale = new Vector3(endScale, endScale, endScale);
+
+        if (endScale == maxScale && OnFullyCharged != null)
+        {
+            OnFullyCharged.Invoke();
+        }
 
         if (endScale == 0f)
         {

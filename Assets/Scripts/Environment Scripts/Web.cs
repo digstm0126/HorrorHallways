@@ -56,10 +56,14 @@ public class Web : MonoBehaviour
     {
         if (Time.time > maxTime)
         {
+            if (index > intensity.Length - 1)
+            {
+                index = 0;
+            }
+            
+            float bigCount = Mathf.InverseLerp(minTime, maxTime, Time.time - count[index]);
 
-            float bigcount = Mathf.InverseLerp(minTime, maxTime, Time.time - count[index]);
-
-            if (bigcount != 1)
+            if (bigCount != 1)
             {
                 
                 //count[index] += Time.time - count[index];
@@ -69,15 +73,12 @@ public class Web : MonoBehaviour
             }
             else
             {
-                intensity[index] = 0.0f;
+                intensity[index] = -1.0f;
                 Shader.SetGlobalFloat("_intesaty" + index.ToString(), intensity[index]);
             }
 
             index += 1;
-            if (index > intensity.Length - 1)
-            {
-                index = 0;
-            }
+            
 
             //hanger.intensity = Mathf.Lerp(0.2f, 0.8f, intesaty[positionIndex - 1]);
 

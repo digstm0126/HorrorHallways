@@ -174,3 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b0f4f1c5cc665b4683741de273061f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chargeUpDuration: 2
+  cancelChargeDuration: 1
+  maxScale: 3
+  isScalingUp: 0
