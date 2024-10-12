@@ -22,7 +22,7 @@ public class ZombieScript : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").transform;
         //range.radius = detectionRange;
-        curntlight = GameObject.FindObjectOfType<web>().defurltlight;
+        curntlight = GameObject.FindObjectOfType<Web>().defaultLight;
         
     }
 

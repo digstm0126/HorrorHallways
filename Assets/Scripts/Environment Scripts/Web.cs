@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using Vector4 = UnityEngine.Vector4;
 
-public class web : MonoBehaviour
+public class Web : MonoBehaviour
 {
 
 
@@ -15,16 +16,16 @@ public class web : MonoBehaviour
 
     public Light hanger;
 
-    public GameObject defurltlight; 
+    public GameObject defaultLight; 
 
-    public UnityEngine.Vector3 sourse;
+    public UnityEngine.Vector3 source;
     //postion of curnt wave being trigured
-    public Vector4 CurtPostion;
+    public Vector4 currentPosition;
     //the list of intestirys for waves
-    public float CurtIntesaty = 1;
+    public float currentIntensity = 1;
     // proper timer for counting
     public float propCount;
-    public float[] intesaty;
+    public float[] intensity;
     //the list of names to refrace for each wace
 
     public float[] count;
@@ -33,9 +34,9 @@ public class web : MonoBehaviour
     // index for sending the start postion to the right wave
     public int positionIndex = 0;
     // max time a wave lasts
-    public float Maxtime = 1f;
+    public float maxTime = 1f;
     // min time a wave lasts
-    public float MinTime = 0;
+    public float minTime = 0;
     // is inside the affect arrea 
     public bool inside = false;
     // the speed the waves spawn
@@ -53,27 +54,27 @@ public class web : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        if (Time.time > Maxtime)
+        if (Time.time > maxTime)
         {
 
-            float bigcount = Mathf.InverseLerp(MinTime, Maxtime, Time.time - count[index]);
+            float bigcount = Mathf.InverseLerp(minTime, maxTime, Time.time - count[index]);
 
             if (bigcount != 1)
             {
                 
                 //count[index] += Time.time - count[index];
-                intesaty[index] = Mathf.Lerp(0.0f, 1f, Mathf.InverseLerp(Maxtime, MinTime, Time.time - count[index]));
-                Shader.SetGlobalFloat("_intesaty" + index.ToString(), intesaty[index]);
+                intensity[index] = Mathf.Lerp(0.0f, 1f, Mathf.InverseLerp(maxTime, minTime, Time.time - count[index]));
+                Shader.SetGlobalFloat("_intesaty" + index.ToString(), intensity[index]);
 
             }
             else
             {
-                intesaty[index] = 0.0f;
-                Shader.SetGlobalFloat("_intesaty" + index.ToString(), intesaty[index]);
+                intensity[index] = 0.0f;
+                Shader.SetGlobalFloat("_intesaty" + index.ToString(), intensity[index]);
             }
 
             index += 1;
-            if (index > intesaty.Length - 1)
+            if (index > intensity.Length - 1)
             {
                 index = 0;
             }
@@ -92,22 +93,22 @@ public class web : MonoBehaviour
         
     }
 
-    public void sendinfo() 
+    public void SendInfo() 
     {
 
 
-        float Xval = sourse.x;
-        float zval = sourse.z;
-        float Yval = sourse.y;
+        float xVal = source.x;
+        float zVal = source.z;
+        float yVal = source.y;
         float timeLog = Time.time;
-        CurtPostion = new Vector4(Xval, Yval, zval, timeLog); 
-        Shader.SetGlobalVector("_startPoint" + positionIndex.ToString(), CurtPostion);
+        currentPosition = new Vector4(xVal, yVal, zVal, timeLog); 
+        Shader.SetGlobalVector("_startPoint" + positionIndex.ToString(), currentPosition);
         count[positionIndex] = Time.time;
-        intesaty[positionIndex] = CurtIntesaty;
+        intensity[positionIndex] = currentIntensity;
 
         positionIndex += 1;
 
-        if (positionIndex > intesaty.Length - 1)
+        if (positionIndex > intensity.Length - 1)
         {
             positionIndex = 0;
 
