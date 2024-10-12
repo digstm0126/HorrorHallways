@@ -8326,7 +8326,11 @@ MonoBehaviour:
   currentPosition: {x: 0, y: 0, z: 0, w: 0}
   currentIntensity: 1
   propCount: 0
-  intensity: []
+  intensity:
+  - 0
+  - 0
+  - 0
+  - 0
   count:
   - 0
   - 0
@@ -35749,6 +35753,11 @@ PrefabInstance:
       propertyPath: takeDamageScript
       value: 
       objectReference: {fileID: 832575520}
+    - target: {fileID: 4495852617145087372, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
+        type: 3}
+      propertyPath: debugLogs
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4594682262935275018, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
       propertyPath: m_LocalPosition.x

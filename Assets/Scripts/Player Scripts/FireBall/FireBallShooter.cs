@@ -15,7 +15,7 @@ public class FireBallShooter : MonoBehaviour
     private GetAvatarInformation getAvatarInformation;
     
     
-    
+    public bool debugLogs = false;
     
     void Start()
     {
@@ -33,6 +33,7 @@ public class FireBallShooter : MonoBehaviour
         
         if (Input.GetKey(KeyCode.Z) && canShoot)
         {
+            Log("is the input even detected");
             ShootFireball(true);
         }
         
@@ -94,16 +95,18 @@ public class FireBallShooter : MonoBehaviour
     
     public FireBallChargeUp ShootFireball(bool isLeft)
     {
+        Log("ShootFireball has been called at least");
         if (!getAvatarInformation)
         {
             var projectile = Instantiate(fireBallPrefab, transform.position, transform.rotation);
             FireBallChargeUp fireBallChargeUp = projectile.GetComponent<FireBallChargeUp>();
-
+            Log("event subscription reached not ZED");
             fireBallChargeUp.OnFullyCharged += () =>
             {
+                Log("event call reached not ZED");
                 projectile.velocity = transform.forward * fireBallSpeed;
             };
-            
+            fireBallChargeUp.StartChargeUp();
             StartCoroutine(FireballCooldown()); 
             return fireBallChargeUp;
         }
@@ -142,14 +145,16 @@ public class FireBallShooter : MonoBehaviour
             projectile = Instantiate(fireBallPrefab, spawnPosition, Quaternion.identity);
 
             FireBallChargeUp fireBallChargeUp = projectile.GetComponent<FireBallChargeUp>();
-
+            Log("reached event subscription");
             fireBallChargeUp.OnFullyCharged += () =>
             {
+                Log("reached event call");
                 projectile.transform.rotation = Quaternion.LookRotation(alignedDirection);
                 projectile.velocity = alignedDirection * fireBallSpeed;
                 
             };
             
+            Log("Called StartChargeUp from fireballshooter");
             fireBallChargeUp.StartChargeUp();
             return fireBallChargeUp;
 
@@ -160,8 +165,6 @@ public class FireBallShooter : MonoBehaviour
 
     }
     
-    
-    
     private IEnumerator FireballCooldown()
     {
         canShoot = false;
@@ -169,5 +172,13 @@ public class FireBallShooter : MonoBehaviour
         yield return new WaitForSeconds(fireBallCooldownDuration);
 
         canShoot = true;
+    }
+
+    void Log(string message)
+    {
+        if (debugLogs)
+        {
+            Debug.Log(message);
+        }
     }
 }
