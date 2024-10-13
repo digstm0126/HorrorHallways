@@ -3,9 +3,11 @@ using System.Collections;
 
 public class MonsterScript : MonoBehaviour
 {
-    public float moveDistance = 5f;  // Distance the monster will move forward
+    public float moveDistance = 13f;  // Distance the monster will move forward
+
+    public float secondMoveDistance = 20f;
     public float moveSpeed = 2f;     // Speed at which the monster moves forward
-    public float rotationAngle = 90f; // Angle the monster will rotate to the right
+    public float rotationAngle = 105f; // Angle the monster will rotate to the right
     public float rotationSpeed = 100f; // Speed of the rotation
     public float waitTime = 1f;       // Time to wait after each action
 
@@ -22,10 +24,25 @@ public class MonsterScript : MonoBehaviour
         }
     }
 
+    private void MonsterWalking()
+    {
+        if (isMoving == true){
+            Debug.Log("Triggered Moving Animation");
+        } else{
+            Debug.Log("Not moving right now");
+        }
+    }
+
+    private void MonsterSearching()
+    {
+
+    }
+
     IEnumerator MonsterBehavior()
     {
         // Move forward
         isMoving = true;
+        MonsterWalking();
         yield return StartCoroutine(MoveForward(moveDistance));
         isMoving = false;
 
@@ -50,7 +67,7 @@ public class MonsterScript : MonoBehaviour
 
         // Move forward again
         isMoving = true;
-        yield return StartCoroutine(MoveForward(moveDistance));
+        yield return StartCoroutine(MoveForward(secondMoveDistance));
         isMoving = false;
 
         // Destroy the game object after the second movement
