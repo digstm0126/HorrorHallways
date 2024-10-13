@@ -1,16 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
-public class MonsterSpawner : MonoBehaviour
+public class MonsterScript : MonoBehaviour
 {
-    public float moveDistance = 10f;  // Distance the monster will move forward
-    public float moveSpeed = 4f;     // Speed at which the monster moves forward
-    public float rotationAngle = 5f; // Angle the monster will rotate to the right
+    public float moveDistance = 13f;  // Distance the monster will move forward
+
+    public float secondMoveDistance = 20f;
+    public float moveSpeed = 2f;     // Speed at which the monster moves forward
+    public float rotationAngle = 105f; // Angle the monster will rotate to the right
     public float rotationSpeed = 100f; // Speed of the rotation
     public float waitTime = 1f;       // Time to wait after each action
 
-    private bool isMoving = false;    // Tracks if the monster is already performing the action
+    private bool isMoving;    // Tracks if the monster is already performing the action
     private bool actionTriggered = false; // Tracks if the action is triggered by the player
 
     void Update()
@@ -23,10 +24,25 @@ public class MonsterSpawner : MonoBehaviour
         }
     }
 
+    private void MonsterWalking()
+    {
+        if (isMoving == true){
+            Debug.Log("Triggered Moving Animation");
+        } else{
+            Debug.Log("Not moving right now");
+        }
+    }
+
+    private void MonsterSearching()
+    {
+
+    }
+
     IEnumerator MonsterBehavior()
     {
         // Move forward
         isMoving = true;
+        MonsterWalking();
         yield return StartCoroutine(MoveForward(moveDistance));
         isMoving = false;
 
@@ -51,7 +67,7 @@ public class MonsterSpawner : MonoBehaviour
 
         // Move forward again
         isMoving = true;
-        yield return StartCoroutine(MoveForward(moveDistance));
+        yield return StartCoroutine(MoveForward(secondMoveDistance));
         isMoving = false;
 
         // Destroy the game object after the second movement

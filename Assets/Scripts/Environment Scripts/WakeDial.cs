@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,16 +7,17 @@ using Unity.Mathematics;
 using System.Numerics;
 using Vector3 = UnityEngine.Vector3;
 using Unity.VisualScripting;
+using UnityEngine.Serialization;
 
 
-public class wakeDial : MonoBehaviour
+public class WakeDial : MonoBehaviour
 {
     // public RectTransform needle; // Assign the needle image
     // public TextMeshProUGUI waketext; // Assign the speed text UI element
     public float maxWake = 10f; 
     private float currentSpeed;
 
-    public float wakeMetter;
+    public float wakeMeter;
     public Player player;
  
     public GameObject[] monsters;
@@ -32,18 +34,18 @@ public class wakeDial : MonoBehaviour
 
     private void OnTriggerStay(Collider other) 
     {
-        foreach (GameObject curntmonster in monsters)
+        foreach (GameObject currentMonster in monsters)
         {
             
 
-            if (wakeMetter > 0)
+            if (wakeMeter > 0)
             {
-                wakeMetter -= Time.deltaTime * 5;
+                wakeMeter -= Time.deltaTime * 5;
             }
 
-            if (wakeMetter > maxWake)
+            if (wakeMeter > maxWake)
             {
-            curntmonster.GetComponent<ZombieScript>().awake = true;
+                currentMonster.GetComponent<ZombieScript>().awake = true;
 
             }
             
@@ -51,27 +53,27 @@ public class wakeDial : MonoBehaviour
             currentSpeed = player.GetSpeed();
 
             
-            wakeMetter += Time.deltaTime * math.abs(currentSpeed);
+            wakeMeter += Time.deltaTime * math.abs(currentSpeed);
 
-            if (curntmonster.GetComponent<ZombieScript>().awake == false)
+            if (currentMonster.GetComponent<ZombieScript>().awake == false)
             {
-                //shacks acroding to speed and such
-                var temp = curntmonster.GetComponent<Transform>().rotation;
+                //shacks according to speed and such
+                var temp = currentMonster.GetComponent<Transform>().rotation;
             
-                temp.x = Mathf.Sin(Time.time * (wakeMetter * 1.0f)) * 0.01f;
-                temp.z = Mathf.Sin(Time.time * (wakeMetter * 1.0f)) * 0.01f;
+                temp.x = Mathf.Sin(Time.time * (wakeMeter * 1.0f)) * 0.01f;
+                temp.z = Mathf.Sin(Time.time * (wakeMeter * 1.0f)) * 0.01f;
 
-                curntmonster.transform.rotation = temp;
+                currentMonster.transform.rotation = temp;
             
             }
 
         }
 
         // //update text
-        // waketext.text = wakeMetter.ToString("F0") + "waking up";
+        // waketext.text = wakeMeter.ToString("F0") + "waking up";
         
         // // Calculate the rotation angle of the needle
-        // float angle = Mathf.Lerp(-90, 90, wakeMetter / maxWake);
+        // float angle = Mathf.Lerp(-90, 90, wakeMeter / maxWake);
         // needle.localEulerAngles = new Vector3(0, 0, -angle); 
           
     }

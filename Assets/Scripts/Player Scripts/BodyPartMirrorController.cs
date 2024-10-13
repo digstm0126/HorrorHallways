@@ -24,12 +24,12 @@ public class BodyPartMirrorController : MonoBehaviour
             getAvatarInformation = FindObjectOfType<GetAvatarInformation>();
             if (getAvatarInformation)
             {
-                callAllBodyPartLocations();
+                CallAllBodyPartLocations();
             }
         }
         else
         {
-            callAllBodyPartLocations();
+            CallAllBodyPartLocations();
         }
     }
 
@@ -53,7 +53,7 @@ public class BodyPartMirrorController : MonoBehaviour
         }
     }
 
-    private void callAllBodyPartLocations(){
+    private void CallAllBodyPartLocations(){
         SetBodyPartObjectLocation(leftHandObject, "Character1_LeftHandMiddle1");
         SetBodyPartObjectLocation(rightHandObject, "Character1_RightHandMiddle1");
         SetBodyPartObjectLocation(leftKneeObject, "Character1_LeftLeg");

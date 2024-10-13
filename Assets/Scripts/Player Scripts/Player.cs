@@ -5,26 +5,29 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    public Rigidbody fireballPrefab;
+    
     public GameObject youLoseTextTMP;
-
-
-
-    private float fireBallSpeed = 10f;
-    private bool canShoot = true;
-    public float fireBallCooldownDuration = 0.4f;
+    
+    
     private bool isGameOver = false;
 
     public HealthManager healthManager; // Reference to HealthManager
     public TakeDamageScript takeDamageScript;
 
     private ScoreManager scoreManager;
+    
+    private FireBallShooter fireBallShooter;
+    
+    public FireBallShooter FireBallShooter
+    {
+        get { return fireBallShooter; }
+    }
 
-    GetAvatarInformation getAvatarInformation;
-    DetectStep detectStep;
+    
     PlayerMovement playerMovement;
+    
 
-
+    
     
 
     void Start()
@@ -38,81 +41,13 @@ public class Player : MonoBehaviour
         if (!playerMovement){
             playerMovement = FindAnyObjectByType<PlayerMovement>();
         }
+        
+        fireBallShooter = GetComponent<FireBallShooter>();
     }
 
     void Update()
     {
-        if (!getAvatarInformation)
-        {
-            getAvatarInformation = FindObjectOfType<GetAvatarInformation>();
-        }
-        if(!detectStep){
-            detectStep = FindObjectOfType<DetectStep>();
-        }
         
-
-        if (Input.GetKey(KeyCode.Z) && canShoot)
-        {
-            ShootFireball(true);
-        }
-        
-
-        
-
-        if (getAvatarInformation)
-        {
-            //right arm debug lines
-            {
-                Vector3 armForwardVectorRight = getAvatarInformation.GetRightArmForwardVector();
-
-                Vector3 transformDirectionFromAvatarToPlayer = TransformUtilities.TransformDirectionFromAvatarToPlayer(
-                    armForwardVectorRight,
-                    transform,
-                    flattenToXZPlane: true,
-                    invertDirection: true
-                );
-
-                Vector3 avatarRightShoulderPosition = getAvatarInformation.rightShoulder.transform.position;
-
-                Vector3 startPointRight = TransformUtilities.TransformPositionFromAvatarToPlayer(
-                    avatarRightShoulderPosition,
-                    getAvatarInformation.GetBodyPartTransform("Character1_Hips"),
-                    transform
-                );
-
-                Vector3 endPointRight = startPointRight + transformDirectionFromAvatarToPlayer * 10;
-
-                Debug.DrawLine(startPointRight, endPointRight, Color.red, 0f, false);
-            }
-
-            // Left Arm Debug Line
-            {
-                Vector3 armForwardVectorLeft = getAvatarInformation.GetLeftArmForwardVector();
-
-                Vector3 transformDirectionFromAvatarToPlayer = TransformUtilities.TransformDirectionFromAvatarToPlayer(
-                    armForwardVectorLeft,
-                    transform,
-                    flattenToXZPlane: true,
-                    invertDirection: true
-                );
-
-                Vector3 avatarLeftShoulderPosition = getAvatarInformation.leftShoulder.transform.position;
-
-                Vector3 startPointLeft = TransformUtilities.TransformPositionFromAvatarToPlayer(
-                    avatarLeftShoulderPosition,
-                    getAvatarInformation.GetBodyPartTransform("Character1_Hips"),
-                    transform
-                );
-
-                Vector3 endPointLeft = startPointLeft + transformDirectionFromAvatarToPlayer * 10;
-
-                Debug.DrawLine(startPointLeft, endPointLeft, Color.green, 0f, false);
-            }
-
-            
-
-        }
-
     }
 
     public void SetSpeed(float speed){
@@ -149,64 +84,6 @@ public class Player : MonoBehaviour
         Debug.Log("Healed " + amount + " HP. Current HP: " + healthManager.CurrentHealth);
     }
     
-    public void ShootFireball(bool isLeft)
-    {
-        if (!getAvatarInformation)
-        {
-            var projectile = Instantiate(fireballPrefab, transform.position, transform.rotation);
-            projectile.velocity = transform.forward * fireBallSpeed;
-
-            StartCoroutine(FireballCooldown()); 
-        }
-        else
-        {
-            
-            Rigidbody projectile;
-            Vector3 spawnPosition;
-            Vector3 armForwardVector;
-
-            if (!isLeft)
-            {
-                spawnPosition = TransformUtilities.TransformPositionFromAvatarToPlayer(
-                    getAvatarInformation.rightShoulder.transform.position,
-                    getAvatarInformation.GetBodyPartTransform("Character1_Hips"),
-                    transform);
-                armForwardVector = getAvatarInformation.GetRightArmForwardVector();
-            }   
-            else
-            {
-                spawnPosition = TransformUtilities.TransformPositionFromAvatarToPlayer(
-                    getAvatarInformation.leftShoulder.transform.position,
-                    getAvatarInformation.GetBodyPartTransform("Character1_Hips"),
-                    transform);
-
-                armForwardVector = getAvatarInformation.GetLeftArmForwardVector();
-            }
-
-            Vector3 alignedDirection = TransformUtilities.TransformDirectionFromAvatarToPlayer(
-                armForwardVector, 
-                transform, 
-                flattenToXZPlane: true, 
-                invertDirection: true
-            );
-
-            projectile = Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
-            projectile.transform.rotation = Quaternion.LookRotation(alignedDirection);
-            projectile.velocity = alignedDirection * fireBallSpeed;
-        }
-
-
-
-    }
-
-    private IEnumerator FireballCooldown()
-    {
-        canShoot = false;
-
-        yield return new WaitForSeconds(fireBallCooldownDuration);
-
-        canShoot = true;
-    }
 
     private void GameOver()
     {
@@ -241,7 +118,12 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-    
+
+
+    public bool GetAttachedToHand()
+    {
+        return fireBallShooter.attachedToHand;
+    }
     
 
     
