@@ -9,7 +9,7 @@ public class MonsterScript : MonoBehaviour
     public float rotationSpeed = 100f; // Speed of the rotation
     public float waitTime = 1f;       // Time to wait after each action
 
-    private bool isMoving = false;    // Tracks if the monster is already performing the action
+    private bool isMoving;    // Tracks if the monster is already performing the action
     private bool actionTriggered = false; // Tracks if the action is triggered by the player
 
     void Update()

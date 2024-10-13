@@ -105,14 +105,14 @@ public class TriggerFireball : MonoBehaviour
         {
             if (hand == leftHand)
             {
-                if (!fireBallChargeUpLeft)
+                if (fireBallChargeUpLeft && player.GetAttachedToHand())
                 {
                     fireBallChargeUpLeft.CancelChargeUp();
                     fireBallChargeUpLeft = null;
                 }
             } 
             else if (hand == rightHand){
-                if (!fireBallChargeUpRight)
+                if (fireBallChargeUpRight && player.GetAttachedToHand())
                 {
                     fireBallChargeUpRight.CancelChargeUp();
                     fireBallChargeUpRight = null;

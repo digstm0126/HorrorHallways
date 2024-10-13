@@ -129,11 +129,7 @@ MonoBehaviour:
     type: 3}
   bigZombieEffectPrefab: {fileID: 699813419572714848, guid: 663b42fb0a342fe47bf959600d127e4e,
     type: 3}
-<<<<<<< HEAD
-  WaveContolor: {fileID: 0}
-=======
   waveController: {fileID: 0}
->>>>>>> 3987b964fb5ec238dabad07a1c7ab328f2120b4b
   pointsForZombie: 100
   pointsForSpider: 100
   fireBallProofLayer:
@@ -178,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b0f4f1c5cc665b4683741de273061f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeUpDuration: 1
+  chargeUpDuration: 2
   cancelChargeDuration: 0.5
   maxScale: 1
   isScalingUp: 0

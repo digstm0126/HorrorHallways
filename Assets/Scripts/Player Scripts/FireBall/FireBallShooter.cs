@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FireBallShooter : MonoBehaviour
@@ -15,12 +14,15 @@ public class FireBallShooter : MonoBehaviour
     private GetAvatarInformation getAvatarInformation;
     
     
-    public bool debugLogs = false;
     
-    void Start()
-    {
-        
-    }
+    public bool debugLogs = false;
+
+    public bool attachedToHand;
+    private bool isLeftHand;
+
+    private Rigidbody currentProjectile;
+    
+
 
     // Update is called once per frame
     void Update()
@@ -46,7 +48,7 @@ public class FireBallShooter : MonoBehaviour
                 Vector3 transformDirectionFromAvatarToPlayer = TransformUtilities.TransformDirectionFromAvatarToPlayer(
                     armForwardVectorRight,
                     transform,
-                    flattenToXZPlane: true,
+                    flattenToXZPlane: false,
                     invertDirection: true
                 );
 
@@ -70,7 +72,7 @@ public class FireBallShooter : MonoBehaviour
                 Vector3 transformDirectionFromAvatarToPlayer = TransformUtilities.TransformDirectionFromAvatarToPlayer(
                     armForwardVectorLeft,
                     transform,
-                    flattenToXZPlane: true,
+                    flattenToXZPlane: false,
                     invertDirection: true
                 );
 
@@ -90,6 +92,8 @@ public class FireBallShooter : MonoBehaviour
             
 
         }
+        
+        TrackFireBallToHand();
     }
     
     
@@ -112,10 +116,10 @@ public class FireBallShooter : MonoBehaviour
         }
         else
         {
-            
-            Rigidbody projectile;
             Vector3 spawnPosition;
             Vector3 armForwardVector;
+
+            isLeftHand = isLeft;
 
             if (!isLeft)
             {
@@ -123,7 +127,6 @@ public class FireBallShooter : MonoBehaviour
                     getAvatarInformation.rightShoulder.transform.position,
                     getAvatarInformation.GetBodyPartTransform("Character1_Hips"),
                     transform);
-                armForwardVector = getAvatarInformation.GetRightArmForwardVector();
             }   
             else
             {
@@ -132,29 +135,43 @@ public class FireBallShooter : MonoBehaviour
                     getAvatarInformation.GetBodyPartTransform("Character1_Hips"),
                     transform);
 
-                armForwardVector = getAvatarInformation.GetLeftArmForwardVector();
             }
 
-            Vector3 alignedDirection = TransformUtilities.TransformDirectionFromAvatarToPlayer(
-                armForwardVector, 
-                transform, 
-                flattenToXZPlane: true, 
-                invertDirection: true
-            );
-
-            projectile = Instantiate(fireBallPrefab, spawnPosition, Quaternion.identity);
+            var projectile = Instantiate(fireBallPrefab, spawnPosition, Quaternion.identity);
+            currentProjectile = projectile;
+            attachedToHand = true;
 
             FireBallChargeUp fireBallChargeUp = projectile.GetComponent<FireBallChargeUp>();
             Log("reached event subscription");
+            
+            
             fireBallChargeUp.OnFullyCharged += () =>
             {
+
+                if (!isLeft)
+                {
+                    armForwardVector = getAvatarInformation.GetRightArmForwardVector();
+
+                }
+                else
+                {
+                    armForwardVector = getAvatarInformation.GetLeftArmForwardVector();
+
+                }
+                Vector3 alignedDirection = TransformUtilities.TransformDirectionFromAvatarToPlayer(
+                    armForwardVector, 
+                    transform, 
+                    flattenToXZPlane: false, 
+                    invertDirection: true
+                );
                 Log("reached event call");
+                attachedToHand = false;
                 projectile.transform.rotation = Quaternion.LookRotation(alignedDirection);
                 projectile.velocity = alignedDirection * fireBallSpeed;
-                
+
             };
             
-            Log("Called StartChargeUp from fireballshooter");
+            Log("Called StartChargeUp from FireBallShooter");
             fireBallChargeUp.StartChargeUp();
             return fireBallChargeUp;
 
@@ -172,6 +189,29 @@ public class FireBallShooter : MonoBehaviour
         yield return new WaitForSeconds(fireBallCooldownDuration);
 
         canShoot = true;
+    }
+
+
+
+    private void TrackFireBallToHand()
+    {
+        if (attachedToHand && currentProjectile)
+        {
+            if (isLeftHand){
+                currentProjectile.position = TransformUtilities.TransformPositionFromAvatarToPlayer(
+                    getAvatarInformation.GetBodyPartTransform("Character1_LeftHandMiddle1").position,
+                    getAvatarInformation.GetBodyPartTransform("Character1_Hips"),
+                    transform
+                    );
+            } else if (!isLeftHand)
+            {
+                currentProjectile.position = TransformUtilities.TransformPositionFromAvatarToPlayer(
+                    getAvatarInformation.GetBodyPartTransform("Character1_RightHandMiddle1").position,
+                    getAvatarInformation.GetBodyPartTransform("Character1_Hips"),
+                    transform
+                );
+            }
+        }
     }
 
     void Log(string message)

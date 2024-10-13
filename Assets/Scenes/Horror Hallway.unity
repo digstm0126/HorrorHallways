@@ -30282,7 +30282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1841016602
 Transform:
   m_ObjectHideFlags: 0
@@ -35861,22 +35861,22 @@ PrefabInstance:
     - target: {fileID: 8105671992509249766, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99632066
+      value: -0.99497896
       objectReference: {fileID: 0}
     - target: {fileID: 8105671992509249766, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.085703835
+      value: -0.0855886
       objectReference: {fileID: 0}
     - target: {fileID: 8105671992509249766, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.05168871
       objectReference: {fileID: 0}
     - target: {fileID: 8105671992509249766, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.004447062
       objectReference: {fileID: 0}
     - target: {fileID: 8105671992509249766, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
@@ -36050,8 +36050,5 @@ SceneRoots:
   - {fileID: 514426658}
   - {fileID: 72046652}
   - {fileID: 1818679730}
-<<<<<<< HEAD
-  - {fileID: 1581653082}
-=======
   - {fileID: 1378638011}
->>>>>>> 3987b964fb5ec238dabad07a1c7ab328f2120b4b
+

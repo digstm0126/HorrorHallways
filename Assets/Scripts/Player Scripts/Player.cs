@@ -25,8 +25,9 @@ public class Player : MonoBehaviour
 
     
     PlayerMovement playerMovement;
+    
 
-
+    
     
 
     void Start()
@@ -117,7 +118,12 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-    
+
+
+    public bool GetAttachedToHand()
+    {
+        return fireBallShooter.attachedToHand;
+    }
     
 
     
