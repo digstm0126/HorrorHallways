@@ -18,7 +18,10 @@ public class TriggerFireball : MonoBehaviour
     // Boolean to control debug logs
     public bool enableDebugLogs = true;
 
-    [FormerlySerializedAs("getDirection")] public GetAvatarInformation getAvatarInformation;
+    public GetAvatarInformation getAvatarInformation;
+    
+    public FireBallChargeUp fireBallChargeUpRight;
+    public FireBallChargeUp fireBallChargeUpLeft;
 
     void Update()
     {
@@ -26,7 +29,7 @@ public class TriggerFireball : MonoBehaviour
         {
             player = FindObjectOfType<Player>();
         }
-
+        
         LeftHandShoot();
         RightHandShoot();
     }
@@ -38,7 +41,7 @@ public class TriggerFireball : MonoBehaviour
             if (!isLeftHandReady)
             {
                 LogDebug("Left hand extended - Shooting Fireball!");
-                player.ShootFireball(true);
+                fireBallChargeUpLeft = player.FireBallShooter.ShootFireball(true);
                 isLeftHandReady = true;
                 //Debug.Break();
             }
@@ -65,7 +68,7 @@ public class TriggerFireball : MonoBehaviour
             if (!isRightHandReady)
             {
                 LogDebug("Right hand extended - Shooting Fireball!");
-                player.ShootFireball(false);
+                fireBallChargeUpRight = player.FireBallShooter.ShootFireball(false);
                 isRightHandReady = true;
                 //Debug.Break();
                 
@@ -96,7 +99,29 @@ public class TriggerFireball : MonoBehaviour
     private bool IsHandWithinResetDistance(GameObject hand)
     {
         float distance = CalculateTriggerDistance(hand);
-        return distance < resetDistance;
+        bool isHandWithinResetDistance = distance < resetDistance;
+
+        if (isHandWithinResetDistance)
+        {
+            if (hand == leftHand)
+            {
+                if (!fireBallChargeUpLeft)
+                {
+                    fireBallChargeUpLeft.CancelChargeUp();
+                    fireBallChargeUpLeft = null;
+                }
+            } 
+            else if (hand == rightHand){
+                if (!fireBallChargeUpRight)
+                {
+                    fireBallChargeUpRight.CancelChargeUp();
+                    fireBallChargeUpRight = null;
+                }
+                
+            }
+        }
+        
+        return isHandWithinResetDistance;
     }
 
     private float CalculateTriggerDistance(GameObject hand)

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.Serialization;
 
 public class ZombieScript : MonoBehaviour
 {
@@ -13,16 +14,16 @@ public class ZombieScript : MonoBehaviour
 
     public SphereCollider range;
 
-    public GameObject curntlight;
+    public GameObject currentLight;
 
-    public GameObject webcontroler;
+    public GameObject webController;
     private Transform player;
 
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
         //range.radius = detectionRange;
-        curntlight = GameObject.FindObjectOfType<web>().defurltlight;
+        currentLight = GameObject.FindObjectOfType<Web>().defaultLight;
         
     }
 
@@ -31,9 +32,9 @@ public class ZombieScript : MonoBehaviour
 
 
         
-        float distanceToTarget = Vector3.Distance(transform.position, curntlight.transform.position);
+        float distanceToTarget = Vector3.Distance(transform.position, currentLight.transform.position);
 
-        if (curntlight.GetComponentInChildren<Light>().intensity > lightMax)
+        if (currentLight.GetComponentInChildren<Light>().intensity > lightMax)
         {
             MoveTowardsPlayer();
         }
@@ -65,10 +66,10 @@ public class ZombieScript : MonoBehaviour
 
             Light spotlight = other.gameObject.GetComponentInChildren<Light>();
 
-            if (spotlight.intensity > curntlight.GetComponentInChildren<Light>().intensity)
+            if (spotlight.intensity > currentLight.GetComponentInChildren<Light>().intensity)
             {
                 Debug.Log("new light");
-                curntlight = other.gameObject;
+                currentLight = other.gameObject;
             }
 
         }
@@ -77,7 +78,7 @@ public class ZombieScript : MonoBehaviour
 
     void MoveTowardsPlayer()
     {
-        Vector3 direction = (curntlight.transform.position - transform.position).normalized;
+        Vector3 direction = (currentLight.transform.position - transform.position).normalized;
         direction.y = 0;
 
         transform.position += direction * moveSpeed * Time.deltaTime;
