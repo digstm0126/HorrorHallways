@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
-public class MonsterSpawner : MonoBehaviour
+public class MonsterScript : MonoBehaviour
 {
-    public float moveDistance = 10f;  // Distance the monster will move forward
-    public float moveSpeed = 4f;     // Speed at which the monster moves forward
-    public float rotationAngle = 5f; // Angle the monster will rotate to the right
+    public float moveDistance = 5f;  // Distance the monster will move forward
+    public float moveSpeed = 2f;     // Speed at which the monster moves forward
+    public float rotationAngle = 90f; // Angle the monster will rotate to the right
     public float rotationSpeed = 100f; // Speed of the rotation
     public float waitTime = 1f;       // Time to wait after each action
 

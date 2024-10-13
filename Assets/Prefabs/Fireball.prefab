@@ -128,11 +128,12 @@ MonoBehaviour:
     type: 3}
   bigZombieEffectPrefab: {fileID: 699813419572714848, guid: 663b42fb0a342fe47bf959600d127e4e,
     type: 3}
+  WaveContolor: {fileID: 0}
   pointsForZombie: 100
   pointsForSpider: 100
   fireBallProofLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
 --- !u!54 &-7653230399802922276
 Rigidbody:
   m_ObjectHideFlags: 0
