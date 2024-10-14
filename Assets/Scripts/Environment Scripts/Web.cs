@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using Vector4 = UnityEngine.Vector4;
@@ -15,6 +16,8 @@ public class Web : MonoBehaviour
     //the gameobject the wave comes from (player)
 
     public Light hanger;
+
+    public Color wavecolor;
 
     public GameObject defaultLight; 
 
@@ -50,6 +53,7 @@ public class Web : MonoBehaviour
 
         timer =  Time.time;
         index = 0;
+        Shader.SetGlobalColor("_emersomev_coleor", wavecolor);
     }
 
     private void FixedUpdate() 
