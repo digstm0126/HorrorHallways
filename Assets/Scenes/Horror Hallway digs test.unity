@@ -2920,12 +2920,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f838a958a50f9d94d83543d1a789912b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!108 &228994297 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 8956661263300462753, guid: 813842e3e55759b4583a3218c2b1a697,
-    type: 3}
-  m_PrefabInstance: {fileID: 1152595603}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &230137212 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4135516184197813250, guid: c31c694230b6f324bbc6b3ff6125a2dd,
@@ -22039,12 +22033,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8878c7e43c64f1d46be03bfa1adf350d, type: 3}
---- !u!1 &1457164008 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6993185637325209623, guid: 9ca24badb6b2b4e7bbdfa8027b5c69c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 6842653789386526022}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1466371651
 GameObject:
   m_ObjectHideFlags: 0
@@ -23049,8 +23037,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07b135f0c36e47b2935dcebb8289aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hanger: {fileID: 228994297}
-  defaultLight: {fileID: 1457164008}
+  hanger: {fileID: 0}
+  defaultLight: {fileID: 1269101235}
   source: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0, w: 0}
   currentIntensity: 1
@@ -35569,12 +35557,12 @@ PrefabInstance:
     - target: {fileID: 5786024225781601874, guid: 9ca24badb6b2b4e7bbdfa8027b5c69c7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.48
+      value: 2.9
       objectReference: {fileID: 0}
     - target: {fileID: 5786024225781601874, guid: 9ca24badb6b2b4e7bbdfa8027b5c69c7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.76
+      value: 5.6
       objectReference: {fileID: 0}
     - target: {fileID: 5786024225781601874, guid: 9ca24badb6b2b4e7bbdfa8027b5c69c7,
         type: 3}

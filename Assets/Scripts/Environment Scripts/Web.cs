@@ -73,7 +73,7 @@ public class Web : MonoBehaviour
             }
             else
             {
-                intensity[index] = -1.0f;
+                intensity[index] = 0.0f;
                 Shader.SetGlobalFloat("_intesaty" + index.ToString(), intensity[index]);
             }
 
