@@ -1,50 +1,55 @@
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 using Vector4 = UnityEngine.Vector4;
 
-namespace Environment_Scripts
+public class Web : MonoBehaviour
 {
-    public class Web : MonoBehaviour
+
+
+    //the gameobject the wave comes from (player)
+
+    public Light hanger;
+
+    public Color wavecolor;
+
+    public GameObject defaultLight; 
+
+    public UnityEngine.Vector3 source;
+    //postion of curnt wave being trigured
+    public Vector4 currentPosition;
+    //the list of intestirys for waves
+    public float currentIntensity = 1;
+    // proper timer for counting
+    public float propCount;
+    public float[] intensity;
+    //the list of names to refrace for each wace
+
+    public float[] count;
+    // index for sending new decay
+    public int index = 0;
+    // index for sending the start postion to the right wave
+    public int positionIndex = 0;
+    // max time a wave lasts
+    public float maxTime = 1f;
+    // min time a wave lasts
+    public float minTime = 0;
+    // is inside the affect arrea 
+    public bool inside = false;
+    // the speed the waves spawn
+    public float speed = 1;
+    // timer
+    float timer;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        //the gameobject the wave comes from (player)
-        public Light hanger;
-        //
-        public Color wavecolor;
-        //
-        public GameObject defaultLight;
-        //
-        public Vector3 source;
-        //postion of curnt wave being trigured
-        public Vector4 currentPosition;
-        //the list of intestirys for waves
-        public float currentIntensity = 1;
-        // proper timer for counting
-        public float propCount;
-        public float[] intensity;
-        //the list of names to refrace for each wace
-        public float[] count;
-        // index for sending new decay
-        public int index;
-        // index for sending the start postion to the right wave
-        public int positionIndex;
-        // max time a wave lasts
-        public float maxTime = 1f;
-        // min time a wave lasts
-        public float minTime;
-        // is inside the affect arrea
-        public bool inside;
-        // the speed the waves spawn
-        public float speed = 1;
-        // timer
-        float timer;
-        // Start is called before the first frame update
 
-
-        void Start()
-        {
-            timer =  Time.time;
-            index = 0;
-            Shader.SetGlobalColor("_emersomev_coleor", wavecolor);
-        }
+        timer =  Time.time;
+        index = 0;
+        Shader.SetGlobalColor("_emersomev_coleor", wavecolor);
+    }
 
         private void FixedUpdate()
         {
