@@ -60,7 +60,7 @@ Material:
     - _len: 1
     - _speed: 4
     m_Colors:
-    - _base: {r: 1, g: 1, b: 1, a: 0}
+    - _base: {r: 0, g: 0, b: 0, a: 0}
     - _emersomev_coleor: {r: 0.23529412, g: 0, b: 0, a: 0.5176471}
     - _startPoint0: {r: 1.29, g: 1.346, b: 14.073799, a: 34}
     - _startPoint1: {r: 1.29, g: 1.346, b: 14.367881, a: 26}
