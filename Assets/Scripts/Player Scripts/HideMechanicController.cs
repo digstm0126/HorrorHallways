@@ -7,6 +7,7 @@ public class HideMechanicController : MonoBehaviour
     
     SplineFollower splineFollower;
     public float distanceToShift;
+    public bool mechanicTriggered = false;
 
     void Start()
     {
@@ -14,6 +15,9 @@ public class HideMechanicController : MonoBehaviour
     }
     public void TriggerPlayerHide()
     {
-        splineFollower.MovePerpendicular(distanceToShift);
+        if (mechanicTriggered)
+        {
+            splineFollower.MovePerpendicular(distanceToShift);
+        }
     }
 }
