@@ -15,7 +15,7 @@ public class FireBallShooter : MonoBehaviour
     
     
     
-    public bool debugLogs = false;
+    public bool debugLogs;
 
     public bool attachedToHand;
     private bool isLeftHand;
@@ -43,7 +43,7 @@ public class FireBallShooter : MonoBehaviour
         {
             //right arm debug lines
             {
-                Vector3 armForwardVectorRight = getAvatarInformation.GetRightArmForwardVector();
+                Vector3 armForwardVectorRight = getAvatarInformation.GetBodyPartTransform("Character1_RightForeArm").right;
 
                 Vector3 transformDirectionFromAvatarToPlayer = TransformUtilities.TransformDirectionFromAvatarToPlayer(
                     armForwardVectorRight,
@@ -52,7 +52,7 @@ public class FireBallShooter : MonoBehaviour
                     invertDirection: true
                 );
 
-                Vector3 avatarRightShoulderPosition = getAvatarInformation.rightShoulder.transform.position;
+                Vector3 avatarRightShoulderPosition = getAvatarInformation.GetBodyPartTransform("Character1_RightHandMiddle1").position;
 
                 Vector3 startPointRight = TransformUtilities.TransformPositionFromAvatarToPlayer(
                     avatarRightShoulderPosition,
@@ -67,7 +67,7 @@ public class FireBallShooter : MonoBehaviour
 
             // Left Arm Debug Line
             {
-                Vector3 armForwardVectorLeft = getAvatarInformation.GetLeftArmForwardVector();
+                Vector3 armForwardVectorLeft = -getAvatarInformation.GetBodyPartTransform("Character1_LeftForeArm").right;
 
                 Vector3 transformDirectionFromAvatarToPlayer = TransformUtilities.TransformDirectionFromAvatarToPlayer(
                     armForwardVectorLeft,
@@ -76,7 +76,7 @@ public class FireBallShooter : MonoBehaviour
                     invertDirection: true
                 );
 
-                Vector3 avatarLeftShoulderPosition = getAvatarInformation.leftShoulder.transform.position;
+                Vector3 avatarLeftShoulderPosition = getAvatarInformation.GetBodyPartTransform("Character1_LeftHandMiddle1").position;
 
                 Vector3 startPointLeft = TransformUtilities.TransformPositionFromAvatarToPlayer(
                     avatarLeftShoulderPosition,
@@ -124,14 +124,14 @@ public class FireBallShooter : MonoBehaviour
             if (!isLeft)
             {
                 spawnPosition = TransformUtilities.TransformPositionFromAvatarToPlayer(
-                    getAvatarInformation.rightShoulder.transform.position,
+                    getAvatarInformation.GetBodyPartTransform("Character1_RightHandMiddle1").position,
                     getAvatarInformation.GetBodyPartTransform("Character1_Hips"),
                     transform);
             }   
             else
             {
                 spawnPosition = TransformUtilities.TransformPositionFromAvatarToPlayer(
-                    getAvatarInformation.leftShoulder.transform.position,
+                    getAvatarInformation.GetBodyPartTransform("Character1_LeftHandMiddle1").position,
                     getAvatarInformation.GetBodyPartTransform("Character1_Hips"),
                     transform);
 
@@ -150,12 +150,12 @@ public class FireBallShooter : MonoBehaviour
 
                 if (!isLeft)
                 {
-                    armForwardVector = getAvatarInformation.GetRightArmForwardVector();
+                    armForwardVector = getAvatarInformation.GetBodyPartTransform("Character1_RightForeArm").right;
 
                 }
                 else
                 {
-                    armForwardVector = getAvatarInformation.GetLeftArmForwardVector();
+                    armForwardVector = -getAvatarInformation.GetBodyPartTransform("Character1_LeftForeArm").right;
 
                 }
                 Vector3 alignedDirection = TransformUtilities.TransformDirectionFromAvatarToPlayer(

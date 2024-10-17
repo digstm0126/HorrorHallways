@@ -2,40 +2,17 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GetAvatarInformation : MonoBehaviour
 {
-    public GameObject leftForearm;
-    public GameObject rightForearm;
-
-    public GameObject leftShoulder;
-    public GameObject rightShoulder;
-
     public Boolean enableLogging;
     
     
     private readonly Dictionary<string, string> bonePathCache = new Dictionary<string, string>();
     
 
-    public Vector3 GetRightArmForwardVector()
-    {
-        return rightForearm.transform.right;
-    }
-
-    public Vector3 GetLeftArmForwardVector()
-    {
-        return -leftForearm.transform.right;
-    }
-
-    public Vector3 GetAvatarLocation()
-    {
-        return transform.position;
-    }
-
-    public Transform GetAvatarRootTransform()
-    {
-        return transform;
-    }
+    
     
     
     //Finding the transform of a particular body part in the avatar

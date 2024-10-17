@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         if (currentCoroutine != null){
             StopCoroutine(currentCoroutine);
             currentCoroutine = null;
+            speed = 0f;
         }
         switch (CurrentFootState)
         {

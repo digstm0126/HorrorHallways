@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DetectStep : MonoBehaviour
 {
     public Transform leftFoot;
     public Transform rightFoot;
-    public float stepThreshold = 0.4f;
-    public float landThreshold = 0.4f;
+    public float distanceToHips = 0.4f;
+    public float distanceFromHips = 0.4f;
 
 
     private PlayerMovement playerMovement;
@@ -82,8 +83,8 @@ public class DetectStep : MonoBehaviour
 
     void CheckStep(float footDistance, ref bool footOnGround, string footName, LastFootStepped currentFoot)
     {
-        footCloseToHips = footDistance <= stepThreshold;
-        footFarFromHips = footDistance > landThreshold;
+        footCloseToHips = footDistance <= distanceToHips;
+        footFarFromHips = footDistance > distanceFromHips;
         if (footCloseToHips && footOnGround)
         {
             footOnGround = FootBegunStep(footDistance, footName, currentFoot);
@@ -104,7 +105,7 @@ public class DetectStep : MonoBehaviour
 
         //Foot detected to be in the air
         bool footOnGround = false;
-        Log($"{footName} has taken a step. Foot Distance: {footDistance}, Step Threshold: {stepThreshold}");
+        Log($"{footName} has taken a step. Foot Distance: {footDistance}, Step Threshold: {distanceToHips}");
 
         if (IsValidStep(currentFoot))
         {
@@ -153,7 +154,7 @@ public class DetectStep : MonoBehaviour
         }
         SetValidStepInitiatedFlag(currentFoot, false);
 
-        Log($"{footName} has touched the ground. Foot Distance: {footDistance}, Step Threshold: {landThreshold}");
+        Log($"{footName} has touched the ground. Foot Distance: {footDistance}, Step Threshold: {distanceFromHips}");
         return footOnGround;
     }
 
