@@ -220,10 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42568998f0bd1d4d971d8875bdd74fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftForearm: {fileID: 5426183247939467667}
-  rightForearm: {fileID: 5426183247939467743}
-  leftShoulder: {fileID: 5426183247939467665}
-  rightShoulder: {fileID: 5426183247939467741}
   enableLogging: 0
 --- !u!114 &7728008837169925803
 MonoBehaviour:
@@ -245,6 +241,8 @@ MonoBehaviour:
   resetDistance: 0.35
   enableDebugLogs: 0
   getAvatarInformation: {fileID: 6606738636542574115}
+  fireBallChargeUpRight: {fileID: 0}
+  fireBallChargeUpLeft: {fileID: 0}
 --- !u!114 &5428113850654607518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,8 +257,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftFoot: {fileID: 5426183247939560895}
   rightFoot: {fileID: 5426183247939560955}
-  stepThreshold: 0.75
-  landThreshold: 0.85
+  distanceToHips: 0.8
+  distanceFromHips: 0.85
   enableDebugLogs: 0
 --- !u!114 &228602647108705569
 MonoBehaviour:

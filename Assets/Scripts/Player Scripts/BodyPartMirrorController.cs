@@ -9,6 +9,8 @@ public class BodyPartMirrorController : MonoBehaviour
 
     public GameObject leftHandObject;
     public GameObject rightHandObject;
+    public GameObject leftElbowObject;
+    public GameObject rightElbowObject;
     public GameObject leftKneeObject;
     public GameObject rightKneeObject;
     
@@ -58,6 +60,8 @@ public class BodyPartMirrorController : MonoBehaviour
         SetBodyPartObjectLocation(rightHandObject, "Character1_RightHandMiddle1");
         SetBodyPartObjectLocation(leftKneeObject, "Character1_LeftLeg");
         SetBodyPartObjectLocation(rightKneeObject, "Character1_RightLeg");
+        SetBodyPartObjectLocation(leftElbowObject, "Character1_LeftForeArm");
+        SetBodyPartObjectLocation(rightElbowObject, "Character1_RightForeArm");
     }
     
 }
