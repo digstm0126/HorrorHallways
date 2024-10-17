@@ -54,29 +54,15 @@ namespace Environment_Scripts
                 {
                     index = 0;
                 }
-        private void FixedUpdate()
-        {
-            if (Time.time > maxTime)
-            {
-                if (index > intensity.Length - 1)
-                {
-                    index = 0;
-                }
             
                 float bigCount = Mathf.InverseLerp(minTime, maxTime, Time.time - count[index]);
-                float bigCount = Mathf.InverseLerp(minTime, maxTime, Time.time - count[index]);
 
-                if (bigCount != 1)
-                {
                 if (bigCount != 1)
                 {
                 
                     //count[index] += Time.time - count[index];
                     intensity[index] = Mathf.Lerp(0.0f, 1f, Mathf.InverseLerp(maxTime, minTime, Time.time - count[index]));
                     Shader.SetGlobalFloat("_intesaty" + index.ToString(), intensity[index]);
-                    //count[index] += Time.time - count[index];
-                    intensity[index] = Mathf.Lerp(0.0f, 1f, Mathf.InverseLerp(maxTime, minTime, Time.time - count[index]));
-                    Shader.SetGlobalFloat("_intesaty" + index.ToString(), intensity[index]);
 
                 }
                 else
@@ -84,42 +70,27 @@ namespace Environment_Scripts
                     intensity[index] = 0.0f;
                     Shader.SetGlobalFloat("_intesaty" + index.ToString(), intensity[index]);
                 }
-                }
-                else
-                {
-                    intensity[index] = 0.0f;
-                    Shader.SetGlobalFloat("_intesaty" + index.ToString(), intensity[index]);
-                }
+
 
                 index += 1;
-                index += 1;
+
+
+                //hanger.intensity = Mathf.Lerp(0.2f, 0.8f, intesaty[positionIndex - 1]);
+                //hanger.intensity = Mathf.Lerp(0.2f, 0.8f, intesaty[positionIndex - 1]);
+
+            }
             
 
-                //hanger.intensity = Mathf.Lerp(0.2f, 0.8f, intesaty[positionIndex - 1]);
-                //hanger.intensity = Mathf.Lerp(0.2f, 0.8f, intesaty[positionIndex - 1]);
 
-            }
-            }
-
-
-        }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        // Update is called once per frame
-        void Update()
-        {
-        
         
         }
-        }
+
+
+        
 
         public void SendInfo()
         {
-        public void SendInfo()
-        {
+
 
 
             float xVal = source.x;
@@ -130,26 +101,14 @@ namespace Environment_Scripts
             Shader.SetGlobalVector("_startPoint" + positionIndex.ToString(), currentPosition);
             count[positionIndex] = Time.time;
             intensity[positionIndex] = currentIntensity;
-            float xVal = source.x;
-            float zVal = source.z;
-            float yVal = source.y;
-            float timeLog = Time.time;
-            currentPosition = new Vector4(xVal, yVal, zVal, timeLog);
-            Shader.SetGlobalVector("_startPoint" + positionIndex.ToString(), currentPosition);
-            count[positionIndex] = Time.time;
-            intensity[positionIndex] = currentIntensity;
 
-            positionIndex += 1;
+
             positionIndex += 1;
 
             if (positionIndex > intensity.Length - 1)
             {
                 positionIndex = 0;
-            if (positionIndex > intensity.Length - 1)
-            {
-                positionIndex = 0;
 
-            }
             }
 
         
@@ -157,70 +116,5 @@ namespace Environment_Scripts
     
 
         }
-        }
-
-        // private void OnTriggerEnter(Collider other)
-        // {
-        // private void OnTriggerEnter(Collider other)
-        // {
-        
-        //     if (other.tag == "Player")
-        //     {
-        //     if (other.tag == "Player")
-        //     {
-
-        //         inside = true;
-        //         sendinfo();
-        //         inside = true;
-        //         sendinfo();
-
-        //     }
-        //     }
-        
-        // }
-        // }
-
-        // private void OnTriggerExit(Collider other)
-        // {
-        // private void OnTriggerExit(Collider other)
-        // {
-        
-        //     if (other.tag == "Player")
-        //     {
-        //         inside = false;
-        //     }
-        //     if (other.tag == "Player")
-        //     {
-        //         inside = false;
-        //     }
-
-        // }
-        // }
-
-        // private void OnTriggerStay(Collider other)
-        // {
-        //     if (other.tag == "Player")
-        //     {
-        // private void OnTriggerStay(Collider other)
-        // {
-        //     if (other.tag == "Player")
-        //     {
-
-        //         if (Time.time >= timer + speed)
-        //         {
-        //             timer = Time.time;
-        //             sendinfo();
-        //         }
-        //         if (Time.time >= timer + speed)
-        //         {
-        //             timer = Time.time;
-        //             sendinfo();
-        //         }
-
-        //     }
-        // }
-    }
-        //     }
-        // }
-    }
+    }   
 }
