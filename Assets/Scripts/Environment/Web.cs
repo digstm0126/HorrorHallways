@@ -54,20 +54,9 @@ namespace Environment_Scripts
                 {
                     index = 0;
                 }
-        private void FixedUpdate()
-        {
-            if (Time.time > maxTime)
-            {
-                if (index > intensity.Length - 1)
-                {
-                    index = 0;
-                }
             
                 float bigCount = Mathf.InverseLerp(minTime, maxTime, Time.time - count[index]);
-                float bigCount = Mathf.InverseLerp(minTime, maxTime, Time.time - count[index]);
 
-                if (bigCount != 1)
-                {
                 if (bigCount != 1)
                 {
                 
@@ -83,19 +72,20 @@ namespace Environment_Scripts
                 }
 
 
+
+
                 index += 1;
+
 
 
                 hanger.intensity = Mathf.Lerp(55.0f, 56.0f, intensity[positionIndex - 1]);
                 //hanger.intensity = Mathf.Lerp(0.2f, 0.8f, intensity[positionIndex - 1]);
 
             }
-            }
             
 
 
         
-        }
         }
 
 
@@ -103,6 +93,7 @@ namespace Environment_Scripts
 
         public void SendInfo()
         {
+
 
 
 
@@ -116,23 +107,19 @@ namespace Environment_Scripts
             intensity[positionIndex] = currentIntensity;
 
 
+
             positionIndex += 1;
 
             if (positionIndex > intensity.Length - 1)
             {
                 positionIndex = 0;
-            if (positionIndex > intensity.Length - 1)
-            {
-                positionIndex = 0;
 
-            }
             }
 
         
         
     
 
-        }
         }
     }   
 }
