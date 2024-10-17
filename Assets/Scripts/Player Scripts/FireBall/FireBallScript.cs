@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Environment_Scripts;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -169,13 +170,14 @@ public class FireballScript : MonoBehaviour
         Vector3 vec = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
         waveController.source = vec;
         int positionIndex = waveController.positionIndex;
-        waveController.SendInfo();
+
 
         if (other.gameObject.CompareTag("light"))
         {
+            waveController.SendInfo();
             LightController controller = other.GetComponent<LightController>();
             controller.index = positionIndex;
-            Destroy(gameObject);
+
         }
     }
     

@@ -211,10 +211,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.43867922, b: 0.43867922, a: 1}
-  m_Intensity: 1.5
+  m_Intensity: 3.5
   m_Range: 20
-  m_SpotAngle: 168.12512
-  m_InnerSpotAngle: 162.68771
+  m_SpotAngle: 179
+  m_InnerSpotAngle: 173.56259
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
@@ -1214,7 +1214,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 14.79036, y: 7.897, z: -4.032}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.3076682, z: 0.76471996}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2997692634818020406}
@@ -1240,7 +1240,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
