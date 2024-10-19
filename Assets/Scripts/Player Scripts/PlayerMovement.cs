@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float speed = 0f;
     public bool debugLog;
-
+    public CameraShake cameraShake;
     public float Speed {
         get { return speed; }
         set { speed = Mathf.Clamp(value, 0, maxSpeed); }
@@ -107,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
         float initialSpeed = speed;  
         float targetSpeed = initialSpeed + landingSpeedBurstRate; 
 
+        cameraShake.ShakeCamera();
         while (elapsedTime < landingDuration)
         {
       
