@@ -5,15 +5,18 @@ using UnityEngine;
 public class HideMechanicEntered : MonoBehaviour
 {
     
-    HideMechanicController hideMechanicController;
+    public HideMechanicController hideMechanicController;
     // Start is called before the first frame update
 
-
+    
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            HideMechanicController hideMechanicController = other.gameObject.GetComponent<HideMechanicController>();
+            if (!hideMechanicController)
+            {
+                HideMechanicController hideMechanicController = other.gameObject.GetComponent<HideMechanicController>();
+            }
 
             hideMechanicController.mechanicTriggered = true;
         }

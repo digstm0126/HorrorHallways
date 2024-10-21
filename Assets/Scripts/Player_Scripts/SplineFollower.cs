@@ -57,7 +57,7 @@ public class SplineFollower : MonoBehaviour
 
     public void MovePerpendicular(float distance)
     {
-        
+        Log("called MovePerpendicular()");
         float3 tangent = splineContainer.EvaluateTangent(splineProgress);
         Vector3 up = Vector3.up;
         
@@ -66,13 +66,20 @@ public class SplineFollower : MonoBehaviour
         targetPosition = transform.position + (perpendicular * distance);
         
         movingPerpendicular = true;
-        if (debugLog){
-            Debug.Log("MovePerpendicular script from Spline follower: moving perpendicular is called and reaches end");
-        }
+        Log("MovePerpendicular script from Spline follower: moving perpendicular is called and reaches end");
+        
     }
 
     public void StopMoving()
     {
         playerScript.SetSpeed(0f);
+    }
+
+    private void Log(string message)
+    {
+        if (debugLog)
+        {
+            Debug.Log(message);
+        }
     }
 }

@@ -1,16 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float liftingSpeedIncreaseRate = 2f;  // Rate of speed increase for lifting
-    public float landingSpeedBurstRate = 30;       // Rate of speed burst for landing
-    public float maxSpeed = 3;                   // Cap the maximum speed
-    public float liftingDuration = .1f;           // Duration for lifting
-    public float landingDuration = 0.2f;               // How long the speed adjustment lasts
+    public float liftingSpeedIncreaseRate = 2f;  
+    public float landingSpeedBurstRate = 30;       
+    public float maxSpeed = 3;                   
+    public float liftingDuration = .1f;          
+    public float landingDuration = 0.2f;               
 
     private float speed = 0f;
     public bool debugLog;
