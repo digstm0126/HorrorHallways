@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -9,11 +10,13 @@ public class PlayerMovement : MonoBehaviour
     public float landingSpeedBurstRate = 30;       
     public float maxSpeed = 3;                   
     public float liftingDuration = .1f;          
-    public float landingDuration = 0.2f;               
+    public float landingDuration = 0.2f; 
 
     private float speed = 0f;
     public bool debugLog;
     public CameraShake cameraShake;
+    public SplineFollower splineFollower;
+
     public float Speed {
         get { return speed; }
         set { speed = Mathf.Clamp(value, 0, maxSpeed); }
@@ -69,6 +72,10 @@ public class PlayerMovement : MonoBehaviour
                 }
                 currentCoroutine = StartCoroutine(LandingSpeed());
                 CurrentFootState = FootState.RightFootLifting;
+                if (splineFollower.hasHidden)
+                {
+                    StartCoroutine(splineFollower.ReturnToSpline());
+                }
                 break;
             case FootState.RightFootLifting:
                 if (debugLog)
@@ -85,6 +92,10 @@ public class PlayerMovement : MonoBehaviour
                 }
                 currentCoroutine = StartCoroutine(LandingSpeed());
                 CurrentFootState = FootState.LeftFootLifting;
+                if (splineFollower.hasHidden)
+                {
+                    StartCoroutine(splineFollower.ReturnToSpline());
+                }
                 break;
         }
     }
@@ -99,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator LandingSpeed()
     {
+        
         if (debugLog) {
             Debug.Log("Landing");
         }

@@ -35765,6 +35765,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2327795931791496844, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
+      propertyPath: debugLog
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2327795931791496844, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
+        type: 3}
       propertyPath: splineContainer
       value: 
       objectReference: {fileID: 1413771278}
@@ -35811,7 +35816,7 @@ PrefabInstance:
     - target: {fileID: 3501427805339912177, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
       propertyPath: distanceToShift
-      value: 0.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3501427805339912177, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
@@ -36016,7 +36021,7 @@ PrefabInstance:
     - target: {fileID: 8992389923513689251, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
       propertyPath: debugLog
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8992389923513689251, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
@@ -36028,6 +36033,11 @@ PrefabInstance:
       propertyPath: cameraShake
       value: 
       objectReference: {fileID: 1978306154}
+    - target: {fileID: 8992389923513689251, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
+        type: 3}
+      propertyPath: splineFollower
+      value: 
+      objectReference: {fileID: 755659692}
     - target: {fileID: 8992389923513689251, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
       propertyPath: landingDuration

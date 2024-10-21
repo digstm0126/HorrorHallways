@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
@@ -11,6 +12,8 @@ public class SplineFollower : MonoBehaviour
     private Vector3 targetPosition;
     private bool movingPerpendicular = false;
     public float perpendicularMoveSpeed = 2f;
+    public float returnToSplineDuration = 0.2f;
+    public bool hasHidden;
     public bool debugLog;
 
     void Start()
@@ -21,17 +24,22 @@ public class SplineFollower : MonoBehaviour
 
     void Update()
     {
-        MoveAlongSpline();
+        if (!movingPerpendicular)
+        {
+            MoveAlongSpline();
+        }
     }
 
     void LateUpdate()
     {
         if (movingPerpendicular)
         {
+            Log("Moving perpendicular to target position: " + targetPosition);
             transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * perpendicularMoveSpeed);
 
             if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
             {
+                Log("Reached perpendicular target position, stopping perpendicular movement.");
                 movingPerpendicular = false;
             }
         }
@@ -52,12 +60,14 @@ public class SplineFollower : MonoBehaviour
         {
             Quaternion targetRotation = Quaternion.LookRotation(new Vector3(tangent.x, tangent.y, tangent.z));
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+            Log("Updated rotation based on tangent: " + transform.rotation);
+
         }
     }
 
     public void MovePerpendicular(float distance)
     {
-        Log("called MovePerpendicular()");
+        Log("MovePerpendicular called with distance: " + distance);
         float3 tangent = splineContainer.EvaluateTangent(splineProgress);
         Vector3 up = Vector3.up;
         
@@ -66,9 +76,36 @@ public class SplineFollower : MonoBehaviour
         targetPosition = transform.position + (perpendicular * distance);
         
         movingPerpendicular = true;
-        Log("MovePerpendicular script from Spline follower: moving perpendicular is called and reaches end");
+        
+        Log("Perpendicular movement started. Target position: " + targetPosition);
         
     }
+    
+    public IEnumerator ReturnToSpline()
+    {
+        float elapsedTime = 0f;
+        Vector3 startPosition = transform.position;  // Capture the current position at the start of the return
+
+        while (elapsedTime < returnToSplineDuration)
+        {
+            // Dynamically calculate the current spline position
+            float3 splinePosition = splineContainer.EvaluatePosition(splineProgress);
+            Vector3 currentSplinePosition = new Vector3(splinePosition.x, splinePosition.y, splinePosition.z);
+
+            // Lerp back to the current spline position
+            transform.position = Vector3.Lerp(startPosition, currentSplinePosition, elapsedTime / returnToSplineDuration);
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        // Ensure exact position at the spline at the end
+        float3 finalSplinePosition = splineContainer.EvaluatePosition(splineProgress);
+        transform.position = new Vector3(finalSplinePosition.x, finalSplinePosition.y, finalSplinePosition.z);
+        Log("Returned to spline at position: " + transform.position);
+    }
+
+
 
     public void StopMoving()
     {

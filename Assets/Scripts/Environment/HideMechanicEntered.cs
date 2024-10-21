@@ -15,7 +15,7 @@ public class HideMechanicEntered : MonoBehaviour
         {
             if (!hideMechanicController)
             {
-                HideMechanicController hideMechanicController = other.gameObject.GetComponent<HideMechanicController>();
+                hideMechanicController = other.gameObject.GetComponent<HideMechanicController>();
             }
 
             hideMechanicController.mechanicTriggered = true;
