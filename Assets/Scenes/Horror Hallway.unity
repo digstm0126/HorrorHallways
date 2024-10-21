@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.1837981, g: 0.22911763, b: 0.3041642, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2761,7 +2761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &222132021
 Transform:
   m_ObjectHideFlags: 0
@@ -2771,7 +2771,7 @@ Transform:
   m_GameObject: {fileID: 222132020}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.6103235, z: -0, w: 0.79215235}
-  m_LocalPosition: {x: -17.95, y: -5.77, z: 19.25}
+  m_LocalPosition: {x: -17.95, y: -1.4, z: 19.25}
   m_LocalScale: {x: 8.134981, y: 8.134981, z: 8.134981}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2861,11 +2861,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aad1596a3f105740ba870f3de1b99e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDistance: 10
-  moveSpeed: 2
-  rotationAngle: 90
-  rotationSpeed: 100
+  moveDistance: 13
+  secondMoveDistance: 20
+  moveSpeed: 8
+  rotationAngle: 105
+  rotationSpeed: 60
   waitTime: 1
+  detectionRange: {fileID: 453798852}
 --- !u!4 &224518626 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1712581496669896419, guid: 8878c7e43c64f1d46be03bfa1adf350d,
@@ -19420,7 +19422,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.13052596, z: -0, w: 0.99144495}
   m_LocalPosition: {x: -3.58, y: -7.26, z: -7.4}
-  m_LocalScale: {x: 5.9537, y: 6.7255, z: 0.21625061}
+  m_LocalScale: {x: 31.242409, y: 21.490664, z: 0.21625061}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 72046652}
@@ -19455,14 +19457,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1275378531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aad1596a3f105740ba870f3de1b99e3, type: 3}
+  m_Script: {fileID: 11500000, guid: f9876dc19fa03aa4a8196455eff2463b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDistance: 5
-  moveSpeed: 2
-  rotationAngle: 90
-  rotationSpeed: 100
-  waitTime: 1
+  monster: {fileID: 222132020}
 --- !u!1 &1276162638
 GameObject:
   m_ObjectHideFlags: 0
@@ -36034,4 +36032,20 @@ PrefabInstance:
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
-  m_Roots: []
+  m_Roots:
+  - {fileID: 3104164580252054277}
+  - {fileID: 1818679730}
+  - {fileID: 1378638011}
+  - {fileID: 72046652}
+  - {fileID: 410087041}
+  - {fileID: 459244524}
+  - {fileID: 514426658}
+  - {fileID: 832575519}
+  - {fileID: 1031896351}
+  - {fileID: 1073865678}
+  - {fileID: 1413771279}
+  - {fileID: 1424524743}
+  - {fileID: 1512329280}
+  - {fileID: 1793364576}
+  - {fileID: 1841016602}
+  - {fileID: 2046162569}
