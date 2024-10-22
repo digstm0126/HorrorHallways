@@ -75,8 +75,8 @@ namespace Environment_Scripts
                 index += 1;
 
 
-                //hanger.intensity = Mathf.Lerp(0.2f, 0.8f, intesaty[positionIndex - 1]);
-                //hanger.intensity = Mathf.Lerp(0.2f, 0.8f, intesaty[positionIndex - 1]);
+                hanger.intensity = Mathf.Lerp(55.0f, 56.0f, intensity[positionIndex - 1]);
+                //hanger.intensity = Mathf.Lerp(0.2f, 0.8f, intensity[positionIndex - 1]);
 
             }
             

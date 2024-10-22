@@ -154,8 +154,8 @@ MonoBehaviour:
   lightMax: 50
   awake: 1
   range: {fileID: 0}
-  curntlight: {fileID: 0}
-  webs: {fileID: 0}
+  currentLight: {fileID: 0}
+  webController: {fileID: 0}
 --- !u!135 &8215676247591105592
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -169,7 +169,7 @@ SphereCollider:
     m_Bits: 2
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1073807613
+    m_Bits: 1073807477
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0

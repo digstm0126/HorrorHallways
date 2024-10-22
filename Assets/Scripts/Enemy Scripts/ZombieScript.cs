@@ -60,7 +60,6 @@ public class ZombieScript : MonoBehaviour
     private void OnTriggerStay(Collider other) 
     {
         
-    
         
         if (other.CompareTag("light"))
         {
