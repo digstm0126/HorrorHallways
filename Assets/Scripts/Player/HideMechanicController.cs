@@ -32,10 +32,18 @@ public class HideMechanicController : MonoBehaviour
     public void TriggerPlayerHide()
     {
         Log("Triggering player hide");
-        if (mechanicTriggered)
+        if (mechanicTriggered && !splineFollower.hasHidden)
         {
             Log("Past if statement in TriggerPlayerHide");
             splineFollower.MovePerpendicular(distanceToShift);
+        }
+    }
+
+    public void TriggerPlayerReturn()
+    {
+        if (mechanicTriggered && splineFollower.hasHidden)
+        {
+            splineFollower.ReturnToSpline();
         }
     }
 

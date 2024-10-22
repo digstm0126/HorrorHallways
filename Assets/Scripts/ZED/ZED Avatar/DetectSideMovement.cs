@@ -6,8 +6,10 @@ public class DetectSideMovement : MonoBehaviour
 {
     private float startXPosition = 0f;
     
-    HideMechanicController hideMechanicController;
+    public HideMechanicController hideMechanicController;
     private bool playerHasMovedToSide;
+    public float distanceThreshold = 0.5f;
+    public float returnThreshold = 0.4f;
     void Update()
     {
         if (!hideMechanicController)
@@ -17,13 +19,20 @@ public class DetectSideMovement : MonoBehaviour
         
         float distanceMovedX = transform.position.x - startXPosition;
 
-        if (distanceMovedX >= 0.5f && !playerHasMovedToSide)
+        if (distanceMovedX >= distanceThreshold && !playerHasMovedToSide)
+        {
+            hideMechanicController.TriggerPlayerHide();
+            playerHasMovedToSide = true;
+        }
+        else if (distanceMovedX <= -distanceThreshold && !playerHasMovedToSide)
         {
             hideMechanicController.TriggerPlayerHide();
         }
-        else if (distanceMovedX <= -0.5f && !playerHasMovedToSide)
+
+        if (distanceMovedX < returnThreshold && distanceMovedX > -returnThreshold && playerHasMovedToSide)
         {
-            hideMechanicController.TriggerPlayerHide();
+            hideMechanicController.TriggerPlayerReturn();
+            playerHasMovedToSide = false;
         }
     }
 
