@@ -70,12 +70,18 @@ public class PlayerMovement : MonoBehaviour
                 {
                     Debug.Log("Left foot landing");
                 }
-                currentCoroutine = StartCoroutine(LandingSpeed());
-                CurrentFootState = FootState.RightFootLifting;
+                
                 if (splineFollower.hasHidden)
                 {
-                    //StartCoroutine(splineFollower.ReturnToSpline());
+                    StartCoroutine(splineFollower.ReturnToSplineForward());
                 }
+                else
+                {
+                    currentCoroutine = StartCoroutine(LandingSpeed());
+                }
+
+                CurrentFootState = FootState.RightFootLifting;
+                
                 break;
             case FootState.RightFootLifting:
                 if (debugLog)
@@ -90,11 +96,15 @@ public class PlayerMovement : MonoBehaviour
                 {
                     Debug.Log("Right foot landing");
                 }
-                currentCoroutine = StartCoroutine(LandingSpeed());
                 CurrentFootState = FootState.LeftFootLifting;
                 if (splineFollower.hasHidden)
                 {
-                    //StartCoroutine(splineFollower.ReturnToSpline());
+                    Speed = 2;
+                    StartCoroutine(splineFollower.ReturnToSplineForward());
+                }
+                else
+                {
+                    currentCoroutine = StartCoroutine(LandingSpeed());
                 }
                 break;
         }

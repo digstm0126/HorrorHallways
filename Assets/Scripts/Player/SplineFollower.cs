@@ -11,7 +11,7 @@ public class SplineFollower : MonoBehaviour
 
     private Vector3 targetPosition;
     private bool movingPerpendicular = false;
-    public float perpendicularMoveSpeed = 2f;
+    public float perpendicularMoveSpeed = 5f;
     public float returnToSplineDuration = 0.2f;
     public bool hasHidden;
     public bool debugLog;
@@ -48,9 +48,7 @@ public class SplineFollower : MonoBehaviour
 
     void MoveAlongSpline()
     {
-        float currentSpeed = playerScript.GetSpeed();
-        splineProgress += (currentSpeed * Time.deltaTime) / splineContainer.Spline.GetLength();
-        splineProgress %= 1f;
+        CalculateSplineProgress();
 
         float3 position = splineContainer.EvaluatePosition(splineProgress);
         float3 tangent = splineContainer.EvaluateTangent(splineProgress);
@@ -64,6 +62,13 @@ public class SplineFollower : MonoBehaviour
             Log("Updated rotation based on tangent: " + transform.rotation);
 
         }
+    }
+
+    private void CalculateSplineProgress()
+    {
+        float currentSpeed = playerScript.GetSpeed();
+        splineProgress += (currentSpeed * Time.deltaTime) / splineContainer.Spline.GetLength();
+        splineProgress %= 1f;
     }
 
     public void MovePerpendicular(float distance)
@@ -103,6 +108,35 @@ public class SplineFollower : MonoBehaviour
         // Ensure exact position at the spline at the end
         float3 finalSplinePosition = splineContainer.EvaluatePosition(splineProgress);
         transform.position = new Vector3(finalSplinePosition.x, finalSplinePosition.y, finalSplinePosition.z);
+        hasHidden = false;
+        Log("Returned to spline at position: " + transform.position);
+    }
+    
+    public IEnumerator ReturnToSplineForward()
+    {
+        float elapsedTime = 0f;
+        Vector3 startPosition = transform.position;  // Capture the current position at the start of the return
+
+        while (elapsedTime < returnToSplineDuration)
+        {
+            
+            CalculateSplineProgress();
+
+            // Dynamically calculate the current spline position
+            float3 splinePosition = splineContainer.EvaluatePosition(splineProgress);
+            Vector3 currentSplinePosition = new Vector3(splinePosition.x, splinePosition.y, splinePosition.z);
+
+            // Lerp back to the current spline position
+            transform.position = Vector3.Lerp(startPosition, currentSplinePosition, elapsedTime / returnToSplineDuration);
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        // Ensure exact position at the spline at the end
+        float3 finalSplinePosition = splineContainer.EvaluatePosition(splineProgress);
+        transform.position = new Vector3(finalSplinePosition.x, finalSplinePosition.y, finalSplinePosition.z);
+        playerScript.SetSpeed(0f);
         hasHidden = false;
         Log("Returned to spline at position: " + transform.position);
     }
