@@ -4,14 +4,30 @@ using UnityEngine;
 
 public class MonsterAnimation : MonoBehaviour
 {
-    void Start()
+    private Animator animator;
+
+    private void Awake()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayWalkAnimation()
     {
-        
+        animator.SetBool("isWalking", true);
+    }
+
+    public void StopWalkAnimation()
+    {
+        animator.SetBool("isWalking", false);
+    }
+
+    public void PlayAttackAnimation()
+    {
+        animator.SetTrigger("attack");
+    }
+
+    public void PlayDeathAnimation()
+    {
+        animator.SetTrigger("die");
     }
 }
