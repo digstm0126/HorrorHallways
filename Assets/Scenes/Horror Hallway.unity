@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1837981, g: 0.22911763, b: 0.3041642, a: 1}
   m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -2950,7 +2949,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDistance: 10
-  secondMoveDistance: 20
   secondMoveDistance: 20
   moveSpeed: 2
   rotationAngle: 90
@@ -19666,7 +19664,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDistance: 5
-  secondMoveDistance: 20
   secondMoveDistance: 20
   moveSpeed: 2
   rotationAngle: 90
@@ -36732,7 +36729,6 @@ SceneRoots:
   - {fileID: 1031896351}
   - {fileID: 1073865678}
   - {fileID: 1413771279}
-  - {fileID: 1424524743}
   - {fileID: 1512329280}
   - {fileID: 1793364576}
   - {fileID: 1841016602}
