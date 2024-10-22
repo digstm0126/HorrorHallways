@@ -11,78 +11,55 @@ public class MonsterRoamer : MonoBehaviour
     public float waitTime = 1f;
 
     private bool isMoving;
-    private bool actionTriggered = false;
+    public MonsterZone monsterZone;  // Reference to MonsterZone
+    private Animator animator;       // Animator component reference
 
-    public Transform detectionRange; // Child object for detection range
-
-    void Update()
+    void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !actionTriggered)
-        {
-            actionTriggered = true;
-            StartCoroutine(MonsterBehavior());
-        }
+        animator = GetComponent<Animator>();  // Get the Animator component
     }
 
-    private void MonsterWalking()
+    void OnEnable()
     {
-        Debug.Log(isMoving ? "Triggered Moving Animation" : "Not moving right now");
-    }
-
-    private bool IsPlayerInRange()
-    {
-        Collider[] hits = Physics.OverlapSphere(detectionRange.position, detectionRange.localScale.x / 2);
-        foreach (Collider hit in hits)
-        {
-            if (hit.CompareTag("Player"))
-            {
-                return true;
-            }
-        }
-        return false;
+        StartCoroutine(MonsterBehavior());  // Start the behavior when enabled
     }
 
     IEnumerator MonsterBehavior()
     {
-        // First forward movement
+        // Start walking animation and move forward
+        PlayWalkAnimation();
         isMoving = true;
-        MonsterWalking();
         yield return StartCoroutine(MoveForward(moveDistance));
+        StopWalkAnimation();
         isMoving = false;
 
         yield return new WaitForSeconds(waitTime);
 
         // Rotate right
-        isMoving = true;
         yield return StartCoroutine(Rotate(rotationAngle));
-        isMoving = false;
 
         yield return new WaitForSeconds(waitTime);
 
-        // Check for player in range
-        bool playerDetected = IsPlayerInRange();
-
-        if (playerDetected)
+        // Check if the player is in the monster zone
+        if (monsterZone.playerInZone)
         {
-            Debug.Log("Player detected! Moving forward.");
-            isMoving = true;
-            yield return StartCoroutine(MoveForward(secondMoveDistance));
+            Debug.Log("Player detected! Attacking.");
+            yield return new WaitForSeconds(1f);  // Wait for the attack animation to finish
+            PlayAttackAnimation();  // Play attack animation if player detected
+
         }
         else
         {
-            Debug.Log("Player not detected. Rotating back.");
-            isMoving = true;
-
-            // Rotate back to original direction
+            Debug.Log("No player detected. Rotating back.");
             yield return StartCoroutine(Rotate(-rotationAngle));
-
-            // Ensure monster moves forward even when no player is detected
-            yield return StartCoroutine(MoveForward(secondMoveDistance));
         }
 
-        isMoving = false;
+        // Move forward again regardless of detection
+        PlayWalkAnimation();
+        yield return StartCoroutine(MoveForward(secondMoveDistance));
+        StopWalkAnimation();
 
-        // Final action: Destroy the monster
+        // Destroy the monster after its actions
         Destroy(gameObject);
     }
 
@@ -106,5 +83,21 @@ public class MonsterRoamer : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             yield return null;
         }
+    }
+
+    // Animation control methods
+    private void PlayWalkAnimation()
+    {
+        animator.SetBool("isWalking", true);
+    }
+
+    private void StopWalkAnimation()
+    {
+        animator.SetBool("isWalking", false);
+    }
+
+    private void PlayAttackAnimation()
+    {
+        animator.SetTrigger("attack");
     }
 }
