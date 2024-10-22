@@ -24,7 +24,7 @@ public class SplineFollower : MonoBehaviour
 
     void Update()
     {
-        if (!movingPerpendicular)
+        if (!movingPerpendicular && !hasHidden)
         {
             MoveAlongSpline();
         }
@@ -41,6 +41,7 @@ public class SplineFollower : MonoBehaviour
             {
                 Log("Reached perpendicular target position, stopping perpendicular movement.");
                 movingPerpendicular = false;
+                hasHidden = true;
             }
         }
     }
@@ -102,6 +103,7 @@ public class SplineFollower : MonoBehaviour
         // Ensure exact position at the spline at the end
         float3 finalSplinePosition = splineContainer.EvaluatePosition(splineProgress);
         transform.position = new Vector3(finalSplinePosition.x, finalSplinePosition.y, finalSplinePosition.z);
+        hasHidden = false;
         Log("Returned to spline at position: " + transform.position);
     }
 
