@@ -74,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
                 if (splineFollower.hasHidden)
                 {
                     StartCoroutine(splineFollower.ReturnToSplineForward());
+                    
                 }
                 else
                 {
