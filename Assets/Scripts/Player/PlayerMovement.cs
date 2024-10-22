@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
                 CurrentFootState = FootState.RightFootLifting;
                 if (splineFollower.hasHidden)
                 {
-                    StartCoroutine(splineFollower.ReturnToSpline());
+                    //StartCoroutine(splineFollower.ReturnToSpline());
                 }
                 break;
             case FootState.RightFootLifting:
@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
                 CurrentFootState = FootState.LeftFootLifting;
                 if (splineFollower.hasHidden)
                 {
-                    StartCoroutine(splineFollower.ReturnToSpline());
+                    //StartCoroutine(splineFollower.ReturnToSpline());
                 }
                 break;
         }

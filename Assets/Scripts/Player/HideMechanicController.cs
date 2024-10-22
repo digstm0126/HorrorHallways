@@ -16,10 +16,16 @@ public class HideMechanicController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H) && mechanicTriggered)
+        if (Input.GetKeyDown(KeyCode.H) && mechanicTriggered && !splineFollower.hasHidden)
         {
-            Log("input received");
+            Log("hide input received");
             TriggerPlayerHide();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R) && splineFollower.hasHidden && mechanicTriggered)
+        {
+            Log("return input received");
+            StartCoroutine(splineFollower.ReturnToSpline());
         }
     }
 
