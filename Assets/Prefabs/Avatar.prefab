@@ -272,6 +272,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 569a0c3f1e2586d498aea4a0b4178083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hideMechanicController: {fileID: 0}
+  getAvatarInformation: {fileID: 6606738636542574115}
+  distanceThreshold: 0.5
+  returnThreshold: 0.4
+  enableDebugs: 1
 --- !u!1 &5426183247939467297
 GameObject:
   m_ObjectHideFlags: 0
