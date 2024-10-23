@@ -19,11 +19,17 @@ public class ZombieScript : MonoBehaviour
 
     public GameObject webController;
     private Transform player;
+    private Animator animator;
+
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
-        //range.radius = detectionRange;
+
         currentLight = GameObject.FindObjectOfType<Web>().defaultLight;
         
     }
@@ -38,6 +44,7 @@ public class ZombieScript : MonoBehaviour
         if (currentLight.GetComponentInChildren<Light>().intensity > lightMax)
         {
             MoveTowardsPlayer();
+            
         }
 
 

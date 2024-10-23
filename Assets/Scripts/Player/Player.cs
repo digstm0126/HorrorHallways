@@ -105,6 +105,10 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Zombie"))
         {
             Debug.Log(gameObject.name);
+            //if ()
+            {
+                
+            }
             TakeDamage(2);
             Destroy(other.gameObject);
         }
@@ -120,6 +124,13 @@ public class Player : MonoBehaviour
             TakeDamage(9);
             Destroy(other.gameObject);
         }
+
+        if (other.CompareTag("MonsterRoamer"))
+        {
+            TakeDamage(healthManager.CurrentHealth);
+            Destroy(other.gameObject);
+        }
+
     }
 
 

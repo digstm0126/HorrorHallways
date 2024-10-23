@@ -16,6 +16,7 @@ TagManager:
   - light
   - wavecontroler
   - MonsterVision
+  - MonsterRoamer
   layers:
   - Default
   - TransparentFX
