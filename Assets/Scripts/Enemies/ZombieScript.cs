@@ -24,27 +24,35 @@ public class ZombieScript : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
+        if (animator != null)
+        {
+            Debug.Log("Animator found!");
+        }
+        else
+        {
+            Debug.LogError("Animator not found!");
+        }
     }
 
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
-
         currentLight = GameObject.FindObjectOfType<Web>().defaultLight;
         
     }
 
     void Update()
     {
-
-
-        
         float distanceToTarget = Vector3.Distance(transform.position, currentLight.transform.position);
 
         if (currentLight.GetComponentInChildren<Light>().intensity > lightMax)
         {
             MoveTowardsPlayer();
-            
+            animator.SetBool("isAttacking", true);
+        }
+        else
+        {
+            animator.SetBool("isAttacking", false);
         }
 
 
