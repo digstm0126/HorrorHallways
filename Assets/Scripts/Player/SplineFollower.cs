@@ -7,7 +7,7 @@ public class SplineFollower : MonoBehaviour
 {
     public SplineContainer splineContainer;
     private Player playerScript;
-    private float splineProgress = 0f;
+    public float splineProgress = 0f;
 
     private Vector3 targetPosition;
     private bool movingPerpendicular = false;
