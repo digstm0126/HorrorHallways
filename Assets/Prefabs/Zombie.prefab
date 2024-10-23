@@ -26,37 +26,37 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b91187a9debded54988c89438ac8b3f6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.37
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b91187a9debded54988c89438ac8b3f6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.35
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b91187a9debded54988c89438ac8b3f6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 20.34
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b91187a9debded54988c89438ac8b3f6,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.0000004768371
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b91187a9debded54988c89438ac8b3f6,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b91187a9debded54988c89438ac8b3f6,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b91187a9debded54988c89438ac8b3f6,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b91187a9debded54988c89438ac8b3f6,
         type: 3}
@@ -66,7 +66,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b91187a9debded54988c89438ac8b3f6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b91187a9debded54988c89438ac8b3f6,
         type: 3}
@@ -92,7 +92,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b427cec6216e7a040a583431f3040802, type: 2}
+      objectReference: {fileID: 2100000, guid: 1b5f24ac68e2b4972bb1d1bce683a9a7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -157,9 +157,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9477eea92caf245bf9f3c63513d121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 6
   detectionRange: 10
-  lightMax: 50
+  lightMax: 10
   awake: 1
   range: {fileID: 5474881234282602526}
   currentLight: {fileID: 0}
@@ -174,10 +174,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 4194304
+    m_Bits: 1078001781
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -195,7 +195,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

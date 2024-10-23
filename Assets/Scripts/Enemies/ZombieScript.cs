@@ -38,6 +38,7 @@ public class ZombieScript : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").transform;
         currentLight = GameObject.FindObjectOfType<Web>().defaultLight;
+        range.radius = detectionRange;
         
     }
 

@@ -30,7 +30,7 @@ public class LightController : MonoBehaviour
 
             if (intensity != 0)
             {
-                lightSource.intensity = Mathf.Lerp(5.0f, 30.0f, intensity);
+                lightSource.intensity = Mathf.Lerp(1.0f, 15.0f, intensity);
             }
             else 
             {
