@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Zombie"))
         {
             Debug.Log(gameObject.name);
-            if ()
+            //if ()
             {
                 
             }
