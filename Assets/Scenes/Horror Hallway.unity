@@ -36726,7 +36726,7 @@ PrefabInstance:
     - target: {fileID: 3501427805339912177, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
       propertyPath: debugLogsEnabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3971242086251276676, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
@@ -36891,7 +36891,7 @@ PrefabInstance:
     - target: {fileID: 8820455388182905728, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
       propertyPath: enableLogging
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8905114935118473018, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
@@ -36926,7 +36926,7 @@ PrefabInstance:
     - target: {fileID: 8992389923513689251, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}
       propertyPath: debugLog
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8992389923513689251, guid: 6f13c91ec87364d40b54c9d359ad0ac2,
         type: 3}

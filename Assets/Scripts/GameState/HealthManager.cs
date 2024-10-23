@@ -25,7 +25,7 @@ public class HealthManager : MonoBehaviour
         currentHealth -= amount;
         UpdateHealthUI();
 
-        Debug.Log($"Lost {amount} HP. Current HP: {currentHealth}");
+        //Debug.Log($"Lost {amount} HP. Current HP: {currentHealth}");
     }
 
     public void Heal(int amount)
@@ -37,7 +37,7 @@ public class HealthManager : MonoBehaviour
             currentHealth = maxHealth;
         }
         UpdateHealthUI();
-        Debug.Log($"Healed {amount} HP. Current HP: {currentHealth}");
+//Debug.Log($"Healed {amount} HP. Current HP: {currentHealth}");
     }
 
     private void UpdateHealthUI()

@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     PlayerMovement playerMovement;
     
 
-    
+    public bool enableLogs = false;
     
 
     void Start()
@@ -67,8 +67,8 @@ public class Player : MonoBehaviour
 
         StartCoroutine(takeDamageScript.TakeDamageEffect());
 
-        Debug.Log("Lost " + amount + " HP");
-        Debug.Log("You Now have " + healthManager.CurrentHealth + " HP");
+        //Debug.Log("Lost " + amount + " HP");
+        //Debug.Log("You Now have " + healthManager.CurrentHealth + " HP");
 
         if (healthManager.CurrentHealth <= 0)
         {
@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
         if (isGameOver) return;
 
         healthManager.Heal(amount); // Call HealthManager to handle healing
-        Debug.Log("Healed " + amount + " HP. Current HP: " + healthManager.CurrentHealth);
+        //Debug.Log("Healed " + amount + " HP. Current HP: " + healthManager.CurrentHealth);
     }
     
 
@@ -95,16 +95,16 @@ public class Player : MonoBehaviour
         int finalScore = scoreManager.GetScore();
         youLoseTextTMP.GetComponent<TextMeshProUGUI>().text = $"You Lose! You scored: {finalScore}";
 
-        Debug.Log("Player has died. Displaying score");
+        //Debug.Log("Player has died. Displaying score");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
+        //Debug.Log(other.name);
 
         if (other.CompareTag("Zombie"))
         {
-            Debug.Log(gameObject.name);
+            //Debug.Log(gameObject.name);
             //if ()
             {
                 
@@ -137,6 +137,14 @@ public class Player : MonoBehaviour
     public bool GetAttachedToHand()
     {
         return fireBallShooter.attachedToHand;
+    }
+
+    private void Log(string message)
+    {
+        if (enableLogs == true)
+        {
+            Debug.Log(message);
+        }
     }
     
 
