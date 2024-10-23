@@ -167,8 +167,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hideMechanicController: {fileID: 0}
   getAvatarInformation: {fileID: 6606738636542574115}
-  distanceThreshold: 0.5
-  returnThreshold: 0.4
+  distanceThreshold: 0.4
+  returnThreshold: 0.3
   enableDebugs: 1
 --- !u!1 &5426183247939467297
 GameObject:

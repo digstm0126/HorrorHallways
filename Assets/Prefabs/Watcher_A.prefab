@@ -112,7 +112,7 @@ Animator:
   m_GameObject: {fileID: 670636627352110426}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8d97b0c2149f8b64eb6dfc2cd5090b16, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6c2d797979bdc504a870714cc246149a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -141,3 +141,4 @@ MonoBehaviour:
   rotationAngle: 105
   rotationSpeed: 100
   waitTime: 1
+  monsterZone: {fileID: 0}

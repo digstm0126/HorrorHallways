@@ -141,6 +141,7 @@ MonoBehaviour:
   youLoseTextTMP: {fileID: 0}
   healthManager: {fileID: 0}
   takeDamageScript: {fileID: 0}
+  enableLogs: 0
 --- !u!114 &2327795931791496844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +155,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splineContainer: {fileID: 0}
+  splineProgress: 0
   perpendicularMoveSpeed: 2
+  returnToSplineDuration: 0.2
+  hasHidden: 0
   debugLog: 0
 --- !u!54 &5349084048421034451
 Rigidbody:
@@ -238,6 +242,8 @@ MonoBehaviour:
   liftingDuration: 10
   landingDuration: 0.2
   debugLog: 0
+  cameraShake: {fileID: 5833478726159950863}
+  splineFollower: {fileID: 2327795931791496844}
 --- !u!114 &4495852617145087372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,8 +273,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5485d9e6dcc7d49a97eb6a94685564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  splineFollower: {fileID: 2327795931791496844}
   distanceToShift: 0
   mechanicTriggered: 0
+  debugLogsEnabled: 0
 --- !u!1 &2383868583090159651
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,7 +703,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4335502784566530480}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0855886, y: -0.05168871, z: 0.004447062, w: -0.99497896}
+  m_LocalRotation: {x: 0.085703835, y: -0, z: -0, w: 0.99632066}
   m_LocalPosition: {x: -0.100000024, y: 1.0900002, z: -2.2600002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1183,6 +1191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6715623045348689825}
   - component: {fileID: 4398333474897703660}
+  - component: {fileID: 8192801223196342069}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -1217,6 +1226,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8192801223196342069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9078677681706134588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: -731.0951, y: 149.33456, z: -86.68698}
 --- !u!1001 &2566383428472603436
 PrefabInstance:
   m_ObjectHideFlags: 0

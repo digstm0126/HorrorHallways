@@ -9,6 +9,7 @@ public class MonsterRoamer : MonoBehaviour
     public float rotationAngle = 105f;
     public float rotationSpeed = 60f;
     public float waitTime = 1f;
+    public Player player;
 
     public MonsterZone monsterZone;  // Reference to MonsterZone
     private Animator animator;       // Animator component reference
@@ -41,7 +42,14 @@ public class MonsterRoamer : MonoBehaviour
         if (monsterZone.playerInZone)
         {
             Debug.Log("Player detected! Attacking.");
-            yield return new WaitForSeconds(1f);  // Wait for the attack animation to finish
+            yield return new WaitForSeconds(1f);
+            if (monsterZone.playerInZone)
+            {
+                yield return new WaitForSeconds(1f);
+
+                player.TakeDamage(1000);
+            }
+            // Wait for the attack animation to finish
             PlayAttackAnimation();  // Play attack animation if player detected
 
         }

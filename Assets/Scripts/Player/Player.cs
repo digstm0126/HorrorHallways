@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
     
     
 
-    private void TakeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         if (isGameOver) return;
 
@@ -104,13 +104,15 @@ public class Player : MonoBehaviour
 
         if (other.CompareTag("Zombie"))
         {
-            //Debug.Log(gameObject.name);
-            //if ()
+            SphereCollider sphereCollider = other as SphereCollider;
+
+            // Check if it's the smaller collider by comparing the radius or some other property
+            if (sphereCollider != null && sphereCollider.radius < 1) // replace SOME_THRESHOLD_VALUE with your chosen radius size
             {
-                
+                TakeDamage(2);
+                Destroy(other.gameObject);
             }
-            TakeDamage(2);
-            Destroy(other.gameObject);
+            
         }
 
         if (other.CompareTag("Spider"))
