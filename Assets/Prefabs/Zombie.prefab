@@ -16,9 +16,6 @@ GameObject:
   - component: {fileID: -8126562051254796571}
   - component: {fileID: 4562619505477008472}
   - component: {fileID: 4132166269953842414}
-  - component: {fileID: -8126562051254796571}
-  - component: {fileID: 4562619505477008472}
-  - component: {fileID: 4132166269953842414}
   m_Layer: 7
   m_Name: Zombie
   m_TagString: Zombie
@@ -190,17 +187,13 @@ SphereCollider:
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
-    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
     m_Bits: 1073807477
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 5
-  m_Center: {x: -0.08, y: 0, z: 0.4685677}
   m_Radius: 5
   m_Center: {x: -0.08, y: 0, z: 0.4685677}
