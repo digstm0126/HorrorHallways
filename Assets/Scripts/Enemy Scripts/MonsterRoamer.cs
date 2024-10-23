@@ -10,7 +10,6 @@ public class MonsterRoamer : MonoBehaviour
     public float rotationSpeed = 60f;
     public float waitTime = 1f;
 
-    private bool isMoving;
     public MonsterZone monsterZone;  // Reference to MonsterZone
     private Animator animator;       // Animator component reference
 
@@ -28,10 +27,8 @@ public class MonsterRoamer : MonoBehaviour
     {
         // Start walking animation and move forward
         PlayWalkAnimation();
-        isMoving = true;
         yield return StartCoroutine(MoveForward(moveDistance));
         StopWalkAnimation();
-        isMoving = false;
 
         yield return new WaitForSeconds(waitTime);
 
