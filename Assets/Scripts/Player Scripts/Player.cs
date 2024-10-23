@@ -117,6 +117,13 @@ public class Player : MonoBehaviour
             TakeDamage(9);
             Destroy(other.gameObject);
         }
+
+        if (other.CompareTag("MonsterRoamer"))
+        {
+            TakeDamage(healthManager.CurrentHealth);
+            Destroy(other.gameObject);
+        }
+
     }
 
 
